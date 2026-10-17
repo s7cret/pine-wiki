@@ -58,6 +58,15 @@
   if(vals.length)return '<p class="meta">'+T('defaultKnown')+': '+code(vals.join(' / '))+'</p>';
   return '<p class="meta">'+T(p.default_documented?'defaultInText':'defaultUnknown')+'</p>';
  }
+ function parameterDescription(p){
+  if(text(p.description))return localized(p.description);
+  const hint=p.description_hint;
+  if(!hint)return T('parameterDescriptionMissing');
+  return '<details class="description-hint" data-detail="description-hint"><summary>'+T('descriptionHint',{v:hint.version})+'</summary>'+
+    '<p class="meta source-inferred">'+T('descriptionHintWarning',{v:hint.version})+'</p><div class="type-hint">'+
+    localized(hint.text,cat.texts,hint.version)+(hint.sources||[]).map(source).join('')+
+    '<a data-entry href="'+esc(url({v:hint.version,lang:state.lang,id:hint.entry_id}))+'">'+T('viewDonor')+'</a></div></details>';
+ }
  function parameterDetails(e){
   return details(T('signatures'),
     e.syntax.map(s=>'<code class="syntax">'+esc(s)+'</code>').join('')+
@@ -67,7 +76,7 @@
       (p.kind==='variadic_group'?'<p class="meta">'+T('variadicGroup')+'</p>':p.kind==='syntax_placeholder'?'<p class="meta">'+T('syntaxPlaceholder')+'</p>':'')+
       '<p class="'+(p.state==='conflict'?'warning':'')+'">'+T(p.state)+'</p>'+
       '<p class="meta">'+T('metadata')+': '+T(p.metadata_state||'notSpecified')+'; '+T('directDescription')+': '+T(p.prose_state||'notSpecified')+'.</p>'+
-      '<div>'+(text(p.description)?localized(p.description):T('parameterDescriptionMissing'))+'</div>'+defaultProvenance(p)+'</div>'
+      '<div>'+parameterDescription(p)+'</div>'+defaultProvenance(p)+'</div>'
     ).join(''):'<p class="meta">'+T(e.parameters_applicable?'parametersMissing':'noParameters')+'</p>')+
     '<div class="result">'+resultProvenance(e)+'<strong>'+T('result')+'</strong><p>'+code(e.result.types.join(' / '))+
     '</p><div>'+(text(e.result.description)?localized(e.result.description):T('resultMissing'))+'</div></div>','parameters');
