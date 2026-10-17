@@ -1,0 +1,6 @@
+:8000 {
+    root * .
+    encode zstd gzip
+    header Cache-Control "no-cache"
+    file_server
+}
