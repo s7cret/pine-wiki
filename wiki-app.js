@@ -3,7 +3,7 @@
  const levels=['api','construct','part','detail','technical'],roleKey=r=>'role'+r[0].toUpperCase()+r.slice(1),countKey=r=>'count'+r[0].toUpperCase()+r.slice(1);
  const $=id=>document.getElementById(id),versions=[6,5,4,3,2,1],categories=['all','syntax','operators','keywords','types','functions','methods','variables','constants','annotations','technical'],size=20;
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- let state,cat=null,request=0,historyRequest=0,historyData=null,currentFamily=null,historySummary=null,showSources=false,historyReturnFocus=null;
+ let state,cat=null,request=0,historyRequest=0,historyData=null,currentFamily=null,historySummary=null,showSources=false,historyReturnFocus=null,catalogLanguage=null;
  const scripts=new Map(),indexes=new WeakMap();
  const T=(key,params={})=>String(window.PINE_UI[key]?.[state.lang==='en'?1:0]??key).replace(/\{(\w+)\}/g,(_,k)=>params[k]??'');
  const text=(ref,pool=cat?.texts)=>typeof ref==='object'?(ref?.[state.lang]||''):(pool?.[ref]?.[state.lang]||'');
@@ -25,7 +25,7 @@
   if(active?.closest('#rows, #entry-banner, #history-dialog'))return '#category-title';
   return active?.id?'#'+CSS.escape(active.id):null;
  }
- function restoreFocus(selector){if(selector)document.querySelector(selector)?.focus({preventScroll:true});}
+ function restoreFocus(selector){if(selector)(document.querySelector(selector)||$('category-title')).focus({preventScroll:true});}
  function navigate(next,push=true){const focus=routeFocus();state={...state,...next};showSources=false;saveRoute(push);loadRoute(focus);}
  function prose(s,version=state.v){return esc(s).replace(/\[([^\]]+)\]\((#[^\s)]+|https?:\/\/[^\s)]+)\)/g,(_,label,u)=>'<a target="_blank" rel="noopener" href="'+(u.startsWith('#')?'https://www.tradingview.com/pine-script-reference/v'+version+'/':'')+u+'">'+label+'</a>').replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\n/g,'<br>');}
  function localized(ref,pool=cat.texts,version=state.v){const item=pool[ref],s=text(ref,pool);if(!s)return '';const translated=item?.original&&item.original_kind!=='editorial_english_summary'&&s!==item.original;return prose(s,version)+(translated?'<details class="source-original"><summary>'+T('original')+'</summary><p>'+prose(item.original,version)+'</p><span class="translation-label">'+T(item.basis==='official_translation'?'officialTranslation':item.basis==='editorial_summary'?'editorialExplanation':'editorialTranslation')+'</span>'+translationSources(item)+'</details>':'');}
@@ -52,7 +52,7 @@
  }
  async function loadRoute(focus=routeFocus()){
   const ticket=++request,v=state.v;staticUI();
-  if(cat?.version===v){$('loading-panel').hidden=true;$('wiki-layout').hidden=false;syncControls();render();restoreFocus(focus);return;}
+  if(cat?.version===v){$('loading-panel').hidden=true;$('wiki-layout').hidden=false;if(catalogLanguage!==state.lang)initCatalog();else syncControls();render();restoreFocus(focus);return;}
   $('wiki-layout').hidden=true;$('loading-panel').hidden=false;$('loading-panel').textContent=T('loading',{v});$('status-live').textContent=T('loading',{v});
   try{
     await loadScript(window.PINE_MANIFEST.versions[v].file,()=>window.PINE_CATALOG?.[v]);if(ticket!==request)return;
@@ -66,9 +66,9 @@
   }
  }
  function options(id,items,caption,value){$(id).innerHTML='<option value="">'+esc(T(caption))+'</option>'+items.map(([key,label])=>'<option value="'+esc(key)+'">'+esc(label)+'</option>').join('');$(id).value=items.some(([k])=>k===value)?value:'';return $(id).value;}
- function initCatalog(){staticUI();$('categories').innerHTML=categories.filter(k=>k!=='technical'||cat.counts.technical_records).map(k=>'<button class="category '+(state.category===k?'active':'')+'" data-category="'+k+'"><span>'+T(k)+'</span><small title="'+T('countTitle')+'">'+number(k==='all'?cat.counts.public_records:cat.counts.categories[k]?.records||0)+'</small></button>').join('');$('categories').querySelectorAll('button').forEach(b=>b.onclick=()=>navigate({category:b.dataset.category,id:'',page:0}));
+ function initCatalog(){catalogLanguage=state.lang;staticUI();$('categories').innerHTML=categories.filter(k=>k!=='technical'||cat.counts.technical_records).map(k=>'<button class="category '+(state.category===k?'active':'')+'" data-category="'+k+'"><span>'+T(k)+'</span><small title="'+T('countTitle')+'">'+number(k==='all'?cat.counts.public_records:cat.counts.categories[k]?.records||0)+'</small></button>').join('');$('categories').querySelectorAll('button').forEach(b=>b.onclick=()=>navigate({category:b.dataset.category,id:'',page:0}));
   state.level=options('level',levels.map(r=>[r,T(roleKey(r))]),'allLevels',state.level);state.namespace=options('namespace',unique(cat.entries.map(e=>e.namespace)).sort().map(s=>[s,s]),'allNamespaces',state.namespace);const legacyPurpose=cat.entries.flatMap(purposesOf).find(p=>p.domain===state.purpose);if(legacyPurpose)state.purpose=legacyPurpose.domain_key;const purposes=[...new Map(cat.entries.flatMap(e=>purposesOf(e).map(p=>[p.domain_key,text(p.domain)]))).entries()].sort((a,b)=>a[1].localeCompare(b[1],state.lang));state.purpose=options('purpose',purposes,'allPurposes',state.purpose);
-  $('search').value=state.q;$('gaps-only').checked=state.gaps;$('examples-only').checked=state.examples;$('download').href='#';$('download').download='pine-v'+state.v+'-reference.json';$('source-count').textContent=roleSummary(cat.structure_counts);$('source-status').textContent=T('buildDone')+' '+T(state.v<=2?'historicalIncomplete':'frozenSources');$('footnote').textContent=T('snapshot',{date:cat.snapshot})+' '+T('countsNote')+' '+T('localeNote');
+  $('search').value=state.q;$('gaps-only').checked=state.gaps;$('examples-only').checked=state.examples;$('download').href='#';$('download').download='pine-v'+state.v+'-reference.json';$('source-count').textContent=roleSummary(cat.structure_counts);$('source-status').textContent=T('buildDone')+' '+T(state.v<=2?'historicalIncomplete':'frozenSources');$('footnote').innerHTML='<p>'+esc(T('snapshot',{date:cat.snapshot})+' '+T('countsNote')+' '+T('localeNote'))+'</p><p>'+T('unofficial')+'</p><p>'+T('revision')+': '+esc(window.PINE_MANIFEST.revision)+' · <a href="LICENSE">'+T('codeLicense')+'</a> · <a href="NOTICE">'+T('attribution')+'</a> · <a href="THIRD_PARTY.md">'+T('thirdPartyMaterials')+'</a></p>';
  }
  function resultProvenance(e){
   const r=e.result;
