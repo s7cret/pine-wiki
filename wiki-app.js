@@ -67,6 +67,13 @@
     localized(hint.text,cat.texts,hint.version)+(hint.sources||[]).map(source).join('')+
     '<a data-entry href="'+esc(url({v:hint.version,lang:state.lang,id:hint.entry_id}))+'">'+T('viewDonor')+'</a></div></details>';
  }
+ function resultDetails(e){
+  const description=text(e.result.description),types=code(e.result.types.join(' / '));
+  if(['variables','constants'].includes(e.category))return '<div class="value-type"><strong>'+T('valueType')+'</strong><p>'+types+'</p></div>';
+  if(!['functions','methods'].includes(e.category)&&!(e.category==='operators'&&description))return '';
+  return '<div class="result">'+resultProvenance(e)+'<strong>'+T('result')+'</strong><p>'+types+
+    '</p><div>'+(description?localized(e.result.description):T('resultMissing'))+'</div></div>';
+ }
  function parameterDetails(e){
   return details(T('signatures'),
     e.syntax.map(s=>'<code class="syntax">'+esc(s)+'</code>').join('')+
@@ -78,8 +85,7 @@
       '<p class="meta">'+T('metadata')+': '+T(p.metadata_state||'notSpecified')+'; '+T('directDescription')+': '+T(p.prose_state||'notSpecified')+'.</p>'+
       '<div>'+parameterDescription(p)+'</div>'+defaultProvenance(p)+'</div>'
     ).join(''):'<p class="meta">'+T(e.parameters_applicable?'parametersMissing':'noParameters')+'</p>')+
-    '<div class="result">'+resultProvenance(e)+'<strong>'+T('result')+'</strong><p>'+code(e.result.types.join(' / '))+
-    '</p><div>'+(text(e.result.description)?localized(e.result.description):T('resultMissing'))+'</div></div>','parameters');
+    resultDetails(e),'parameters');
  }
  function examples(e){
   const x=e.examples||{},items=x.items||[],pointers=x.pointers||[],template=x.template;
