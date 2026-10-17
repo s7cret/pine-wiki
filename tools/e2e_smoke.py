@@ -1,107 +1,217 @@
 #!/usr/bin/env python3
-"""Browser smoke test over a real local HTTP server.
-Requires: pip install playwright && playwright install chromium
-Run:      python tools/e2e_smoke.py
+"""Real Chromium HTTP/file checks. Requires playwright and a Chromium browser.
+
+Run: python tools/e2e_smoke.py [--screenshots DIR] [--json FILE]
+E2E_BROWSER_EXECUTABLE optionally selects an installed Chrome/Chromium binary.
 """
-import functools, http.server, json, re, sys, threading
+import argparse, functools, http.server, json, os, re, sys, threading
 from pathlib import Path
+from urllib.parse import parse_qs, urlparse
 from playwright.sync_api import sync_playwright
 
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+
 ROOT = Path(__file__).resolve().parents[1]
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--screenshots', type=Path)
+parser.add_argument('--json', type=Path)
+args = parser.parse_args()
+results, problems, data_requests = [], [], []
+
+
 class Quiet(http.server.SimpleHTTPRequestHandler):
     def log_message(self, *args, **kwargs):
         pass
 
 
-handler = functools.partial(Quiet, directory=str(ROOT))
-server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), handler)
-threading.Thread(target=server.serve_forever, daemon=True).start()
-BASE = f'http://127.0.0.1:{server.server_address[1]}/index.html'
-results, problems = [], []
-
-
 def ok(name, cond, info=''):
-    results.append((name, bool(cond), info))
+    results.append({'name': name, 'passed': bool(cond), 'info': str(info)})
+    print(('PASS ' if cond else 'FAIL ') + name + ('' if cond or not info else ' | ' + str(info)), flush=True)
 
 
 def count(pg):
     return int(re.sub(r'\D', '', pg.inner_text('#result-count').split('·')[0]))
 
 
-with sync_playwright() as p:
-    browser = p.chromium.launch(args=['--no-sandbox'])
-    ctx = browser.new_context(viewport={'width': 1400, 'height': 900}, accept_downloads=True)
-    pg = ctx.new_page()
-    pg.on('console', lambda m: problems.append(m.text[:160]) if m.type == 'error' else None)
-    pg.on('pageerror', lambda e: problems.append('pageerror: ' + str(e)[:160]))
-    pg.on('response', lambda r: problems.append(f'HTTP {r.status} {r.url[-60:]}') if r.status >= 400 else None)
+def loaded(pg, url):
+    pg.goto(url)
+    pg.wait_for_selector('#wiki-layout:not([hidden])', timeout=30000)
+    pg.wait_for_selector('#rows tr', state='attached', timeout=30000)
 
-    # every version loads and the card count equals the catalog
-    for v in range(1, 7):
-        pg.goto(f'{BASE}?v={v}&lang=ru'); pg.wait_for_selector('#rows tr', timeout=30000)
-        expected = pg.evaluate(f'window.PINE_CATALOG[{v}].counts.public_records')
-        ok(f'v{v}: card count equals catalog', count(pg) == expected, f'{count(pg)} vs {expected}')
 
-    # search relevance
-    pg.goto(f'{BASE}?v=6&lang=ru'); pg.wait_for_selector('#rows tr')
-    def top(q, k=4):
-        pg.fill('#search', q); pg.wait_for_timeout(350)
-        n = pg.locator('#rows tr .symbol').count()
-        return [pg.locator('#rows tr .symbol').nth(i).inner_text() for i in range(min(k, n))]
-    for q, first in [('sma', 'ta.sma'), ('скользящая', 'ta.sma'), ('ta.sma', 'ta.sma'), ('line.set_xy1', 'line.set_xy1')]:
-        t = top(q); ok(f'search {q!r}: first is {first}', t[:1] == [first], str(t))
-    for q, part in [('бокс', 'box'), ('таблица', 'table'), ('отрисовка', 'plot'), ('закрытые сделки', 'closedtrades')]:
-        t = top(q, 6); ok(f'search {q!r}: finds {part}', any(part in x for x in t), str(t))
-    ok("search 'sma' has no 'small' in top results", not any('small' in x for x in top('sma', 8)))
-    pg.fill('#search', '')
+def active(pg):
+    return pg.evaluate("()=>({tag:document.activeElement.tagName,id:document.activeElement.id,category:document.activeElement.dataset.category,version:document.activeElement.dataset.version})")
 
-    # new blocks: pointers + template, neighbour result, type hints, legacy parameter
-    def open_entry(v, js):
-        pg.goto(f'{BASE}?v={v}&lang=ru'); pg.wait_for_selector('#rows tr')  # make sure this version's catalog is loaded
-        eid = pg.evaluate(f'()=>window.PINE_CATALOG[{v}].entries.find({js})?.id')
-        pg.goto(f'{BASE}?v={v}&lang=ru&id=' + eid); pg.wait_for_selector('#rows tr'); return pg.inner_html('#rows')
-    h = open_entry(6, "e=>e.name==='line.set_xy1'&&e.category==='functions'")
-    ok('pointer + template block rendered', 'Ссылки на документацию' in h and 'Схематический вызов' in h and 'line.set_xy1(myLine' in h)
-    h = open_entry(3, "e=>e.name==='floor'&&e.category==='functions'")
-    ok('neighbour result note with donor link', 'source-inferred' in h and 'data-entry' in h)
-    h = open_entry(3, "e=>e.parameters.some(p=>p.type_candidates?.length&&!p.type_issue)")
-    ok('type hints rendered (v3 parameter without a documented type)', 'type-hint' in h)
-    h = open_entry(5, "e=>e.name==='plot'&&e.parameters.some(p=>p.type_issue)")
-    ok('legacy parameter note rendered', 'source-inferred' in h)
 
-    # "examples only" counts real examples, never templates or pointers
-    pg.goto(f'{BASE}?v=6&lang=ru'); pg.wait_for_selector('#rows tr'); pg.check('#examples-only'); pg.wait_for_timeout(300)
-    real = pg.evaluate("()=>window.PINE_CATALOG[6].entries.filter(e=>['source_example','source_occurrence','compatibility_example'].includes(e.examples.status)&&!e.technical).length")
-    ok('examples-only counts real examples only', count(pg) == real, f'{count(pg)} vs {real}')
-    pg.uncheck('#examples-only')
+def donor_link(pg, selector, donor):
+    hrefs = pg.locator(selector).evaluate_all('(nodes)=>nodes.map(n=>n.href)')
+    return any(parse_qs(urlparse(href).query).get('id') == [donor['entry_id']] and parse_qs(urlparse(href).query).get('v') == [str(donor['version'])] for href in hrefs)
 
-    # language switch, mobile layout
-    pg.select_option('#language', 'en'); pg.wait_for_timeout(400)
-    ok('EN: <html lang>', pg.evaluate('document.documentElement.lang') == 'en')
-    ok('EN: page chrome translated', not re.search('[А-Яа-я]', pg.evaluate("()=>[...document.querySelectorAll('header .eyebrow, .intro, th, .toolbar label > span')].map(e=>e.textContent).join(' ')")))
-    mobile = ctx.new_page(); mobile.set_viewport_size({'width': 390, 'height': 800}); mobile.goto(f'{BASE}?v=6&lang=en'); mobile.wait_for_selector('#rows tr')
-    ok('mobile: no horizontal overflow', mobile.evaluate('document.documentElement.scrollWidth<=window.innerWidth+2'))
-    ok('mobile: EN cell labels', not re.search('[А-Яа-я]', ' '.join(mobile.evaluate("()=>[...document.querySelectorAll('#rows tr:first-child td')].map(t=>t.dataset.label)"))))
-    mobile.close(); pg.select_option('#language', 'ru')
 
-    # history dialog and related families
-    pg.goto(f'{BASE}?v=6&q=study&lang=ru'); pg.wait_for_selector('#rows tr')
-    pg.locator('.history-button').first.click(); pg.wait_for_selector('#history-differences h3', timeout=15000)
-    ok('history dialog opens', 'indicator' in pg.inner_text('#history-title'))
-    pg.keyboard.press('Escape')
+server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), functools.partial(Quiet, directory=str(ROOT)))
+threading.Thread(target=server.serve_forever, daemon=True).start()
+BASE = f'http://127.0.0.1:{server.server_address[1]}/index.html'
+try:
+    with sync_playwright() as p:
+        launch = {'args': ['--no-sandbox']}
+        if os.environ.get('E2E_BROWSER_EXECUTABLE'):
+            launch['executable_path'] = os.environ['E2E_BROWSER_EXECUTABLE']
+        browser = p.chromium.launch(**launch)
+        ctx = browser.new_context(viewport={'width': 1400, 'height': 900}, accept_downloads=True)
+        pg = ctx.new_page()
+        pg.on('console', lambda m: problems.append(m.text[:300]) if m.type == 'error' else None)
+        pg.on('pageerror', lambda e: problems.append('pageerror: ' + str(e)[:300]))
+        pg.on('response', lambda r: problems.append(f'HTTP {r.status} {r.url}') if r.status >= 400 else None)
+        pg.on('requestfailed', lambda r: problems.append(f'requestfailed: {r.url}: {r.failure}'))
+        pg.on('request', lambda r: data_requests.append(r.url) if re.search(r'/(catalog-v\d|history-[^/?]+)\.js(?:\?|$)', r.url) else None)
 
-    # export and routing
-    pg.goto(f'{BASE}?v=5&lang=ru'); pg.wait_for_selector('#rows tr')
-    with pg.expect_download() as d:
-        pg.click('#download')
-    data = json.load(open(d.value.path(), encoding='utf-8'))
-    ok('JSON export', d.value.suggested_filename == 'pine-v5-reference.json' and len(data['entries']) == pg.evaluate('window.PINE_CATALOG[5].entries.length'))
-    pg.goto(f'{BASE}?v=6&lang=ru&page=3'); pg.wait_for_selector('#rows tr')
-    ok('page parameter', pg.inner_text('#page-label').startswith('4'))
-    browser.close()
+        for width in (390, 800, 1000, 1400):
+            pg.set_viewport_size({'width': width, 'height': 900})
+            for v in range(1, 7):
+                for lang in ('ru', 'en'):
+                    loaded(pg, f'{BASE}?v={v}&lang={lang}')
+                    expected = pg.evaluate(f'window.PINE_CATALOG[{v}].counts.public_records')
+                    ok(f'HTTP v{v}/{lang}/{width}: count and layout', count(pg) == expected and pg.evaluate('document.documentElement.scrollWidth <= innerWidth + 2'), f'{count(pg)}/{expected}')
+                    ok(f'HTTP v{v}/{lang}/{width}: semantics and live status', pg.locator('th:not([scope="col"])').count() == 0 and bool(pg.locator('table caption').text_content().strip()) and bool(pg.locator('#status-live').text_content().strip()))
+                    if lang == 'en':
+                        chrome = pg.evaluate("()=>[...document.querySelectorAll('header .eyebrow, .intro, th, .toolbar label > span')].map(e=>e.textContent).join(' ')")
+                        labels = pg.locator('#rows tr:first-child td').evaluate_all('(nodes)=>nodes.map(n=>n.dataset.label).join(" ")')
+                        ok(f'HTTP v{v}/en/{width}: translated chrome', pg.evaluate('document.documentElement.lang') == 'en' and not re.search('[А-Яа-я]', chrome + labels))
+            if args.screenshots and width in (390, 800, 1400):
+                args.screenshots.mkdir(parents=True, exist_ok=True)
+                pg.screenshot(path=str(args.screenshots / f'v6-en-{width}.png'), full_page=True)
 
-for name, cond, info in results:
-    print(('PASS ' if cond else 'FAIL ') + name + ('' if cond or not info else '  | ' + info))
-failed = [n for n, c, _ in results if not c]
-print('\nconsole/network problems:', problems[:8] or 'none')
-sys.exit(1 if failed or problems else 0)
+        for v in range(1, 7):
+            for lang in ('ru', 'en'):
+                loaded(pg, f'{(ROOT / "index.html").as_uri()}?v={v}&lang={lang}')
+                expected = pg.evaluate(f'window.PINE_CATALOG[{v}].counts.public_records')
+                ok(f'file v{v}/{lang}: catalog loads', count(pg) == expected)
+
+        loaded(pg, f'{BASE}?v=6&lang=ru')
+        def top(q, k=4):
+            pg.fill('#search', q)
+            pg.wait_for_function('(q)=>new URL(location.href).searchParams.get("q")===q', arg=q)
+            return pg.locator('#rows tr .symbol').all_text_contents()[:k]
+        for q, first in [('sma', 'ta.sma'), ('скользящая', 'ta.sma'), ('ta.sma', 'ta.sma'), ('line.set_xy1', 'line.set_xy1'), ('индикатор', 'indicator'), ('стратегия', 'strategy'), ('массив', 'array')]:
+            found = top(q)
+            ok(f'search {q!r}: first is {first}', found[:1] == [first], found)
+        for q, part in [('бокс', 'box'), ('таблица', 'table'), ('отрисовка', 'plot'), ('закрытые сделки', 'closedtrades')]:
+            found = top(q, 6)
+            ok(f'search {q!r}: finds {part}', any(part in x for x in found), found)
+        ok("search 'sma' has no 'small'", not any('small' in x for x in top('sma', 20)))
+
+        def open_entry(v, predicate):
+            loaded(pg, f'{BASE}?v={v}&lang=ru')
+            entry = pg.evaluate(f'()=>window.PINE_CATALOG[{v}].entries.find({predicate})')
+            if not entry:
+                raise AssertionError(f'Missing fixture v{v}: {predicate}')
+            loaded(pg, f'{BASE}?v={v}&lang=ru&id={entry["id"]}')
+            return entry
+        open_entry(6, "e=>e.name==='line.set_xy1'&&e.category==='functions'")
+        html = pg.inner_html('#rows')
+        ok('pointer + template rendered', 'Ссылки на документацию' in html and 'Схематический вызов' in html and 'line.set_xy1(myLine' in html)
+        entry = open_entry(4, "e=>e.name==='floor'&&e.category==='functions'")
+        ok('floor v4: exact result donor link', donor_link(pg, '#rows .result .source-inferred a[data-entry]', entry['result']['description_donor']))
+        for name in ('floor', 'cross'):
+            open_entry(3, f"e=>e.name==='{name}'&&e.category==='functions'")
+            ok(f'{name} v3: signature note without donor', pg.locator('#rows .result .source-inferred').count() > 0 and pg.locator('#rows .result .source-inferred a[data-entry]').count() == 0)
+        open_entry(3, "e=>e.parameters.some(p=>p.type_candidates?.length&&!p.type_issue)")
+        ok('parameter type hints rendered', pg.locator('#rows .type-hint').count() > 0)
+        entry = open_entry(4, "e=>e.name==='na'&&e.category==='functions'")
+        hint = next(param['description_hint'] for param in entry['parameters'] if param.get('description_hint'))
+        ok('na v4: description hint with exact donor', pg.locator('#rows .description-hint .source-inferred').count() > 0 and donor_link(pg, '#rows .description-hint a[data-entry]', hint))
+        open_entry(5, "e=>e.name==='plot'&&e.parameters.some(p=>p.type_issue)")
+        ok('legacy parameter note rendered', pg.locator('#rows .parameter .source-inferred').count() > 0)
+        open_entry(5, "e=>e.name==='ta.sar'&&e.category==='functions'")
+        ok('ta.sar v5: one complete example', pg.locator('#rows .example').count() == 1 and '\n' in pg.locator('#rows .example pre code').text_content())
+        open_entry(6, "e=>e.name==='color.red'&&e.category==='constants'")
+        ru_label = pg.evaluate('window.PINE_UI.valueType[0]')
+        en_label = pg.evaluate('window.PINE_UI.valueType[1]')
+        ok('color.red: Russian value-type label', pg.locator('#rows .value-type strong').text_content() == ru_label)
+        pg.select_option('#language', 'en')
+        ok('color.red: value-type label switches to English', pg.locator('#rows .value-type strong').text_content() == en_label and pg.locator('#rows .result').count() == 0)
+        entry = open_entry(6, "e=>e.name==='alert'&&e.category==='functions'")
+        ok('alert: void result retains signature provenance', pg.locator('#rows .result code').first.text_content() == 'void' and pg.evaluate('window.PINE_UI.resultFromVoid[0]') in pg.locator('#rows .result').text_content() and entry['result']['description_source']['url'] in pg.locator('#rows .result a').evaluate_all('(nodes)=>nodes.map(n=>n.href)'))
+
+        # Exhaust every non-callable category in every version, with pagination.
+        for v in range(1, 7):
+            loaded(pg, f'{BASE}?v={v}&lang=ru')
+            entries = {e['id']: e for e in pg.evaluate(f'window.PINE_CATALOG[{v}].entries')}
+            texts = pg.evaluate(f'window.PINE_CATALOG[{v}].texts')
+            for category in ('variables', 'constants', 'types', 'keywords', 'syntax', 'annotations', 'operators', 'technical'):
+                if not any(e['category'] == category for e in entries.values()):
+                    continue
+                loaded(pg, f'{BASE}?v={v}&lang=ru&category={category}')
+                checked, incorrect = 0, []
+                while True:
+                    rows = pg.evaluate("()=>[...document.querySelectorAll('#rows tr')].map(r=>({id:r.id,result:!!r.querySelector('.result'),value:!!r.querySelector('.value-type')}))")
+                    for row in rows:
+                        checked += 1
+                        desc = texts.get(entries[row['id']]['result'].get('description'), {})
+                        expected_result = category == 'operators' and bool(desc.get('ru'))
+                        if row['result'] != expected_result or row['value'] != (category in ('variables', 'constants')):
+                            incorrect.append(row['id'])
+                    if pg.locator('#next').is_disabled():
+                        break
+                    pg.locator('#next').click()
+                ok(f'v{v}/{category}: result semantics on all {checked} cards', not incorrect, incorrect[:5])
+
+        loaded(pg, f'{BASE}?v=6&lang=ru')
+        pg.check('#examples-only')
+        real = pg.evaluate("()=>window.PINE_CATALOG[6].entries.filter(e=>['source_example','source_occurrence','compatibility_example'].includes(e.examples.status)&&!e.technical).length")
+        ok('examples-only counts real examples', count(pg) == real, f'{count(pg)}/{real}')
+        pg.uncheck('#examples-only')
+        for v in range(1, 7):
+            pg.locator(f'#versions [data-version="{v}"]').focus()
+            pg.keyboard.press('Enter')
+            pg.wait_for_selector('#wiki-layout:not([hidden])')
+            ok(f'keyboard version v{v}: focus retained', active(pg).get('version') == str(v), active(pg))
+        categories = pg.locator('#categories [data-category]').evaluate_all('(nodes)=>nodes.map(n=>n.dataset.category)')
+        for category in categories:
+            pg.locator(f'#categories [data-category="{category}"]').focus()
+            pg.keyboard.press('Enter')
+            pg.wait_for_selector('#wiki-layout:not([hidden])')
+            ok(f'keyboard category {category}: focus retained', active(pg).get('category') == category, active(pg))
+        loaded(pg, f'{BASE}?v=6&lang=ru')
+        pg.locator('#examples-only').focus()
+        pg.keyboard.press('Space')
+        ok('keyboard filter: focus retained', active(pg)['id'] == 'examples-only')
+        pg.keyboard.press('Space')
+        pg.locator('#search').focus()
+        pg.keyboard.insert_text('sma')
+        ok('keyboard search: focus retained', active(pg)['id'] == 'search')
+        pg.fill('#search', '')
+        pg.locator('#next').focus()
+        pg.keyboard.press('Enter')
+        ok('keyboard pagination: heading focused', active(pg)['id'] == 'category-title')
+        loaded(pg, f'{BASE}?v=6&q=study&lang=ru')
+        pg.locator('.history-button').first.focus()
+        pg.keyboard.press('Enter')
+        pg.wait_for_selector('#history-differences h3', timeout=15000)
+        ok('keyboard history: dialog focus', 'indicator' in pg.inner_text('#history-title') and pg.evaluate("document.activeElement.closest('#history-dialog')!==null"))
+        pg.keyboard.press('Tab')
+        ok('keyboard history: Tab stays in dialog', pg.evaluate("document.activeElement.closest('#history-dialog')!==null"))
+        pg.keyboard.press('Escape')
+        ok('keyboard history: close returns focus', pg.evaluate("document.activeElement.matches('.history-button')"), active(pg))
+
+        loaded(pg, f'{BASE}?v=5&lang=ru')
+        with pg.expect_download() as download:
+            pg.click('#download')
+        data = json.loads(Path(download.value.path()).read_text(encoding='utf-8'))
+        ok('JSON export', download.value.suggested_filename == 'pine-v5-reference.json' and len(data['entries']) == pg.evaluate('window.PINE_CATALOG[5].entries.length'))
+        loaded(pg, f'{BASE}?v=6&lang=ru&page=3')
+        ok('page parameter', pg.inner_text('#page-label').startswith('4'))
+        ok('manifest hash on data requests', bool(data_requests) and all(re.search(r'\?v=[0-9a-f]{8}$', url) for url in data_requests))
+        browser.close()
+except Exception as error:
+    ok('browser run completed', False, f'{type(error).__name__}: {error}')
+finally:
+    server.shutdown()
+ok('console/network clean', not problems, problems[:8])
+summary = {'checks': results, 'passed': sum(item['passed'] for item in results), 'failed': sum(not item['passed'] for item in results), 'problems': problems}
+if args.json:
+    args.json.parent.mkdir(parents=True, exist_ok=True)
+    args.json.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+print(f'\n{summary["passed"]}/{len(results)} browser checks passed')
+sys.exit(1 if summary['failed'] else 0)
