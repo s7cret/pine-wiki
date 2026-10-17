@@ -1,0 +1,4072 @@
+{
+  "normalization": "Ignore only standalone @version values and empty lines; additionally classify trailing whitespace separately. Preserve indentation and internal whitespace.",
+  "counts": {
+    "same_except_version_and_empty_lines": 466,
+    "reviewed_difference": 44,
+    "trailing_whitespace_only": 64
+  },
+  "entries": [
+    {
+      "entry_id": "primary:v5:functions:indicator:overload:0",
+      "name": "indicator",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:indicator:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:plot:overload:0",
+      "name": "plot",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:plot:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:plotshape:overload:0",
+      "name": "plotshape",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:plotshape:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:plotchar:overload:0",
+      "name": "plotchar",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:plotchar:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:plotarrow:overload:0",
+      "name": "plotarrow",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:plotarrow:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:plotbar:overload:0",
+      "name": "plotbar",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:plotbar:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:plotcandle:overload:0",
+      "name": "plotcandle",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:plotcandle:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:barcolor:overload:0",
+      "name": "barcolor",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:barcolor:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:bgcolor:overload:0",
+      "name": "bgcolor",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:bgcolor:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.new:overload:0",
+      "name": "color.new",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.new:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.new:overload:1",
+      "name": "color.new",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.new:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.new:overload:2",
+      "name": "color.new",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.new:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.new:overload:3",
+      "name": "color.new",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.new:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.rgb:overload:0",
+      "name": "color.rgb",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.rgb:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.rgb:overload:1",
+      "name": "color.rgb",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.rgb:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.rgb:overload:2",
+      "name": "color.rgb",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.rgb:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.rgb:overload:3",
+      "name": "color.rgb",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.rgb:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.r:overload:0",
+      "name": "color.r",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.r:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.r:overload:1",
+      "name": "color.r",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.r:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.r:overload:2",
+      "name": "color.r",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.r:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.r:overload:3",
+      "name": "color.r",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.r:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.g:overload:0",
+      "name": "color.g",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.g:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.g:overload:1",
+      "name": "color.g",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.g:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.g:overload:2",
+      "name": "color.g",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.g:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.g:overload:3",
+      "name": "color.g",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.g:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.b:overload:0",
+      "name": "color.b",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.b:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.b:overload:1",
+      "name": "color.b",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.b:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.b:overload:2",
+      "name": "color.b",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.b:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.b:overload:3",
+      "name": "color.b",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.b:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.t:overload:0",
+      "name": "color.t",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.t:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.t:overload:1",
+      "name": "color.t",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.t:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.t:overload:2",
+      "name": "color.t",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.t:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.t:overload:3",
+      "name": "color.t",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.t:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:color.from_gradient:overload:0",
+      "name": "color.from_gradient",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:color.from_gradient:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:alertcondition:overload:0",
+      "name": "alertcondition",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:alertcondition:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input:overload:0",
+      "name": "input",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input:overload:1",
+      "name": "input",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input:overload:2",
+      "name": "input",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input:overload:3",
+      "name": "input",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input:overload:4",
+      "name": "input",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input:overload:5",
+      "name": "input",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input.bool:overload:0",
+      "name": "input.bool",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input.bool:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input.int:overload:0",
+      "name": "input.int",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input.int:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input.int:overload:1",
+      "name": "input.int",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input.int:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input.float:overload:0",
+      "name": "input.float",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input.float:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input.float:overload:1",
+      "name": "input.float",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input.float:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input.string:overload:0",
+      "name": "input.string",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input.string:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input.text_area:overload:0",
+      "name": "input.text_area",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input.text_area:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input.symbol:overload:0",
+      "name": "input.symbol",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input.symbol:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input.timeframe:overload:0",
+      "name": "input.timeframe",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input.timeframe:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input.session:overload:0",
+      "name": "input.session",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input.session:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input.source:overload:0",
+      "name": "input.source",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input.source:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input.color:overload:0",
+      "name": "input.color",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input.color:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input.time:overload:0",
+      "name": "input.time",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input.time:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input.price:overload:0",
+      "name": "input.price",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input.price:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:input.enum:overload:0",
+      "name": "input.enum",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:input.enum:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:hline:overload:0",
+      "name": "hline",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:hline:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:nz:overload:0",
+      "name": "nz",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:nz:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:nz:overload:1",
+      "name": "nz",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:nz:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:nz:overload:2",
+      "name": "nz",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:nz:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:nz:overload:3",
+      "name": "nz",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:nz:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:nz:overload:4",
+      "name": "nz",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:nz:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:nz:overload:5",
+      "name": "nz",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:nz:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:nz:overload:6",
+      "name": "nz",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:nz:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:nz:overload:7",
+      "name": "nz",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:nz:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:nz:overload:8",
+      "name": "nz",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:nz:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:nz:overload:9",
+      "name": "nz",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:nz:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:nz:overload:10",
+      "name": "nz",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:nz:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:nz:overload:11",
+      "name": "nz",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:nz:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:nz:overload:12",
+      "name": "nz",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:nz:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:nz:overload:13",
+      "name": "nz",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:nz:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:nz:overload:14",
+      "name": "nz",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:nz:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:nz:overload:15",
+      "name": "nz",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:nz:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:na:overload:0",
+      "name": "na",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:na:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:na:overload:1",
+      "name": "na",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:na:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.pow:overload:0",
+      "name": "math.pow",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.pow:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.pow:overload:1",
+      "name": "math.pow",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.pow:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.pow:overload:2",
+      "name": "math.pow",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.pow:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.pow:overload:3",
+      "name": "math.pow",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.pow:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.min:overload:0",
+      "name": "math.min",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.min:overload:1",
+      "name": "math.min",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.min:overload:2",
+      "name": "math.min",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.min:overload:3",
+      "name": "math.min",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.min:overload:4",
+      "name": "math.min",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.min:overload:5",
+      "name": "math.min",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.min:overload:6",
+      "name": "math.min",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.min:overload:7",
+      "name": "math.min",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.max:overload:0",
+      "name": "math.max",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.max:overload:1",
+      "name": "math.max",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.max:overload:2",
+      "name": "math.max",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.max:overload:3",
+      "name": "math.max",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.max:overload:4",
+      "name": "math.max",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.max:overload:5",
+      "name": "math.max",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.max:overload:6",
+      "name": "math.max",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:math.max:overload:7",
+      "name": "math.max",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:math.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.format:overload:0",
+      "name": "str.format",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:str.format:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,31 +1,19 @@\n //@version=N\n-indicator(\"str.format\", overlay=true)\n-// The format specifier inside the curly braces accepts certain modifiers:\n-// - Specify the number of decimals to display:\n-s1 = str.format(\"{0,number,#.#}\", 1.34) // returns: 1.3\n-label.new(bar_index, close, text=s1)\n-// - Round a float value to an integer:\n-s2 = str.format(\"{0,number,integer}\", 1.34) // returns: 1\n-label.new(bar_index - 1, close, text=s2)\n-// - Display a number in currency:\n-s3 = str.format(\"{0,number,currency}\", 1.34) // returns: $1.34\n-label.new(bar_index - 2, close, text=s3)\n-// - Display a number as a percentage:\n-s4 = str.format(\"{0,number,percent}\", 0.5) // returns: 50%\n-label.new(bar_index - 3, close, text=s4)\n-// EXAMPLES WITH SEVERAL ARGUMENTS\n-// returns: Number 1 is not equal to 4\n-s5 = str.format(\"Number {0} is not {1} to {2}\", 1, \"equal\", 4)\n-label.new(bar_index - 4, close, text=s5)\n-// returns: 1.34 != 1.3\n-s6 = str.format(\"{0} != {0, number, #.#}\", 1.34)\n-label.new(bar_index - 5, close, text=s6)\n-// returns: 1 is equal to 1, but 2 is equal to 2\n-s7 = str.format(\"{0, number, integer} is equal to 1, but {1, number, integer} is equal to 2\", 1.34, 1.52)\n-label.new(bar_index - 6, close, text=s7)\n-// returns: The cash turnover amounted to $1,340,000.00\n-s8 = str.format(\"The cash turnover amounted to {0, number, currency}\", 1340000)\n-label.new(bar_index - 7, close, text=s8)\n-// returns: Expected return is 10% - 20%\n-s9 = str.format(\"Expected return is {0, number, percent} - {1, number, percent}\", 0.1, 0.2)\n-label.new(bar_index - 8, close, text=s9)\n+strategy(\"Supertrend Strategy\", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 15)\n+//@variable The length of the ATR calculation.\n+atrPeriod = input(10, \"ATR Length\")\n+//@variable The ATR multiplier.\n+factor = input.float(3.0, \"Factor\", step = 0.01)\n+//@variable The tick offset of the stop order.\n+stopOffsetInput = input.int(100, \"Tick offset for entry stop\")\n+// Get the direction of the SuperTrend.\n+[_, direction] = ta.supertrend(factor, atrPeriod)\n+if ta.change(direction) < 0\n+\t//@variable The stop price of the entry order.\n+\tstopPrice = close + syminfo.mintick * stopOffsetInput\n+\t//@variable The expected default fill quantity at the `stopPrice`. This value may not reflect actual qty of the filled order, because fill price may be different.\n+\tcalculatedQty = strategy.default_entry_qty(stopPrice)\n+\tstrategy.entry(\"My Long Entry Id\", strategy.long, stop = stopPrice)\n+\tlabel.new(bar_index, stopPrice, str.format(\"Stop set at {0}\\nExpected qty at {0}: {1}\", math.round_to_mintick(stopPrice), calculatedQty))\n+if ta.change(direction) > 0\n+\tstrategy.close_all()"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.format:overload:1",
+      "name": "str.format",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:str.format:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,31 +1,19 @@\n //@version=N\n-indicator(\"str.format\", overlay=true)\n-// The format specifier inside the curly braces accepts certain modifiers:\n-// - Specify the number of decimals to display:\n-s1 = str.format(\"{0,number,#.#}\", 1.34) // returns: 1.3\n-label.new(bar_index, close, text=s1)\n-// - Round a float value to an integer:\n-s2 = str.format(\"{0,number,integer}\", 1.34) // returns: 1\n-label.new(bar_index - 1, close, text=s2)\n-// - Display a number in currency:\n-s3 = str.format(\"{0,number,currency}\", 1.34) // returns: $1.34\n-label.new(bar_index - 2, close, text=s3)\n-// - Display a number as a percentage:\n-s4 = str.format(\"{0,number,percent}\", 0.5) // returns: 50%\n-label.new(bar_index - 3, close, text=s4)\n-// EXAMPLES WITH SEVERAL ARGUMENTS\n-// returns: Number 1 is not equal to 4\n-s5 = str.format(\"Number {0} is not {1} to {2}\", 1, \"equal\", 4)\n-label.new(bar_index - 4, close, text=s5)\n-// returns: 1.34 != 1.3\n-s6 = str.format(\"{0} != {0, number, #.#}\", 1.34)\n-label.new(bar_index - 5, close, text=s6)\n-// returns: 1 is equal to 1, but 2 is equal to 2\n-s7 = str.format(\"{0, number, integer} is equal to 1, but {1, number, integer} is equal to 2\", 1.34, 1.52)\n-label.new(bar_index - 6, close, text=s7)\n-// returns: The cash turnover amounted to $1,340,000.00\n-s8 = str.format(\"The cash turnover amounted to {0, number, currency}\", 1340000)\n-label.new(bar_index - 7, close, text=s8)\n-// returns: Expected return is 10% - 20%\n-s9 = str.format(\"Expected return is {0, number, percent} - {1, number, percent}\", 0.1, 0.2)\n-label.new(bar_index - 8, close, text=s9)\n+strategy(\"Supertrend Strategy\", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 15)\n+//@variable The length of the ATR calculation.\n+atrPeriod = input(10, \"ATR Length\")\n+//@variable The ATR multiplier.\n+factor = input.float(3.0, \"Factor\", step = 0.01)\n+//@variable The tick offset of the stop order.\n+stopOffsetInput = input.int(100, \"Tick offset for entry stop\")\n+// Get the direction of the SuperTrend.\n+[_, direction] = ta.supertrend(factor, atrPeriod)\n+if ta.change(direction) < 0\n+\t//@variable The stop price of the entry order.\n+\tstopPrice = close + syminfo.mintick * stopOffsetInput\n+\t//@variable The expected default fill quantity at the `stopPrice`. This value may not reflect actual qty of the filled order, because fill price may be different.\n+\tcalculatedQty = strategy.default_entry_qty(stopPrice)\n+\tstrategy.entry(\"My Long Entry Id\", strategy.long, stop = stopPrice)\n+\tlabel.new(bar_index, stopPrice, str.format(\"Stop set at {0}\\nExpected qty at {0}: {1}\", math.round_to_mintick(stopPrice), calculatedQty))\n+if ta.change(direction) > 0\n+\tstrategy.close_all()"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.format_time:overload:0",
+      "name": "str.format_time",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:str.format_time:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.sma:overload:0",
+      "name": "ta.sma",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.sma:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.hma:overload:0",
+      "name": "ta.hma",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.hma:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.ema:overload:0",
+      "name": "ta.ema",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.ema:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.wma:overload:0",
+      "name": "ta.wma",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.wma:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.vwma:overload:0",
+      "name": "ta.vwma",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.vwma:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.supertrend:overload:0",
+      "name": "ta.supertrend",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.supertrend:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.barssince:overload:0",
+      "name": "ta.barssince",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.barssince:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.valuewhen:overload:0",
+      "name": "ta.valuewhen",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.valuewhen:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.valuewhen:overload:1",
+      "name": "ta.valuewhen",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.valuewhen:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.valuewhen:overload:2",
+      "name": "ta.valuewhen",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.valuewhen:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.valuewhen:overload:3",
+      "name": "ta.valuewhen",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.valuewhen:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.dev:overload:0",
+      "name": "ta.dev",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.dev:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.stdev:overload:0",
+      "name": "ta.stdev",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.stdev:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.rma:overload:0",
+      "name": "ta.rma",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.rma:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.rsi:overload:0",
+      "name": "ta.rsi",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:ta.rsi:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:timeframe.in_seconds:overload:0",
+      "name": "timeframe.in_seconds",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:timeframe.in_seconds:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,5 +1,5 @@\n //@version=N\n-indicator(\"`timeframe_in_seconds()`\")\n+indicator(\"`timeframe_in_seconds()`\"),\n // Get a user-selected timeframe.\n tfInput = input.timeframe(\"1D\")\n // Convert it into an \"int\" number of seconds."
+    },
+    {
+      "entry_id": "primary:v5:functions:timeframe.in_seconds:overload:1",
+      "name": "timeframe.in_seconds",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:timeframe.in_seconds:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,5 +1,5 @@\n //@version=N\n-indicator(\"`timeframe_in_seconds()`\")\n+indicator(\"`timeframe_in_seconds()`\"),\n // Get a user-selected timeframe.\n tfInput = input.timeframe(\"1D\")\n // Convert it into an \"int\" number of seconds."
+    },
+    {
+      "entry_id": "primary:v5:functions:timeframe.from_seconds:overload:0",
+      "name": "timeframe.from_seconds",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:timeframe.from_seconds:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:timeframe.from_seconds:overload:1",
+      "name": "timeframe.from_seconds",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:timeframe.from_seconds:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.dmi:overload:0",
+      "name": "ta.dmi",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.dmi:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.atr:overload:0",
+      "name": "ta.atr",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.atr:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.change:overload:0",
+      "name": "ta.change",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.change:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.change:overload:1",
+      "name": "ta.change",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.change:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.change:overload:2",
+      "name": "ta.change",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.change:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.change:overload:3",
+      "name": "ta.change",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.change:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.change:overload:4",
+      "name": "ta.change",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.change:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.change:overload:5",
+      "name": "ta.change",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.change:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.pivot_point_levels:overload:0",
+      "name": "ta.pivot_point_levels",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.pivot_point_levels:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.swma:overload:0",
+      "name": "ta.swma",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.swma:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.sar:overload:0",
+      "name": "ta.sar",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:ta.sar:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -6,7 +6,7 @@\n \tvar float result = na\n \tvar float maxMin = na\n \tvar float acceleration = na\n-\tvar bool isBelow = na\n+\tvar bool isBelow = false\n \tbool isFirstTrendBar = false\n \tif bar_index == 1\n \t\tif close > close[1]"
+    },
+    {
+      "entry_id": "primary:v5:functions:timeframe.change:overload:0",
+      "name": "timeframe.change",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:timeframe.change:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:request.currency_rate:overload:0",
+      "name": "request.currency_rate",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:request.currency_rate:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:request.security_lower_tf:overload:0",
+      "name": "request.security_lower_tf",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:request.security_lower_tf:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:request.financial:overload:0",
+      "name": "request.financial",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:request.financial:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:request.quandl:overload:0",
+      "name": "request.quandl",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:request.quandl:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ticker.new:overload:0",
+      "name": "ticker.new",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:ticker.new:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ticker.standard:overload:0",
+      "name": "ticker.standard",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ticker.standard:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:syminfo.prefix:overload:0",
+      "name": "syminfo.prefix",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:syminfo.prefix:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:syminfo.prefix:overload:1",
+      "name": "syminfo.prefix",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:syminfo.prefix:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:syminfo.ticker:overload:0",
+      "name": "syminfo.ticker",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:syminfo.ticker:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:syminfo.ticker:overload:1",
+      "name": "syminfo.ticker",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:syminfo.ticker:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ticker.modify:overload:0",
+      "name": "ticker.modify",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ticker.modify:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ticker.inherit:overload:0",
+      "name": "ticker.inherit",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:ticker.inherit:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ticker.heikinashi:overload:0",
+      "name": "ticker.heikinashi",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:ticker.heikinashi:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ticker.renko:overload:0",
+      "name": "ticker.renko",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:ticker.renko:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ticker.linebreak:overload:0",
+      "name": "ticker.linebreak",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:ticker.linebreak:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ticker.kagi:overload:0",
+      "name": "ticker.kagi",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:ticker.kagi:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ticker.pointfigure:overload:0",
+      "name": "ticker.pointfigure",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:ticker.pointfigure:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:timestamp:overload:0",
+      "name": "timestamp",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:timestamp:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:timestamp:overload:1",
+      "name": "timestamp",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:timestamp:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:timestamp:overload:2",
+      "name": "timestamp",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:timestamp:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:timestamp:overload:3",
+      "name": "timestamp",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:timestamp:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:timestamp:overload:4",
+      "name": "timestamp",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:timestamp:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.cog:overload:0",
+      "name": "ta.cog",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:ta.cog:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.alma:overload:0",
+      "name": "ta.alma",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:ta.alma:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.alma:overload:1",
+      "name": "ta.alma",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:ta.alma:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.cmo:overload:0",
+      "name": "ta.cmo",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.cmo:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.mfi:overload:0",
+      "name": "ta.mfi",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.mfi:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.wpr:overload:0",
+      "name": "ta.wpr",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.wpr:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.bb:overload:0",
+      "name": "ta.bb",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.bb:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.bbw:overload:0",
+      "name": "ta.bbw",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:ta.bbw:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -5,5 +5,5 @@\n f_bbw(src, length, mult) =>\n     float basis = ta.sma(src, length)\n     float dev = mult * ta.stdev(src, length)\n-    ((basis + dev) - (basis - dev)) / basis\n+    (((basis + dev) - (basis - dev)) / basis) * 100\n plot(f_bbw(close, 5, 4))"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.kc:overload:0",
+      "name": "ta.kc",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.kc:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.kc:overload:1",
+      "name": "ta.kc",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.kc:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.kcw:overload:0",
+      "name": "ta.kcw",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.kcw:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.kcw:overload:1",
+      "name": "ta.kcw",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.kcw:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.trim:overload:0",
+      "name": "str.trim",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:str.trim:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.trim:overload:1",
+      "name": "str.trim",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:str.trim:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.trim:overload:2",
+      "name": "str.trim",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:str.trim:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.trim:overload:3",
+      "name": "str.trim",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:str.trim:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.repeat:overload:0",
+      "name": "str.repeat",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:str.repeat:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.repeat:overload:1",
+      "name": "str.repeat",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:str.repeat:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.repeat:overload:2",
+      "name": "str.repeat",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:str.repeat:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.repeat:overload:3",
+      "name": "str.repeat",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:str.repeat:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.contains:overload:0",
+      "name": "str.contains",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:str.contains:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.contains:overload:1",
+      "name": "str.contains",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:str.contains:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.contains:overload:2",
+      "name": "str.contains",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:str.contains:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.substring:overload:0",
+      "name": "str.substring",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:str.substring:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,7 +1,7 @@\n //@version=N\n indicator(\"str.substring\", overlay = true)\n sym= input.symbol(\"NASDAQ:AAPL\")\n-pos = str.pos(sym, \":\")  // Get position of \":\" character\n+pos = str.pos(sym, \":\") // Get position of \":\" character\n tkr= str.substring(sym, pos+1) // \"AAPL\"\n if barstate.islastconfirmedhistory\n \tlabel.new(bar_index, high, text = tkr)"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.substring:overload:1",
+      "name": "str.substring",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:str.substring:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,7 +1,7 @@\n //@version=N\n indicator(\"str.substring\", overlay = true)\n sym= input.symbol(\"NASDAQ:AAPL\")\n-pos = str.pos(sym, \":\")  // Get position of \":\" character\n+pos = str.pos(sym, \":\") // Get position of \":\" character\n tkr= str.substring(sym, pos+1) // \"AAPL\"\n if barstate.islastconfirmedhistory\n \tlabel.new(bar_index, high, text = tkr)"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.substring:overload:2",
+      "name": "str.substring",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:str.substring:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,7 +1,7 @@\n //@version=N\n indicator(\"str.substring\", overlay = true)\n sym= input.symbol(\"NASDAQ:AAPL\")\n-pos = str.pos(sym, \":\")  // Get position of \":\" character\n+pos = str.pos(sym, \":\") // Get position of \":\" character\n tkr= str.substring(sym, pos+1) // \"AAPL\"\n if barstate.islastconfirmedhistory\n \tlabel.new(bar_index, high, text = tkr)"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.substring:overload:3",
+      "name": "str.substring",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:str.substring:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,7 +1,7 @@\n //@version=N\n indicator(\"str.substring\", overlay = true)\n sym= input.symbol(\"NASDAQ:AAPL\")\n-pos = str.pos(sym, \":\")  // Get position of \":\" character\n+pos = str.pos(sym, \":\") // Get position of \":\" character\n tkr= str.substring(sym, pos+1) // \"AAPL\"\n if barstate.islastconfirmedhistory\n \tlabel.new(bar_index, high, text = tkr)"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.substring:overload:4",
+      "name": "str.substring",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:str.substring:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,7 +1,7 @@\n //@version=N\n indicator(\"str.substring\", overlay = true)\n sym= input.symbol(\"NASDAQ:AAPL\")\n-pos = str.pos(sym, \":\")  // Get position of \":\" character\n+pos = str.pos(sym, \":\") // Get position of \":\" character\n tkr= str.substring(sym, pos+1) // \"AAPL\"\n if barstate.islastconfirmedhistory\n \tlabel.new(bar_index, high, text = tkr)"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.substring:overload:5",
+      "name": "str.substring",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:str.substring:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,7 +1,7 @@\n //@version=N\n indicator(\"str.substring\", overlay = true)\n sym= input.symbol(\"NASDAQ:AAPL\")\n-pos = str.pos(sym, \":\")  // Get position of \":\" character\n+pos = str.pos(sym, \":\") // Get position of \":\" character\n tkr= str.substring(sym, pos+1) // \"AAPL\"\n if barstate.islastconfirmedhistory\n \tlabel.new(bar_index, high, text = tkr)"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.replace:overload:0",
+      "name": "str.replace",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:str.replace:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -2,7 +2,7 @@\n indicator(\"str.replace\")\n var source = \"FTX:BTCUSD / FTX:BTCEUR\"\n // Replace first occurrence of \"FTX\" with \"BINANCE\" replacement string\n-var newSource = str.replace(source, \"FTX\",  \"BINANCE\", 0)\n+var newSource = str.replace(source, \"FTX\", \"BINANCE\", 0)\n if barstate.islastconfirmedhistory\n \t// Display \"BINANCE:BTCUSD / FTX:BTCEUR\"\n \tlabel.new(bar_index, high, text = newSource)"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.replace:overload:1",
+      "name": "str.replace",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:str.replace:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -2,7 +2,7 @@\n indicator(\"str.replace\")\n var source = \"FTX:BTCUSD / FTX:BTCEUR\"\n // Replace first occurrence of \"FTX\" with \"BINANCE\" replacement string\n-var newSource = str.replace(source, \"FTX\",  \"BINANCE\", 0)\n+var newSource = str.replace(source, \"FTX\", \"BINANCE\", 0)\n if barstate.islastconfirmedhistory\n \t// Display \"BINANCE:BTCUSD / FTX:BTCEUR\"\n \tlabel.new(bar_index, high, text = newSource)"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.replace:overload:2",
+      "name": "str.replace",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:str.replace:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -2,7 +2,7 @@\n indicator(\"str.replace\")\n var source = \"FTX:BTCUSD / FTX:BTCEUR\"\n // Replace first occurrence of \"FTX\" with \"BINANCE\" replacement string\n-var newSource = str.replace(source, \"FTX\",  \"BINANCE\", 0)\n+var newSource = str.replace(source, \"FTX\", \"BINANCE\", 0)\n if barstate.islastconfirmedhistory\n \t// Display \"BINANCE:BTCUSD / FTX:BTCEUR\"\n \tlabel.new(bar_index, high, text = newSource)"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.match:overload:0",
+      "name": "str.match",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:str.match:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:str.match:overload:1",
+      "name": "str.match",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:str.match:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy:overload:0",
+      "name": "strategy",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:strategy:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,5 +1,5 @@\n //@version=N\n-strategy(\"My strategy\", overlay = true, margin_long = 100, margin_short = 100)\n+strategy(\"My strategy\", overlay = true)\n // Enter long by market if current open is greater than previous high.\n if open > high[1]\n \tstrategy.entry(\"Long\", strategy.long, 1)"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.cancel:overload:0",
+      "name": "strategy.cancel",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:strategy.cancel:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.cancel_all:overload:0",
+      "name": "strategy.cancel_all",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:strategy.cancel_all:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.pivothigh:overload:0",
+      "name": "ta.pivothigh",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.pivothigh:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.pivothigh:overload:1",
+      "name": "ta.pivothigh",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.pivothigh:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.pivotlow:overload:0",
+      "name": "ta.pivotlow",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.pivotlow:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:ta.pivotlow:overload:1",
+      "name": "ta.pivotlow",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:ta.pivotlow:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.close_all:overload:0",
+      "name": "strategy.close_all",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:strategy.close_all:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,5 +1,5 @@\n //@version=N\n-strategy(\"Multi-entry close strategy\",  margin_long = 100, margin_short = 100)\n+strategy(\"Multi-entry close strategy\")\n // Calculate a 14-bar and 28-bar moving average of `close` prices.\n float sma14 = ta.sma(close, 14)\n float sma28 = ta.sma(close, 28)"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.close_all:overload:1",
+      "name": "strategy.close_all",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:strategy.close_all:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,5 +1,5 @@\n //@version=N\n-strategy(\"Multi-entry close strategy\",  margin_long = 100, margin_short = 100)\n+strategy(\"Multi-entry close strategy\")\n // Calculate a 14-bar and 28-bar moving average of `close` prices.\n float sma14 = ta.sma(close, 14)\n float sma28 = ta.sma(close, 28)"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.close:overload:0",
+      "name": "strategy.close",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:strategy.close:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,5 +1,5 @@\n //@version=N\n-strategy(\"Partial close strategy\",  margin_long = 100, margin_short = 100)\n+strategy(\"Partial close strategy\")\n // Calculate a 14-bar and 28-bar moving average of `close` prices.\n float sma14 = ta.sma(close, 14)\n float sma28 = ta.sma(close, 28)"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.risk.max_position_size:overload:0",
+      "name": "strategy.risk.max_position_size",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:strategy.risk.max_position_size:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -3,4 +3,4 @@\n strategy.risk.max_position_size(10)\n if open > close\n \tstrategy.entry(\"buy\", strategy.long)\n-plot(strategy.position_size)  // max plot value will be 10\n+plot(strategy.position_size) // max plot value will be 10"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.risk.max_intraday_filled_orders:overload:0",
+      "name": "strategy.risk.max_intraday_filled_orders",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:strategy.risk.max_intraday_filled_orders:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.risk.allow_entry_in:overload:0",
+      "name": "strategy.risk.allow_entry_in",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:strategy.risk.allow_entry_in:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.risk.max_cons_loss_days:overload:0",
+      "name": "strategy.risk.max_cons_loss_days",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:strategy.risk.max_cons_loss_days:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:box.copy:overload:0",
+      "name": "box.copy",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:box.copy:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:box.new:overload:0",
+      "name": "box.new",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:box.new:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:box.new:overload:1",
+      "name": "box.new",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:box.new:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:box.set_text_font_family:overload:0",
+      "name": "box.set_text_font_family",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:box.set_text_font_family:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:line.copy:overload:0",
+      "name": "line.copy",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:line.copy:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:line.new:overload:0",
+      "name": "line.new",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:line.new:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:line.new:overload:1",
+      "name": "line.new",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:line.new:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:line.get_x1:overload:0",
+      "name": "line.get_x1",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:line.get_x1:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:line.get_price:overload:0",
+      "name": "line.get_price",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:line.get_price:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:label.copy:overload:0",
+      "name": "label.copy",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:label.copy:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:label.new:overload:0",
+      "name": "label.new",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:label.new:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:label.new:overload:1",
+      "name": "label.new",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:label.new:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:label.set_text_font_family:overload:0",
+      "name": "label.set_text_font_family",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:label.set_text_font_family:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:label.get_x:overload:0",
+      "name": "label.get_x",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:label.get_x:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:label.get_text:overload:0",
+      "name": "label.get_text",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:label.get_text:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:max_bars_back:overload:0",
+      "name": "max_bars_back",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:max_bars_back:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,12 +1,26 @@\n //@version=N\n-indicator(\"max_bars_back\")\n-close_() => close\n-depth() => 400\n-d = depth()\n-v = close_()\n-max_bars_back(v, 500)\n-out = if bar_index > 0\n-\tv[d]\n-else\n-\tv\n-plot(out)\n+indicator(\"`max_bars_back()` demo\")\n+if barstate.isrealtime\n+    //@variable References an array of chart points for the polyline.\n+    var array<chart.point> points = array.new<chart.point>()\n+    //@variable Stores the ID of a `polyline` object.\n+    var polyline p = na\n+    // Clear all chart points in the array and delete the existing polyline.\n+    points.clear()\n+    polyline.delete(p)\n+    // Populate the array with new points. Each point shows the change in `close` values over a specific length.\n+    for i = 1 to 500\n+        chart.point point = chart.point.from_index(bar_index - i + 1, close - close[i])\n+        points.push(point)\n+    // Create a new polyline with the new points and assign its ID to `p`.\n+    p := polyline.new(points)\n+//#region\n+// The two calls below enable the script to run. If either is removed, the script causes an error,\n+// because it performs all historical references on realtime bars -- where the system cannot size buffers automatically.\n+// This call sets the `close` buffer to contain 500 past values (the maximum amount that the script requires).\n+max_bars_back(close, 500)\n+// This call sets the `time` buffer to also contain 500 past values.\n+// Although the script does not explicitly use `time` in its calculations, drawing calculations convert bar indices\n+// to `time` values internally.\n+max_bars_back(time, 500)\n+//#endregion"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.new<type>:overload:0",
+      "name": "array.new<type>",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.new<type>:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.new_float:overload:0",
+      "name": "array.new_float",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.new_float:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.new_int:overload:0",
+      "name": "array.new_int",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.new_int:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.new_color:overload:0",
+      "name": "array.new_color",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.new_color:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.new_bool:overload:0",
+      "name": "array.new_bool",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.new_bool:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.new_string:overload:0",
+      "name": "array.new_string",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.new_string:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.new_line:overload:0",
+      "name": "array.new_line",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.new_line:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.new_box:overload:0",
+      "name": "array.new_box",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.new_box:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.new_table:overload:0",
+      "name": "array.new_table",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.new_table:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.new_label:overload:0",
+      "name": "array.new_label",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.new_label:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.copy:overload:0",
+      "name": "array.copy",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.copy:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.slice:overload:0",
+      "name": "array.slice",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:array.slice:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.size:overload:0",
+      "name": "array.size",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.size:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.first:overload:0",
+      "name": "array.first",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.first:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.last:overload:0",
+      "name": "array.last",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.last:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.get:overload:0",
+      "name": "array.get",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.get:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.min:overload:0",
+      "name": "array.min",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.min:overload:1",
+      "name": "array.min",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.min:overload:2",
+      "name": "array.min",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.min:overload:3",
+      "name": "array.min",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.max:overload:0",
+      "name": "array.max",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.max:overload:1",
+      "name": "array.max",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.max:overload:2",
+      "name": "array.max",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.max:overload:3",
+      "name": "array.max",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.range:overload:0",
+      "name": "array.range",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.range:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.range:overload:1",
+      "name": "array.range",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.range:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.sum:overload:0",
+      "name": "array.sum",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.sum:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.sum:overload:1",
+      "name": "array.sum",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.sum:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.set:overload:0",
+      "name": "array.set",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.set:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.from:overload:0",
+      "name": "array.from",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.from:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.from:overload:1",
+      "name": "array.from",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.from:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.from:overload:2",
+      "name": "array.from",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.from:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.from:overload:3",
+      "name": "array.from",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.from:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.from:overload:4",
+      "name": "array.from",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.from:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.from:overload:5",
+      "name": "array.from",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.from:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.from:overload:6",
+      "name": "array.from",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.from:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.from:overload:7",
+      "name": "array.from",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.from:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.from:overload:8",
+      "name": "array.from",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.from:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.from:overload:9",
+      "name": "array.from",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.from:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.from:overload:10",
+      "name": "array.from",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.from:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.from:overload:11",
+      "name": "array.from",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.from:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.fill:overload:0",
+      "name": "array.fill",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.fill:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.insert:overload:0",
+      "name": "array.insert",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.insert:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.join:overload:0",
+      "name": "array.join",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.join:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.push:overload:0",
+      "name": "array.push",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.push:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.remove:overload:0",
+      "name": "array.remove",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.remove:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.pop:overload:0",
+      "name": "array.pop",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.pop:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.clear:overload:0",
+      "name": "array.clear",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.clear:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.sort:overload:0",
+      "name": "array.sort",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.sort:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.sort_indices:overload:0",
+      "name": "array.sort_indices",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.sort_indices:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.binary_search:overload:0",
+      "name": "array.binary_search",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.binary_search:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.concat:overload:0",
+      "name": "array.concat",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.concat:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.avg:overload:0",
+      "name": "array.avg",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.avg:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.avg:overload:1",
+      "name": "array.avg",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.avg:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.stdev:overload:0",
+      "name": "array.stdev",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.stdev:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.stdev:overload:1",
+      "name": "array.stdev",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.stdev:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.variance:overload:0",
+      "name": "array.variance",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.variance:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.variance:overload:1",
+      "name": "array.variance",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.variance:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.covariance:overload:0",
+      "name": "array.covariance",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.covariance:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.mode:overload:0",
+      "name": "array.mode",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.mode:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.mode:overload:1",
+      "name": "array.mode",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.mode:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.median:overload:0",
+      "name": "array.median",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.median:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.median:overload:1",
+      "name": "array.median",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.median:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.standardize:overload:0",
+      "name": "array.standardize",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.standardize:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.standardize:overload:1",
+      "name": "array.standardize",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.standardize:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.indexof:overload:0",
+      "name": "array.indexof",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.indexof:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.lastindexof:overload:0",
+      "name": "array.lastindexof",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.lastindexof:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.includes:overload:0",
+      "name": "array.includes",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.includes:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.shift:overload:0",
+      "name": "array.shift",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.shift:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.unshift:overload:0",
+      "name": "array.unshift",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.unshift:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:array.reverse:overload:0",
+      "name": "array.reverse",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:array.reverse:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:alert:overload:0",
+      "name": "alert",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:alert:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -4,6 +4,6 @@\n xUp = ta.crossover(close, ma)\n if xUp\n     // Trigger the alert the first time a cross occurs during the real-time bar.\n-    alert(\"Price (\" + str.tostring(close) + \") crossed over MA (\" + str.tostring(ma) +  \").\", alert.freq_once_per_bar)\n+    alert(\"Price (\" + str.tostring(close) + \") crossed over MA (\" + str.tostring(ma) + \").\", alert.freq_once_per_bar)\n plot(ma)\n plotchar(xUp, \"xUp\", \"▲\", location.top, size = size.tiny)"
+    },
+    {
+      "entry_id": "primary:v5:functions:request.earnings:overload:0",
+      "name": "request.earnings",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:request.earnings:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:request.dividends:overload:0",
+      "name": "request.dividends",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:request.dividends:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:request.splits:overload:0",
+      "name": "request.splits",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:request.splits:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:request.economic:overload:0",
+      "name": "request.economic",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:request.economic:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:request.seed:overload:0",
+      "name": "request.seed",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:request.seed:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:table.new:overload:0",
+      "name": "table.new",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:table.new:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:table.delete:overload:0",
+      "name": "table.delete",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:table.delete:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:table.cell_set_text:overload:0",
+      "name": "table.cell_set_text",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:table.cell_set_text:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:table.cell_set_text_font_family:overload:0",
+      "name": "table.cell_set_text_font_family",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:table.cell_set_text_font_family:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:table.cell_set_tooltip:overload:0",
+      "name": "table.cell_set_tooltip",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:table.cell_set_tooltip:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:table.clear:overload:0",
+      "name": "table.clear",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:table.clear:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.row:overload:0",
+      "name": "matrix.row",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.row:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.col:overload:0",
+      "name": "matrix.col",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.col:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.reshape:overload:0",
+      "name": "matrix.reshape",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.reshape:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.get:overload:0",
+      "name": "matrix.get",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.get:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.set:overload:0",
+      "name": "matrix.set",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.set:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.remove_row:overload:0",
+      "name": "matrix.remove_row",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.remove_row:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.remove_col:overload:0",
+      "name": "matrix.remove_col",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.remove_col:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.fill:overload:0",
+      "name": "matrix.fill",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.fill:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.submatrix:overload:0",
+      "name": "matrix.submatrix",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.submatrix:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.copy:overload:0",
+      "name": "matrix.copy",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.copy:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.columns:overload:0",
+      "name": "matrix.columns",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.columns:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.rows:overload:0",
+      "name": "matrix.rows",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.rows:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.concat:overload:0",
+      "name": "matrix.concat",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.concat:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.swap_rows:overload:0",
+      "name": "matrix.swap_rows",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.swap_rows:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.swap_columns:overload:0",
+      "name": "matrix.swap_columns",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.swap_columns:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.reverse:overload:0",
+      "name": "matrix.reverse",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.reverse:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.sort:overload:0",
+      "name": "matrix.sort",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.sort:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.det:overload:0",
+      "name": "matrix.det",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.det:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.det:overload:1",
+      "name": "matrix.det",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.det:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.min:overload:0",
+      "name": "matrix.min",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.min:overload:1",
+      "name": "matrix.min",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.max:overload:0",
+      "name": "matrix.max",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.max:overload:1",
+      "name": "matrix.max",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.avg:overload:0",
+      "name": "matrix.avg",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.avg:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.avg:overload:1",
+      "name": "matrix.avg",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.avg:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.median:overload:0",
+      "name": "matrix.median",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.median:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.median:overload:1",
+      "name": "matrix.median",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.median:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.mode:overload:0",
+      "name": "matrix.mode",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.mode:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.mode:overload:1",
+      "name": "matrix.mode",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:matrix.mode:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.transpose:overload:0",
+      "name": "matrix.transpose",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.transpose:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.pinv:overload:0",
+      "name": "matrix.pinv",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.pinv:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.pinv:overload:1",
+      "name": "matrix.pinv",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.pinv:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.inv:overload:0",
+      "name": "matrix.inv",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.inv:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.inv:overload:1",
+      "name": "matrix.inv",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.inv:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.rank:overload:0",
+      "name": "matrix.rank",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.rank:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.trace:overload:0",
+      "name": "matrix.trace",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.trace:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.trace:overload:1",
+      "name": "matrix.trace",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.trace:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.eigenvalues:overload:0",
+      "name": "matrix.eigenvalues",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.eigenvalues:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.eigenvalues:overload:1",
+      "name": "matrix.eigenvalues",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.eigenvalues:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.eigenvectors:overload:0",
+      "name": "matrix.eigenvectors",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.eigenvectors:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.eigenvectors:overload:1",
+      "name": "matrix.eigenvectors",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.eigenvectors:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.kron:overload:0",
+      "name": "matrix.kron",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.kron:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.kron:overload:1",
+      "name": "matrix.kron",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.kron:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.pow:overload:0",
+      "name": "matrix.pow",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.pow:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:matrix.pow:overload:1",
+      "name": "matrix.pow",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:matrix.pow:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:table.merge_cells:overload:0",
+      "name": "table.merge_cells",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:table.merge_cells:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.closedtrades.entry_bar_index:overload:0",
+      "name": "strategy.closedtrades.entry_bar_index",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:strategy.closedtrades.entry_bar_index:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.closedtrades.entry_time:overload:0",
+      "name": "strategy.closedtrades.entry_time",
+      "category": "functions",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:functions:strategy.closedtrades.entry_time:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.closedtrades.profit:overload:0",
+      "name": "strategy.closedtrades.profit",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:strategy.closedtrades.profit:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,14 +1,17 @@\n //@version=N\n-strategy(\"`strategy.closedtrades.profit` Example\")\n-// Strategy calls to enter long trades every 15 bars and exit long trades every 20 bars.\n+strategy(\"`strategy.closedtrades.profit()` example\")\n+// Enter a long trade every 15 bars, and close a long trade every 20 bars.\n if bar_index % 15 == 0\n     strategy.entry(\"Long\", strategy.long)\n if bar_index % 20 == 0\n     strategy.close(\"Long\")\n-// Calculate average gross profit by adding the difference between gross profit and commission.\n+//@function Calculates the average gross profit from all available closed trades.\n avgGrossProfit() =>\n-    sumGrossProfit = 0.0\n-    for tradeNo = 0 to strategy.closedtrades - 1\n-        sumGrossProfit += strategy.closedtrades.profit(tradeNo) - strategy.closedtrades.commission(tradeNo)\n-    result = nz(sumGrossProfit / strategy.closedtrades)\n+    var float result = 0.0\n+    if result == 0.0 or strategy.closedtrades > strategy.closedtrades[1]\n+        float sumGrossProfit = 0.0\n+        for tradeNo = 0 to strategy.closedtrades - 1\n+            sumGrossProfit += strategy.closedtrades.profit(tradeNo)\n+        result := nz(sumGrossProfit / strategy.closedtrades)\n+    result\n plot(avgGrossProfit(), \"Average gross profit\")"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.closedtrades.commission:overload:0",
+      "name": "strategy.closedtrades.commission",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:strategy.closedtrades.commission:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.closedtrades.max_runup:overload:0",
+      "name": "strategy.closedtrades.max_runup",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:strategy.closedtrades.max_runup:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.closedtrades.max_drawdown:overload:0",
+      "name": "strategy.closedtrades.max_drawdown",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:strategy.closedtrades.max_drawdown:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.closedtrades.entry_id:overload:0",
+      "name": "strategy.closedtrades.entry_id",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:strategy.closedtrades.entry_id:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.closedtrades.exit_id:overload:0",
+      "name": "strategy.closedtrades.exit_id",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:strategy.closedtrades.exit_id:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -2,7 +2,7 @@\n strategy(\"strategy.closedtrades.exit_id Example\", overlay = true)\n // Strategy calls to create single short and long trades\n if bar_index == last_bar_index - 15\n-    strategy.entry(\"Long Entry\",  strategy.long)\n+    strategy.entry(\"Long Entry\", strategy.long)\n else if bar_index == last_bar_index - 10\n     strategy.entry(\"Short Entry\", strategy.short)\n // When a new open trade is detected then we create the exit strategy corresponding with the matching entry id"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.opentrades.entry_comment:overload:0",
+      "name": "strategy.opentrades.entry_comment",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:strategy.opentrades.entry_comment:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.closedtrades.entry_comment:overload:0",
+      "name": "strategy.closedtrades.entry_comment",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:strategy.closedtrades.entry_comment:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.closedtrades.exit_comment:overload:0",
+      "name": "strategy.closedtrades.exit_comment",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:strategy.closedtrades.exit_comment:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.opentrades.entry_time:overload:0",
+      "name": "strategy.opentrades.entry_time",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:strategy.opentrades.entry_time:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.opentrades.entry_id:overload:0",
+      "name": "strategy.opentrades.entry_id",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:strategy.opentrades.entry_id:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -11,4 +11,4 @@\n     strategy.entry(\"Short entry at bar #\" + str.tostring(bar_index), strategy.short)\n // Display ID of the latest open position.\n if barstate.islastconfirmedhistory\n-    label.new(bar_index, high + (2 * ta.tr),  \"Last opened position is \\n \" + strategy.opentrades.entry_id(strategy.opentrades - 1))\n+    label.new(bar_index, high + (2 * ta.tr), \"Last opened position is \\n \" + strategy.opentrades.entry_id(strategy.opentrades - 1))"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.default_entry_qty:overload:0",
+      "name": "strategy.default_entry_qty",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:strategy.default_entry_qty:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:strategy.convert_to_symbol:overload:0",
+      "name": "strategy.convert_to_symbol",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:strategy.convert_to_symbol:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:library:overload:0",
+      "name": "library",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:library:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:log.info:overload:0",
+      "name": "log.info",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:log.info:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,12 +1,12 @@\n //@version=N\n-strategy(\"My strategy\", overlay = true, margin_long = 100, margin_short = 100, process_orders_on_close = true)\n+strategy(\"My strategy\", overlay = true, process_orders_on_close = true)\n bracketTickSizeInput = input.int(1000, \"Stoploss/Take-Profit distance (in ticks)\")\n longCondition = ta.crossover(ta.sma(close, 14), ta.sma(close, 28))\n if (longCondition)\n \tlimitLevel = close * 1.01\n \tlog.info(\"Long limit order has been placed at {0}\", limitLevel)\n \tstrategy.order(\"My Long Entry Id\", strategy.long, limit = limitLevel)\n-\tlog.info(\"Exit orders have been placed: Take-profit at {0}, Stop-loss at {1}\", close)\n+\tlog.info(\"Exit orders have been placed: Take-profit at {0}, Stop-loss at {1}\", close, limitLevel)\n \tstrategy.exit(\"Exit\", \"My Long Entry Id\", profit = bracketTickSizeInput, loss = bracketTickSizeInput)\n if strategy.opentrades > 10\n \tlog.warning(\"{0} positions opened in the same direction in a row. Try adjusting `bracketTickSizeInput`\", strategy.opentrades)"
+    },
+    {
+      "entry_id": "primary:v5:functions:log.info:overload:1",
+      "name": "log.info",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:log.info:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,12 +1,12 @@\n //@version=N\n-strategy(\"My strategy\", overlay = true, margin_long = 100, margin_short = 100, process_orders_on_close = true)\n+strategy(\"My strategy\", overlay = true, process_orders_on_close = true)\n bracketTickSizeInput = input.int(1000, \"Stoploss/Take-Profit distance (in ticks)\")\n longCondition = ta.crossover(ta.sma(close, 14), ta.sma(close, 28))\n if (longCondition)\n \tlimitLevel = close * 1.01\n \tlog.info(\"Long limit order has been placed at {0}\", limitLevel)\n \tstrategy.order(\"My Long Entry Id\", strategy.long, limit = limitLevel)\n-\tlog.info(\"Exit orders have been placed: Take-profit at {0}, Stop-loss at {1}\", close)\n+\tlog.info(\"Exit orders have been placed: Take-profit at {0}, Stop-loss at {1}\", close, limitLevel)\n \tstrategy.exit(\"Exit\", \"My Long Entry Id\", profit = bracketTickSizeInput, loss = bracketTickSizeInput)\n if strategy.opentrades > 10\n \tlog.warning(\"{0} positions opened in the same direction in a row. Try adjusting `bracketTickSizeInput`\", strategy.opentrades)"
+    },
+    {
+      "entry_id": "primary:v5:functions:log.warning:overload:0",
+      "name": "log.warning",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:log.warning:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,12 +1,12 @@\n //@version=N\n-strategy(\"My strategy\", overlay = true, margin_long = 100, margin_short = 100, process_orders_on_close = true)\n+strategy(\"My strategy\", overlay = true, process_orders_on_close = true)\n bracketTickSizeInput = input.int(1000, \"Stoploss/Take-Profit distance (in ticks)\")\n longCondition = ta.crossover(ta.sma(close, 14), ta.sma(close, 28))\n if (longCondition)\n \tlimitLevel = close * 1.01\n \tlog.info(\"Long limit order has been placed at {0}\", limitLevel)\n \tstrategy.order(\"My Long Entry Id\", strategy.long, limit = limitLevel)\n-\tlog.info(\"Exit orders have been placed: Take-profit at {0}, Stop-loss at {1}\", close)\n+\tlog.info(\"Exit orders have been placed: Take-profit at {0}, Stop-loss at {1}\", close, limitLevel)\n \tstrategy.exit(\"Exit\", \"My Long Entry Id\", profit = bracketTickSizeInput, loss = bracketTickSizeInput)\n if strategy.opentrades > 10\n \tlog.warning(\"{0} positions opened in the same direction in a row. Try adjusting `bracketTickSizeInput`\", strategy.opentrades)"
+    },
+    {
+      "entry_id": "primary:v5:functions:log.warning:overload:1",
+      "name": "log.warning",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:log.warning:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,12 +1,12 @@\n //@version=N\n-strategy(\"My strategy\", overlay = true, margin_long = 100, margin_short = 100, process_orders_on_close = true)\n+strategy(\"My strategy\", overlay = true, process_orders_on_close = true)\n bracketTickSizeInput = input.int(1000, \"Stoploss/Take-Profit distance (in ticks)\")\n longCondition = ta.crossover(ta.sma(close, 14), ta.sma(close, 28))\n if (longCondition)\n \tlimitLevel = close * 1.01\n \tlog.info(\"Long limit order has been placed at {0}\", limitLevel)\n \tstrategy.order(\"My Long Entry Id\", strategy.long, limit = limitLevel)\n-\tlog.info(\"Exit orders have been placed: Take-profit at {0}, Stop-loss at {1}\", close)\n+\tlog.info(\"Exit orders have been placed: Take-profit at {0}, Stop-loss at {1}\", close, limitLevel)\n \tstrategy.exit(\"Exit\", \"My Long Entry Id\", profit = bracketTickSizeInput, loss = bracketTickSizeInput)\n if strategy.opentrades > 10\n \tlog.warning(\"{0} positions opened in the same direction in a row. Try adjusting `bracketTickSizeInput`\", strategy.opentrades)"
+    },
+    {
+      "entry_id": "primary:v5:functions:log.error:overload:0",
+      "name": "log.error",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:log.error:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,12 +1,12 @@\n //@version=N\n-strategy(\"My strategy\", overlay = true, margin_long = 100, margin_short = 100, process_orders_on_close = true)\n+strategy(\"My strategy\", overlay = true, process_orders_on_close = true)\n bracketTickSizeInput = input.int(1000, \"Stoploss/Take-Profit distance (in ticks)\")\n longCondition = ta.crossover(ta.sma(close, 14), ta.sma(close, 28))\n if (longCondition)\n \tlimitLevel = close * 1.01\n \tlog.info(\"Long limit order has been placed at {0}\", limitLevel)\n \tstrategy.order(\"My Long Entry Id\", strategy.long, limit = limitLevel)\n-\tlog.info(\"Exit orders have been placed: Take-profit at {0}, Stop-loss at {1}\", close)\n+\tlog.info(\"Exit orders have been placed: Take-profit at {0}, Stop-loss at {1}\", close, limitLevel)\n \tstrategy.exit(\"Exit\", \"My Long Entry Id\", profit = bracketTickSizeInput, loss = bracketTickSizeInput)\n if strategy.opentrades > 10\n \tlog.warning(\"{0} positions opened in the same direction in a row. Try adjusting `bracketTickSizeInput`\", strategy.opentrades)"
+    },
+    {
+      "entry_id": "primary:v5:functions:log.error:overload:1",
+      "name": "log.error",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:log.error:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,12 +1,12 @@\n //@version=N\n-strategy(\"My strategy\", overlay = true, margin_long = 100, margin_short = 100, process_orders_on_close = true)\n+strategy(\"My strategy\", overlay = true, process_orders_on_close = true)\n bracketTickSizeInput = input.int(1000, \"Stoploss/Take-Profit distance (in ticks)\")\n longCondition = ta.crossover(ta.sma(close, 14), ta.sma(close, 28))\n if (longCondition)\n \tlimitLevel = close * 1.01\n \tlog.info(\"Long limit order has been placed at {0}\", limitLevel)\n \tstrategy.order(\"My Long Entry Id\", strategy.long, limit = limitLevel)\n-\tlog.info(\"Exit orders have been placed: Take-profit at {0}, Stop-loss at {1}\", close)\n+\tlog.info(\"Exit orders have been placed: Take-profit at {0}, Stop-loss at {1}\", close, limitLevel)\n \tstrategy.exit(\"Exit\", \"My Long Entry Id\", profit = bracketTickSizeInput, loss = bracketTickSizeInput)\n if strategy.opentrades > 10\n \tlog.warning(\"{0} positions opened in the same direction in a row. Try adjusting `bracketTickSizeInput`\", strategy.opentrades)"
+    },
+    {
+      "entry_id": "primary:v5:functions:map.new<type,type>:overload:0",
+      "name": "map.new<type,type>",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:map.new<type,type>:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:map.copy:overload:0",
+      "name": "map.copy",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:map.copy:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:map.size:overload:0",
+      "name": "map.size",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:map.size:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:map.get:overload:0",
+      "name": "map.get",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:map.get:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:map.contains:overload:0",
+      "name": "map.contains",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:map.contains:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:map.keys:overload:0",
+      "name": "map.keys",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:map.keys:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:map.values:overload:0",
+      "name": "map.values",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:map.values:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:map.put:overload:0",
+      "name": "map.put",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:map.put:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:map.put_all:overload:0",
+      "name": "map.put_all",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:map.put_all:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:map.remove:overload:0",
+      "name": "map.remove",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:map.remove:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:map.clear:overload:0",
+      "name": "map.clear",
+      "category": "functions",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:functions:map.clear:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:functions:polyline.new:overload:0",
+      "name": "polyline.new",
+      "category": "functions",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:functions:polyline.new:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -3,7 +3,7 @@\n //@variable If `true`, connects all points in the polyline with curved line segments.\n bool curvedInput = input.bool(false, \"Curve Polyline\")\n //@variable If `true`, connects the first point in the polyline to the last point.\n-bool closedInput = input.bool(true,  \"Close Polyline\")\n+bool closedInput = input.bool(true, \"Close Polyline\")\n //@variable The color of the space filled by the polyline.\n color fillcolor = input.color(color.new(color.blue, 90), \"Fill Color\")\n // Time and price inputs for the polyline's points."
+    },
+    {
+      "entry_id": "primary:v5:variables:session.isfirstbar:overload:0",
+      "name": "session.isfirstbar",
+      "category": "variables",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:variables:session.isfirstbar:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:session.islastbar:overload:0",
+      "name": "session.islastbar",
+      "category": "variables",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:variables:session.islastbar:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -2,7 +2,7 @@\n strategy(\"`session.islastbar` Example\", overlay = true)\n longCondition = year >= 2022\n // Place a long order at the `close` of the trading session's last bar.\n-// The position will enter  on the `open` of next session's first bar.\n+// The position will enter on the `open` of next session's first bar.\n if session.islastbar and longCondition\n     strategy.entry(\"Long\", strategy.long)\n  // Close 'Long' position at the close of the last bar of the trading session"
+    },
+    {
+      "entry_id": "primary:v5:variables:session.isfirstbar_regular:overload:0",
+      "name": "session.isfirstbar_regular",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:session.isfirstbar_regular:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:session.islastbar_regular:overload:0",
+      "name": "session.islastbar_regular",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:session.islastbar_regular:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:bar_index:overload:0",
+      "name": "bar_index",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:bar_index:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:last_bar_index:overload:0",
+      "name": "last_bar_index",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:last_bar_index:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:na:overload:0",
+      "name": "na",
+      "category": "variables",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:variables:na:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -11,8 +11,8 @@\n plot(a)\n // INCORRECT\n // Trying to test the preceding bar's `close` for `na`.\n-// Will not work correctly on bar zero, when `close[1]` is `na`.\n-plot(close[1] == na ? close : close[1])\n+// The next line, if uncommented, will cause a compilation error, because direct comparison with `na` is not allowed.\n+// plot(close[1] == na ? close : close[1])\n // CORRECT\n // Use the `na()` function to test for `na`.\n plot(na(close[1]) ? close : close[1])"
+    },
+    {
+      "entry_id": "primary:v5:variables:ta.wvad:overload:0",
+      "name": "ta.wvad",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:ta.wvad:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:ta.wad:overload:0",
+      "name": "ta.wad",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:ta.wad:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:ta.obv:overload:0",
+      "name": "ta.obv",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:ta.obv:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:ta.pvt:overload:0",
+      "name": "ta.pvt",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:ta.pvt:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:ta.nvi:overload:0",
+      "name": "ta.nvi",
+      "category": "variables",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:variables:ta.nvi:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -4,7 +4,7 @@\n // the same on pine\n f_nvi() =>\n     float ta_nvi = 1.0\n-    float prevNvi = (nz(ta_nvi[1], 0.0) == 0.0)  ? 1.0: ta_nvi[1]\n+    float prevNvi = (nz(ta_nvi[1], 0.0) == 0.0) ? 1.0 : ta_nvi[1]\n     if nz(close, 0.0) == 0.0 or nz(close[1], 0.0) == 0.0\n         ta_nvi := prevNvi\n     else"
+    },
+    {
+      "entry_id": "primary:v5:variables:ta.pvi:overload:0",
+      "name": "ta.pvi",
+      "category": "variables",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:variables:ta.pvi:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -4,7 +4,7 @@\n // the same on pine\n f_pvi() =>\n     float ta_pvi = 1.0\n-    float prevPvi = (nz(ta_pvi[1], 0.0) == 0.0)  ? 1.0: ta_pvi[1]\n+    float prevPvi = (nz(ta_pvi[1], 0.0) == 0.0) ? 1.0 : ta_pvi[1]\n     if nz(close, 0.0) == 0.0 or nz(close[1], 0.0) == 0.0\n         ta_pvi := prevPvi\n     else"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.root:overload:0",
+      "name": "syminfo.root",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.root:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.prefix:overload:0",
+      "name": "syminfo.prefix",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.prefix:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.employees:overload:0",
+      "name": "syminfo.employees",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.employees:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.shareholders:overload:0",
+      "name": "syminfo.shareholders",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.shareholders:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.shares_outstanding_float:overload:0",
+      "name": "syminfo.shares_outstanding_float",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.shares_outstanding_float:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.shares_outstanding_total:overload:0",
+      "name": "syminfo.shares_outstanding_total",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.shares_outstanding_total:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.target_price_average:overload:0",
+      "name": "syminfo.target_price_average",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.target_price_average:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.target_price_date:overload:0",
+      "name": "syminfo.target_price_date",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.target_price_date:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.target_price_estimates:overload:0",
+      "name": "syminfo.target_price_estimates",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.target_price_estimates:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.target_price_high:overload:0",
+      "name": "syminfo.target_price_high",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.target_price_high:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.target_price_low:overload:0",
+      "name": "syminfo.target_price_low",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.target_price_low:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.target_price_median:overload:0",
+      "name": "syminfo.target_price_median",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.target_price_median:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.recommendations_buy:overload:0",
+      "name": "syminfo.recommendations_buy",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.recommendations_buy:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.recommendations_buy_strong:overload:0",
+      "name": "syminfo.recommendations_buy_strong",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.recommendations_buy_strong:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.recommendations_date:overload:0",
+      "name": "syminfo.recommendations_date",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.recommendations_date:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.recommendations_hold:overload:0",
+      "name": "syminfo.recommendations_hold",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.recommendations_hold:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.recommendations_total:overload:0",
+      "name": "syminfo.recommendations_total",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.recommendations_total:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.recommendations_sell:overload:0",
+      "name": "syminfo.recommendations_sell",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.recommendations_sell:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:syminfo.recommendations_sell_strong:overload:0",
+      "name": "syminfo.recommendations_sell_strong",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:syminfo.recommendations_sell_strong:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:strategy.opentrades.capital_held:overload:0",
+      "name": "strategy.opentrades.capital_held",
+      "category": "variables",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:variables:strategy.opentrades.capital_held:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,6 +1,6 @@\n //@version=N\n strategy(\n-   \"strategy.opentrades.capital_held example\", overlay=false,  margin_long=50, margin_short=50,\n+   \"strategy.opentrades.capital_held example\", overlay=false, margin_long=50, margin_short=50,\n    default_qty_type = strategy.percent_of_equity, default_qty_value = 100\n  )\n // Enter a short position on the first bar."
+    },
+    {
+      "entry_id": "primary:v5:variables:strategy.margin_liquidation_price:overload:0",
+      "name": "strategy.margin_liquidation_price",
+      "category": "variables",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:variables:strategy.margin_liquidation_price:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:label.all:overload:0",
+      "name": "label.all",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:label.all:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:line.all:overload:0",
+      "name": "line.all",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:line.all:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:box.all:overload:0",
+      "name": "box.all",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:box.all:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:variables:table.all:overload:0",
+      "name": "table.all",
+      "category": "variables",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:variables:table.all:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:box.copy:overload:0",
+      "name": "box.copy",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:box.copy:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:box.set_text_font_family:overload:0",
+      "name": "box.set_text_font_family",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:box.set_text_font_family:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:line.copy:overload:0",
+      "name": "line.copy",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:line.copy:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:line.get_x1:overload:0",
+      "name": "line.get_x1",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:line.get_x1:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:line.get_price:overload:0",
+      "name": "line.get_price",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:line.get_price:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:label.copy:overload:0",
+      "name": "label.copy",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:label.copy:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:label.set_text_font_family:overload:0",
+      "name": "label.set_text_font_family",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:label.set_text_font_family:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:label.get_x:overload:0",
+      "name": "label.get_x",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:label.get_x:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:label.get_text:overload:0",
+      "name": "label.get_text",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:label.get_text:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.copy:overload:0",
+      "name": "array.copy",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.copy:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.slice:overload:0",
+      "name": "array.slice",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:array.slice:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.size:overload:0",
+      "name": "array.size",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.size:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.first:overload:0",
+      "name": "array.first",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.first:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.last:overload:0",
+      "name": "array.last",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.last:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.get:overload:0",
+      "name": "array.get",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.get:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.min:overload:0",
+      "name": "array.min",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.min:overload:1",
+      "name": "array.min",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.min:overload:2",
+      "name": "array.min",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.min:overload:3",
+      "name": "array.min",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.max:overload:0",
+      "name": "array.max",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.max:overload:1",
+      "name": "array.max",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.max:overload:2",
+      "name": "array.max",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.max:overload:3",
+      "name": "array.max",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.range:overload:0",
+      "name": "array.range",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.range:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.range:overload:1",
+      "name": "array.range",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.range:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.sum:overload:0",
+      "name": "array.sum",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.sum:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.sum:overload:1",
+      "name": "array.sum",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.sum:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.set:overload:0",
+      "name": "array.set",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.set:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.fill:overload:0",
+      "name": "array.fill",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.fill:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.insert:overload:0",
+      "name": "array.insert",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.insert:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.join:overload:0",
+      "name": "array.join",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.join:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.push:overload:0",
+      "name": "array.push",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.push:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.remove:overload:0",
+      "name": "array.remove",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.remove:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.pop:overload:0",
+      "name": "array.pop",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.pop:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.clear:overload:0",
+      "name": "array.clear",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.clear:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.sort:overload:0",
+      "name": "array.sort",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.sort:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.sort_indices:overload:0",
+      "name": "array.sort_indices",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.sort_indices:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.binary_search:overload:0",
+      "name": "array.binary_search",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.binary_search:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.concat:overload:0",
+      "name": "array.concat",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.concat:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.avg:overload:0",
+      "name": "array.avg",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.avg:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.avg:overload:1",
+      "name": "array.avg",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.avg:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.stdev:overload:0",
+      "name": "array.stdev",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.stdev:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.stdev:overload:1",
+      "name": "array.stdev",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.stdev:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.variance:overload:0",
+      "name": "array.variance",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.variance:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.variance:overload:1",
+      "name": "array.variance",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.variance:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.covariance:overload:0",
+      "name": "array.covariance",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.covariance:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.mode:overload:0",
+      "name": "array.mode",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.mode:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.mode:overload:1",
+      "name": "array.mode",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.mode:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.median:overload:0",
+      "name": "array.median",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.median:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.median:overload:1",
+      "name": "array.median",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.median:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.standardize:overload:0",
+      "name": "array.standardize",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.standardize:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.standardize:overload:1",
+      "name": "array.standardize",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.standardize:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.indexof:overload:0",
+      "name": "array.indexof",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.indexof:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.lastindexof:overload:0",
+      "name": "array.lastindexof",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.lastindexof:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.includes:overload:0",
+      "name": "array.includes",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.includes:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.shift:overload:0",
+      "name": "array.shift",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.shift:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.unshift:overload:0",
+      "name": "array.unshift",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.unshift:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:array.reverse:overload:0",
+      "name": "array.reverse",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:array.reverse:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:table.delete:overload:0",
+      "name": "table.delete",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:table.delete:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:table.cell_set_text:overload:0",
+      "name": "table.cell_set_text",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:table.cell_set_text:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:table.cell_set_text_font_family:overload:0",
+      "name": "table.cell_set_text_font_family",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:table.cell_set_text_font_family:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:table.cell_set_tooltip:overload:0",
+      "name": "table.cell_set_tooltip",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:table.cell_set_tooltip:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:table.clear:overload:0",
+      "name": "table.clear",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:table.clear:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.row:overload:0",
+      "name": "matrix.row",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.row:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.col:overload:0",
+      "name": "matrix.col",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.col:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.reshape:overload:0",
+      "name": "matrix.reshape",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.reshape:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.get:overload:0",
+      "name": "matrix.get",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.get:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.set:overload:0",
+      "name": "matrix.set",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.set:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.remove_row:overload:0",
+      "name": "matrix.remove_row",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.remove_row:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.remove_col:overload:0",
+      "name": "matrix.remove_col",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.remove_col:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.fill:overload:0",
+      "name": "matrix.fill",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.fill:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.submatrix:overload:0",
+      "name": "matrix.submatrix",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.submatrix:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.copy:overload:0",
+      "name": "matrix.copy",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.copy:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.columns:overload:0",
+      "name": "matrix.columns",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.columns:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.rows:overload:0",
+      "name": "matrix.rows",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.rows:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.concat:overload:0",
+      "name": "matrix.concat",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.concat:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.swap_rows:overload:0",
+      "name": "matrix.swap_rows",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.swap_rows:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.swap_columns:overload:0",
+      "name": "matrix.swap_columns",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.swap_columns:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.reverse:overload:0",
+      "name": "matrix.reverse",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.reverse:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.sort:overload:0",
+      "name": "matrix.sort",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.sort:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.det:overload:0",
+      "name": "matrix.det",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.det:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.det:overload:1",
+      "name": "matrix.det",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.det:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.min:overload:0",
+      "name": "matrix.min",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.min:overload:1",
+      "name": "matrix.min",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.min:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.max:overload:0",
+      "name": "matrix.max",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.max:overload:1",
+      "name": "matrix.max",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.max:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.avg:overload:0",
+      "name": "matrix.avg",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.avg:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.avg:overload:1",
+      "name": "matrix.avg",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.avg:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.median:overload:0",
+      "name": "matrix.median",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.median:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.median:overload:1",
+      "name": "matrix.median",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.median:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.mode:overload:0",
+      "name": "matrix.mode",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.mode:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.mode:overload:1",
+      "name": "matrix.mode",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:matrix.mode:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.transpose:overload:0",
+      "name": "matrix.transpose",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.transpose:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.pinv:overload:0",
+      "name": "matrix.pinv",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.pinv:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.pinv:overload:1",
+      "name": "matrix.pinv",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.pinv:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.inv:overload:0",
+      "name": "matrix.inv",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.inv:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.inv:overload:1",
+      "name": "matrix.inv",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.inv:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.rank:overload:0",
+      "name": "matrix.rank",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.rank:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.trace:overload:0",
+      "name": "matrix.trace",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.trace:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.trace:overload:1",
+      "name": "matrix.trace",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.trace:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.eigenvalues:overload:0",
+      "name": "matrix.eigenvalues",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.eigenvalues:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.eigenvalues:overload:1",
+      "name": "matrix.eigenvalues",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.eigenvalues:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.eigenvectors:overload:0",
+      "name": "matrix.eigenvectors",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.eigenvectors:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.eigenvectors:overload:1",
+      "name": "matrix.eigenvectors",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.eigenvectors:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.kron:overload:0",
+      "name": "matrix.kron",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.kron:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.kron:overload:1",
+      "name": "matrix.kron",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.kron:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.pow:overload:0",
+      "name": "matrix.pow",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.pow:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:matrix.pow:overload:1",
+      "name": "matrix.pow",
+      "category": "methods",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:methods:matrix.pow:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:table.merge_cells:overload:0",
+      "name": "table.merge_cells",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:table.merge_cells:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:map.copy:overload:0",
+      "name": "map.copy",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:map.copy:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:map.size:overload:0",
+      "name": "map.size",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:map.size:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:map.get:overload:0",
+      "name": "map.get",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:map.get:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:map.contains:overload:0",
+      "name": "map.contains",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:map.contains:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:map.keys:overload:0",
+      "name": "map.keys",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:map.keys:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:map.values:overload:0",
+      "name": "map.values",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:map.values:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:map.put:overload:0",
+      "name": "map.put",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:map.put:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:map.put_all:overload:0",
+      "name": "map.put_all",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:map.put_all:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:map.remove:overload:0",
+      "name": "map.remove",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:map.remove:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:methods:map.clear:overload:0",
+      "name": "map.clear",
+      "category": "methods",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:methods:map.clear:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:constants:strategy.fixed:overload:0",
+      "name": "strategy.fixed",
+      "category": "constants",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:constants:strategy.fixed:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,5 +1,5 @@\n //@version=N\n-strategy(\"strategy.fixed\", overlay = true, default_qty_value = 50, default_qty_type = strategy.fixed, initial_capital = 1000000)\n+strategy(\"strategy.fixed\", overlay = true, default_qty_value = 50, default_qty_type = strategy.fixed, initial_capital = 100000)\n if bar_index == 0\n     // As ‘qty’ is not defined, the previously defined values for the `default_qty_type` and `default_qty_value` parameters are used to enter trades, namely 50 contracts.\n     // qty = 50"
+    },
+    {
+      "entry_id": "primary:v5:constants:strategy.cash:overload:0",
+      "name": "strategy.cash",
+      "category": "constants",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:constants:strategy.cash:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,5 +1,5 @@\n //@version=N\n-strategy(\"strategy.cash\", overlay = true, default_qty_value = 50, default_qty_type = strategy.cash, initial_capital = 1000000)\n+strategy(\"strategy.cash\", overlay = true, default_qty_value = 50, default_qty_type = strategy.cash, initial_capital = 100000)\n if bar_index == 0\n     // As ‘qty’ is not defined, the previously defined values for the `default_qty_type` and `default_qty_value` parameters are used to enter trades, namely 50 units of cash in the currency of `strategy.account_currency`.\n     // `qty` is calculated as (default_qty_value)/(close price). If current price is $5, then qty = 50/5 = 10."
+    },
+    {
+      "entry_id": "primary:v5:constants:strategy.percent_of_equity:overload:0",
+      "name": "strategy.percent_of_equity",
+      "category": "constants",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:constants:strategy.percent_of_equity:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,5 +1,5 @@\n //@version=N\n-strategy(\"strategy.percent_of_equity\", overlay = false, default_qty_value = 100, default_qty_type = strategy.percent_of_equity, initial_capital = 1000000)\n+strategy(\"strategy.percent_of_equity\", overlay = false, default_qty_value = 100, default_qty_type = strategy.percent_of_equity, initial_capital = 100000)\n // As ‘qty’ is not defined, the previously defined values for the `default_qty_type` and `default_qty_value` parameters are used to enter trades, namely 100% of available equity.\n if bar_index == 0\n     strategy.entry(\"EN\", strategy.long)"
+    },
+    {
+      "entry_id": "primary:v5:types:simple:overload:0",
+      "name": "simple",
+      "category": "types",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:types:simple:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:types:series:overload:0",
+      "name": "series",
+      "category": "types",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:types:series:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:types:const:overload:0",
+      "name": "const",
+      "category": "types",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:types:const:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:types:int:overload:0",
+      "name": "int",
+      "category": "types",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:types:int:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:types:float:overload:0",
+      "name": "float",
+      "category": "types",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:types:float:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:types:bool:overload:0",
+      "name": "bool",
+      "category": "types",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:types:bool:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,5 +1,4 @@\n //@version=N\n indicator(\"bool\")\n bool b = true    // Same as `b = true`\n-b := na\n plot(b ? open : close)"
+    },
+    {
+      "entry_id": "primary:v5:types:string:overload:0",
+      "name": "string",
+      "category": "types",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:types:string:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:types:color:overload:0",
+      "name": "color",
+      "category": "types",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:types:color:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,7 +1,7 @@\n //@version=N\n indicator(\"color\", overlay = true)\n color textColor = color.green\n-color labelColor = #FF000080  // Red color (FF0000) with 50% transparency (80 which is half of FF).\n+color labelColor = #FF000080 // Red color (FF0000) with 50% transparency (80 which is half of FF).\n if barstate.islastconfirmedhistory\n \tlabel.new(bar_index, high, text = \"Label\", color = labelColor, textcolor = textColor)\n // When declaring variables with color literals, built-in constants(color.green) or functions (color.new(), color.rgb()), the \"color\" keyword for the type can be omitted."
+    },
+    {
+      "entry_id": "primary:v5:types:line:overload:0",
+      "name": "line",
+      "category": "types",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:types:line:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:types:label:overload:0",
+      "name": "label",
+      "category": "types",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:types:label:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:types:box:overload:0",
+      "name": "box",
+      "category": "types",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:types:box:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:types:table:overload:0",
+      "name": "table",
+      "category": "types",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:types:table:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:types:linefill:overload:0",
+      "name": "linefill",
+      "category": "types",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:types:linefill:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:types:array:overload:0",
+      "name": "array",
+      "category": "types",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:types:array:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:types:matrix:overload:0",
+      "name": "matrix",
+      "category": "types",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:types:matrix:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:types:map:overload:0",
+      "name": "map",
+      "category": "types",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:types:map:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:keywords:import:overload:0",
+      "name": "import",
+      "category": "keywords",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:keywords:import:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:keywords:export:overload:0",
+      "name": "export",
+      "category": "keywords",
+      "comparison": "trailing_whitespace_only",
+      "donor_entry_id": "primary:v6:keywords:export:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:keywords:method:overload:0",
+      "name": "method",
+      "category": "keywords",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:keywords:method:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:operators:?::overload:0",
+      "name": "?:",
+      "category": "operators",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:operators:?::overload:0"
+    },
+    {
+      "entry_id": "primary:v5:operators:[]:overload:0",
+      "name": "[]",
+      "category": "operators",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:operators:[]:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:operators::=:overload:0",
+      "name": ":=",
+      "category": "operators",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:operators::=:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:operators:+=:overload:0",
+      "name": "+=",
+      "category": "operators",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:operators:+=:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:operators:-=:overload:0",
+      "name": "-=",
+      "category": "operators",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:operators:-=:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:operators:*=:overload:0",
+      "name": "*=",
+      "category": "operators",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:operators:*=:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:operators:/=:overload:0",
+      "name": "/=",
+      "category": "operators",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:operators:/=:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,7 +1,7 @@\n //@version=N\n indicator(\"/=\")\n // Equals to expr1 = expr1 / expr2.\n-a = 3\n+float a = 3.0\n b = 3\n a /= b\n // Result: a = 1."
+    },
+    {
+      "entry_id": "primary:v5:operators:%=:overload:0",
+      "name": "%=",
+      "category": "operators",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:operators:%=:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:annotations:@description:overload:0",
+      "name": "@description",
+      "category": "annotations",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:annotations:@description:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:annotations:@enum:overload:0",
+      "name": "@enum",
+      "category": "annotations",
+      "comparison": "reviewed_difference",
+      "donor_entry_id": "primary:v6:annotations:@enum:overload:0",
+      "diff": "--- v5\n+++ v6\n@@ -1,7 +1,7 @@\n //@version=N\n indicator(\"Session highlight\", overlay = true)\n-//@enum        Contains fields with popular timezones as titles.\n-//@field exch  Has an empty string as the title to represent the chart timezone.\n+//@enum       Contains fields with popular timezones as titles.\n+//@field exch Has an empty string as the title to represent the chart timezone.\n enum tz\n \tutc  = \"UTC\"\n \texch = \"\""
+    },
+    {
+      "entry_id": "primary:v5:annotations:@function:overload:0",
+      "name": "@function",
+      "category": "annotations",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:annotations:@function:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:annotations:@param:overload:0",
+      "name": "@param",
+      "category": "annotations",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:annotations:@param:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:annotations:@returns:overload:0",
+      "name": "@returns",
+      "category": "annotations",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:annotations:@returns:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:annotations:@variable:overload:0",
+      "name": "@variable",
+      "category": "annotations",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:annotations:@variable:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:annotations:@type:overload:0",
+      "name": "@type",
+      "category": "annotations",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:annotations:@type:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:annotations:@field:overload:0",
+      "name": "@field",
+      "category": "annotations",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:annotations:@field:overload:0"
+    },
+    {
+      "entry_id": "primary:v5:annotations:@strategy_alert_message:overload:0",
+      "name": "@strategy_alert_message",
+      "category": "annotations",
+      "comparison": "same_except_version_and_empty_lines",
+      "donor_entry_id": "primary:v6:annotations:@strategy_alert_message:overload:0"
+    }
+  ]
+}
