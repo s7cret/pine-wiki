@@ -11,6 +11,22 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent / "migrations"))
 from catalog_io import ROOT, load_catalog
 
+MERGE_MANIFEST = Path(__file__).resolve().parent / 'migrations' / 'v5_example_merge_manifest.json'
+
+
+def selected_entries(catalog):
+    # This immutable input was reconstructed from the pre-migration catalog,
+    # not from the generated audit. It works before and after line merging.
+    manifest = json.loads(MERGE_MANIFEST.read_text(encoding='utf-8'))
+    ids = manifest['entry_ids']
+    if manifest.get('schema_version') != 1 or not ids or len(ids) != len(set(ids)):
+        raise ValueError('Invalid v5 example merge manifest')
+    selected = set(ids)
+    missing = selected - {e['id'] for e in catalog['entries']}
+    if missing:
+        raise ValueError('Merged v5 entries missing from catalog: ' + ', '.join(sorted(missing)))
+    return selected
+
 
 def normalized(code, trailing_space=False):
     lines = []
@@ -27,14 +43,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=ROOT)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--check", action="store_true", help="Compare the regenerated audit without writing files")
     args = parser.parse_args()
     output = args.output or args.root / "docs" / "v5-example-audit.json"
     v5, _ = load_catalog(args.root, 5)
     v6, _ = load_catalog(args.root, 6)
-    selected = {e["id"] for e in v5["entries"] if len(e["examples"].get("items", [])) > 1
-                and all("\n" not in i["code"] for i in e["examples"]["items"])}
-    if output.exists():
-        selected.update(r["entry_id"] for r in json.loads(output.read_text("utf-8"))["entries"])
+    selected = selected_entries(v5)
     records = []
     for entry in v5["entries"]:
         if entry["id"] not in selected:
@@ -60,8 +74,13 @@ def main():
         records.append(record)
     report = {"normalization": "Ignore only standalone @version values and empty lines; additionally classify trailing whitespace separately. Preserve indentation and internal whitespace.",
               "counts": dict(collections.Counter(r["comparison"] for r in records)), "entries": records}
-    output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+    rendered = (json.dumps(report, ensure_ascii=False, indent=2) + "\n").encode('utf-8')
+    if args.check:
+        if not output.exists() or output.read_bytes() != rendered:
+            raise SystemExit('V5 example audit is missing or stale: ' + str(output))
+    else:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_bytes(rendered)
     print(json.dumps(report["counts"]))
 
 

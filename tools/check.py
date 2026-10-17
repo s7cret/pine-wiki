@@ -18,7 +18,7 @@ def source_fingerprint():
     # QA outputs and generated documentation are excluded to avoid circular hashes.
     files = sorted([*ROOT.glob('*.js'), *ROOT.glob('*.css'), ROOT / 'index.html',
                     *ROOT.glob('tools/*.py'), *ROOT.glob('tools/*.js'), *ROOT.glob('tools/*.json'),
-                    *ROOT.glob('tools/migrations/*.py')])
+                    *ROOT.glob('tools/migrations/*.py'), *ROOT.glob('tools/migrations/*.json')])
     h = hashlib.sha256()
     for path in files:
         h.update(path.relative_to(ROOT).as_posix().encode())
@@ -36,6 +36,7 @@ def main():
         [sys.executable, 'tools/build_manifest.py', '--check'],
         [sys.executable, 'tools/verify_catalog.py'],
         [sys.executable, 'tools/test_verifier.py', '--json', 'test-results/verifier-guards.json'],
+        [sys.executable, 'tools/test_audit_v5_examples.py'],
         [node, 'tools/search_regression.js'],
         [sys.executable, 'tools/e2e_smoke.py', '--screenshots', 'test-results/screenshots', '--json', 'test-results/e2e-results.json'],
     ]

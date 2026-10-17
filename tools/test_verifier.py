@@ -5,6 +5,7 @@ Only a fresh temporary fixture is changed. Manifest hashes are rebuilt before
 each verification, so a hash mismatch cannot masquerade as an invariant check.
 """
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -12,6 +13,8 @@ import shutil
 import subprocess
 import sys
 import tempfile
+
+from data_integrity import text_references
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -42,10 +45,10 @@ def main():
             shutil.copy2(source, fixture / source.name)
         # Test the data/UI verifier alone; generated release prose is not part
         # of this intentionally malformed fixture.
-        for name in ('verify_catalog.py', 'build_manifest.py'):
+        for name in ('verify_catalog.py', 'build_manifest.py', 'data_integrity.py'):
             shutil.copy2(ROOT / 'tools' / name, fixture / 'tools' / name)
         (fixture / 'tools' / 'migrations').mkdir()
-        for name in ('02_parameter_description_hints.py', 'catalog_io.py'):
+        for name in ('02_parameter_description_hints.py', 'catalog_io.py', '05_clean_history_texts.py'):
             shutil.copy2(ROOT / 'tools' / 'migrations' / name, fixture / 'tools' / 'migrations' / name)
 
         def verify(name, expected=None):
@@ -60,6 +63,106 @@ def main():
                 print(output)
 
         verify('clean isolated fixture')
+
+        def mutation(filename, prefix, change, name, expected):
+            target = fixture / filename
+            data = load(target, prefix)
+            change(data)
+            write(target, prefix, data)
+            verify(name, expected)
+            shutil.copy2(ROOT / filename, target)
+
+        dummy_text = {'ru': 'Проверка отсутствующей ссылки', 'en': 'Unreferenced mutation fixture', 'original': 'Unreferenced mutation fixture', 'basis': 'editorial_summary'}
+        for filename, prefix, label in (
+            ('catalog-v5.js', 'window.PINE_CATALOG[5]=', 'catalog-v5'),
+            ('history-2.js', 'window.PINE_HISTORY["2"]=', 'history-2'),
+        ):
+            mutation(filename, prefix, lambda data: data['texts'].update({'0123456789abcdef': dummy_text}),
+                     f'{label} orphan text rejected after hash rebuild', f'{label}: orphan text 0123456789abcdef')
+
+        # Exercise the nested fields omitted by the original cleanup proposal.
+        # Replacing links with unknown hashes proves detection is independent of
+        # membership in the text pool, not only a lookup of existing text IDs.
+        def break_supplement(data):
+            data['families']['functions:ta.cross']['versions'][3]['description_supplements'][0]['description'] = '0123456789abcdef'
+        mutation('history-2.js', 'window.PINE_HISTORY["2"]=', break_supplement,
+                 'missing history supplement text rejected', 'history-2: missing text 0123456789abcdef')
+
+        def break_evidence(data):
+            for family in data['families'].values():
+                for version in family['versions']:
+                    for contract in version.get('default_contracts', {}).values():
+                        if contract['evidence']:
+                            contract['evidence'][0]['text_ref'] = '0123456789abcdef'
+                            return
+            raise AssertionError('No default-contract evidence in fixture')
+        mutation('history-0.js', 'window.PINE_HISTORY["0"]=', break_evidence,
+                 'missing history default-contract text rejected', 'history-0: missing text 0123456789abcdef')
+
+        def break_related(data):
+            for family in data['families'].values():
+                for related in family['related']:
+                    if related.get('note'):
+                        related['note'] = '0123456789abcdef'
+                        return
+            raise AssertionError('No related note in fixture')
+        mutation('history-0.js', 'window.PINE_HISTORY["0"]=', break_related,
+                 'missing history related note rejected', 'history-0: missing text 0123456789abcdef')
+
+        def erase_used_text(data):
+            ref = data['families']['functions:ta.cross']['versions'][3]['description_supplements'][0]['description']
+            data['texts'][ref] = {'ru': '', 'en': '', 'original': ''}
+        mutation('history-2.js', 'window.PINE_HISTORY["2"]=', erase_used_text,
+                 'empty history text without basis rejected', 'history-2: empty text')
+
+        mutation('catalog-v5.js', 'window.PINE_CATALOG[5]=',
+                 lambda data: data['counts'].__setitem__('public_records', data['counts']['public_records'] + 1),
+                 'wrong public record count rejected', 'counts mismatch: public_records')
+        mutation('catalog-v5.js', 'window.PINE_CATALOG[5]=',
+                 lambda data: data['counts']['categories']['functions'].__setitem__('records', data['counts']['categories']['functions']['records'] + 1),
+                 'wrong category record count rejected', 'counts mismatch: categories')
+        mutation('catalog-v5.js', 'window.PINE_CATALOG[5]=',
+                 lambda data: data['structure_counts'].__setitem__('api', data['structure_counts']['api'] + 1),
+                 'wrong distinct structure count rejected', 'structure_counts mismatch')
+
+        for field in ('parameters', 'types', 'requiredness', 'return_types'):
+            def change_aggregate(data, field=field):
+                version = data['families']['functions:indicator']['versions'][0]
+                if isinstance(version[field], dict):
+                    del version[field][next(iter(version[field]))]
+                else:
+                    version[field].pop()
+            mutation('history-0.js', 'window.PINE_HISTORY["0"]=', change_aggregate,
+                     f'wrong history {field} aggregate rejected', f'history aggregate mismatch: {field}')
+
+        # The cleanup must remove only the newly injected orphan, preserve the
+        # entire original family graph/text pool, and be byte-idempotent.
+        target = fixture / 'history-2.js'
+        prefix = 'window.PINE_HISTORY["2"]='
+        clean_history = load(target, prefix)
+        dirty_history = load(target, prefix)
+        dirty_history['texts']['0123456789abcdef'] = dummy_text
+        write(target, prefix, dirty_history)
+        migration = [sys.executable, str(fixture / 'tools' / 'migrations' / '05_clean_history_texts.py')]
+        first_run = subprocess.run(migration, check=True, capture_output=True, text=True, env=environment)
+        first_hashes = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in fixture.glob('history-*.js')}
+        second_run = subprocess.run(migration, check=True, capture_output=True, text=True, env=environment)
+        unchanged = first_hashes == {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in fixture.glob('history-*.js')}
+        passed = (load(target, prefix) == clean_history and unchanged and
+                  json.loads(first_run.stdout)['total_removed'] == 1 and json.loads(second_run.stdout)['total_removed'] == 0)
+        results.append({'name': 'history cleanup preserves live data and is byte-idempotent', 'passed': passed})
+        print(('PASS ' if passed else 'FAIL ') + results[-1]['name'])
+        shutil.copy2(ROOT / target.name, target)
+
+        # Hex-looking literal IDs and parameter names are not text references.
+        refs = list(text_references({'id': '1' * 16, 'entry_id': '2' * 16,
+                    'entry_ids': ['3' * 16], 'family': {'id': '4' * 16},
+                    'parameters': [{'name': '5' * 16, 'description': 'a' * 16}],
+                    'texts': {'b' * 16: dummy_text}}))
+        passed = refs == [('a' * 16, 'parameters.0.description')]
+        results.append({'name': 'literal hex identifiers do not masquerade as text references', 'passed': passed})
+        print(('PASS ' if passed else 'FAIL ') + results[-1]['name'])
+
         target = fixture / 'catalog-v5.js'
         prefix = 'window.PINE_CATALOG[5]='
         catalog = load(target, prefix)

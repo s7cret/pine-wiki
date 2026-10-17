@@ -1,8 +1,8 @@
 {
-  "revision": "2026-10-17.tz-fixes",
+  "revision": "2026-10-17.audit-fixes",
   "cards_total": 4631,
   "families": 1292,
-  "ui_keys_defined": 219,
+  "ui_keys_defined": 222,
   "versions": {
     "1": {
       "cards": 315,

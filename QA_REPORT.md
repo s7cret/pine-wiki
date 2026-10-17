@@ -1,19 +1,20 @@
 # QA — Pine Wiki
 
-Дата прогона (Москва): `2026-10-17T19:57:53+03:00`.
-Ревизия: `2026-10-17.tz-fixes`.
-Карточек: 4631; семейств: 1292; ключей UI: 219.
+Дата прогона (Москва): `2026-10-17T20:59:46+03:00`.
+Ревизия: `2026-10-17.audit-fixes`.
+Карточек: 4631; семейств: 1292; ключей UI: 222.
 
 Результат: **PASS**.
-SHA-256 проверенного кода, данных и тестов: `0114148fbc36f78af7f72bc33a2d6683499869d4ebebc090cb5194f9738c0f56`.
+SHA-256 проверенного кода, данных и тестов: `94b086fbf1e8dd0a64cd593d3ec29637ea5771eaf6d701011d9e2f2a5454369b`.
 
 | Команда | Код завершения | Секунды |
 |---|---:|---:|
-| `python.exe tools/build_manifest.py --check` | 0 | 0.094 |
-| `python.exe tools/verify_catalog.py` | 0 | 3.265 |
-| `python.exe tools/test_verifier.py --json test-results/verifier-guards.json` | 0 | 12.766 |
-| `node.EXE tools/search_regression.js` | 0 | 0.359 |
-| `python.exe tools/e2e_smoke.py --screenshots test-results/screenshots --json test-results/e2e-results.json` | 0 | 34.719 |
+| `python.exe tools/build_manifest.py --check` | 0 | 0.078 |
+| `python.exe tools/verify_catalog.py` | 0 | 2.828 |
+| `python.exe tools/test_verifier.py --json test-results/verifier-guards.json` | 0 | 48.203 |
+| `python.exe tools/test_audit_v5_examples.py` | 0 | 1.5 |
+| `node.EXE tools/search_regression.js` | 0 | 0.281 |
+| `python.exe tools/e2e_smoke.py --screenshots test-results/screenshots --json test-results/e2e-results.json` | 0 | 24.516 |
 
 ## Фактический вывод проверок
 
@@ -28,8 +29,9 @@ manifest: all 22 hashes and sizes are current
 ```text
 manifest: 22 files checked
 history: 1292 families, all referenced, all links resolved
+text pools: full catalog/history references, orphans, and empty texts checked
 catalog invariants: {'type_hints': 92, 'search_rank': 46, 'description_hints': 73, 'descriptions_missing': 24, 'templates': 766, 'pointers': 91, 'neighbor_descriptions': 1, 'legacy_params': 8, 'requiredness_conflicts': 27}
-ui strings: 219 keys used, 219 defined (ru+en); 45 dynamic keys checked
+ui strings: 222 keys used, 222 defined (ru+en); 45 dynamic keys checked
 js syntax: node --check passed for all files
 release documentation: generated files are current
 release counts: {'v1': 315, 'v2': 365, 'v3': 361, 'v4': 626, 'v5': 1444, 'v6': 1520}
@@ -40,10 +42,33 @@ ALL CHECKS PASSED
 
 ```text
 PASS clean isolated fixture
+PASS catalog-v5 orphan text rejected after hash rebuild
+PASS history-2 orphan text rejected after hash rebuild
+PASS missing history supplement text rejected
+PASS missing history default-contract text rejected
+PASS missing history related note rejected
+PASS empty history text without basis rejected
+PASS wrong public record count rejected
+PASS wrong category record count rejected
+PASS wrong distinct structure count rejected
+PASS wrong history parameters aggregate rejected
+PASS wrong history types aggregate rejected
+PASS wrong history requiredness aggregate rejected
+PASS wrong history return_types aggregate rejected
+PASS history cleanup preserves live data and is byte-idempotent
+PASS literal hex identifiers do not masquerade as text references
 PASS isolated version directive rejected after hash rebuild
 PASS foreign description donor rejected despite valid text/source
 PASS missing dynamically assembled role key rejected
 PASS unused UI key rejected
+```
+
+### `python.exe tools/test_audit_v5_examples.py`
+
+```text
+PASS: absent output regenerates all 574 reviewed records byte for byte
+PASS: corrupt output is detected read-only and can be regenerated
+PASS: missing canonical catalog entry is rejected without overwriting output
 ```
 
 ### `node.EXE tools/search_regression.js`
@@ -77,18 +102,48 @@ PASS условие                      rank=1       top=if, alertcondition, sw
 PASS индикатор                    rank=1       top=indicator, ta.cog, ta.kc
 PASS стратегия                    rank=1       top=strategy, strategy.equity, strategy.entry
 PASS массив                       rank=1       top=array, array.abs, array.abs
+PASS массивы                      rank=1       top=array, array.abs, array.abs
+PASS массивов                     rank=1       top=array, Прежняя запись типа массива, for…in по массиву
 PASS метка                        rank=1       top=label, label, label.all
+PASS метки                        rank=1       top=label, label, label.new
+PASS метку                        rank=1       top=label, label, label.new
+PASS меток                        rank=1       top=label, label, !=
 PASS линия                        rank=1       top=line, line, line.set_extend
+PASS линии                        rank=1       top=line, line, line.get_x1
+PASS линию                        rank=1       top=line, line, plot
+PASS линий                        rank=1       top=line, line, !=
 PASS среднеквадратичное           rank=1       top=ta.stdev
 PASS библиотека                   rank=1       top=library, Импорт версии библиотеки, Экспорт из библиотеки
 PASS матрица                      rank=1       top=matrix, matrix.avg, matrix.avg
 PASS словарь                      rank=1       top=map, map.clear, map.clear
 PASS карта                        rank=1       top=map, Шаблоны типов коллекций
+PASS карты                        rank=1       top=map, map.clear, map.clear
+PASS карту                        rank=1       top=map
 PASS бокс                         rank=1       top=box, box, box.all
+PASS бокса                        rank=1       top=box, box
+PASS боксы                        rank=1       top=box, box
+PASS боксов                       rank=1       top=box, box, box.all
 PASS таблица                      rank=1       top=table, table, table.cell
+PASS таблицы                      rank=1       top=table, table, table.cell
 PASS line.set_xy1                 rank=1       top=line.set_xy1, line.set_xy1
-score: median 0.48 ms for 1520 cards (informational; hardware-dependent)
-38/38 search regression cases passed
+PASS guard: line: no short-prefix or unrelated-word match
+PASS guard: label: no short-prefix or unrelated-word match
+PASS guard: map: no short-prefix or unrelated-word match
+PASS guard: box: no short-prefix or unrelated-word match
+PASS guard: array: no short-prefix or unrelated-word match
+PASS guard: table: no short-prefix or unrelated-word match
+PASS guard: body text is not given alias inflections
+PASS guard: a word inside a phrase is not a whole alias
+PASS guard: three-letter Russian aliases are not expanded
+PASS guard: case and outer whitespace normalize before alias matching
+PASS guard: explicit alias outranks a generated inflection
+PASS guard: concept alias inflection outranks an incidental title match
+PASS guard: exact API name outranks its Russian alias forms
+PASS guard: short API names keep token boundaries
+PASS guard: empty search still matches all entries
+score: median 0.47 ms for 1520 cards (informational; hardware-dependent)
+52/52 search regression cases passed
+15/15 alias matching guards passed
 ```
 
 ### `python.exe tools/e2e_smoke.py --screenshots test-results/screenshots --json test-results/e2e-results.json`
@@ -315,12 +370,30 @@ PASS keyboard pagination: heading focused
 PASS keyboard history: dialog focus
 PASS keyboard history: Tab stays in dialog
 PASS keyboard history: close returns focus
+PASS sources/ru: initial accessible state
+PASS sources/ru: announces panel and hides entry banner
+PASS sources/ru: restores the same entry
+PASS sources/ru: category navigation resets panel state
+PASS history/ru/#compare-from: absent versions labeled and selectable
+PASS history/ru/#compare-to: absent versions labeled and selectable
+PASS history/ru: absent version can be compared
+PASS history/ru: existing version remains accessible
+PASS sources/en: initial accessible state
+PASS sources/en: announces panel and hides entry banner
+PASS sources/en: restores the same entry
+PASS sources/en: category navigation resets panel state
+PASS history/en/#compare-from: absent versions labeled and selectable
+PASS history/en/#compare-to: absent versions labeled and selectable
+PASS history/en: absent version can be compared
+PASS history/en: existing version remains accessible
+PASS history: missing family offers recovery
+PASS history: retry recovers a restored family
 PASS JSON export
 PASS page parameter
 PASS manifest hash on data requests
 PASS console/network clean
 
-225/225 browser checks passed
+243/243 browser checks passed
 ```
 
 ## Границы проверки

@@ -49,6 +49,59 @@ def donor_link(pg, selector, donor):
     return any(parse_qs(urlparse(href).query).get('id') == [donor['entry_id']] and parse_qs(urlparse(href).query).get('v') == [str(donor['version'])] for href in hrefs)
 
 
+def check_sources_and_history(pg, base):
+    """Check accessible mode changes and a known family missing from v1-v4."""
+    loaded(pg, f'{base}?v=6&lang=ru')
+    entry = pg.evaluate("()=>window.PINE_CATALOG[6].entries.find(e=>e.name==='polyline.new'&&e.category==='functions')")
+    if not entry or entry['family']['versions'] != [5, 6]:
+        raise AssertionError('Expected polyline.new history fixture in v5 and v6 only')
+    messages = {
+        'ru': ('Показаны источники и ограничения для Pine Script v6.',
+               'Панель источников закрыта. Восстановлен просмотр справочника.', 'нет записи в снимке'),
+        'en': ('Sources and limitations for Pine Script v6 are shown.',
+               'Sources panel closed. Returned to the reference view.', 'no saved entry'),
+    }
+    for lang, (opened, closed, missing) in messages.items():
+        loaded(pg, f'{base}?v=6&lang={lang}&id={entry["id"]}')
+        button = pg.locator('#sources-button')
+        ok(f'sources/{lang}: initial accessible state', button.get_attribute('aria-pressed') == 'false' and button.get_attribute('aria-controls') == 'source-panel' and pg.locator('#entry-banner').is_visible())
+        button.focus()
+        pg.keyboard.press('Enter')
+        ok(f'sources/{lang}: announces panel and hides entry banner', button.get_attribute('aria-pressed') == 'true' and pg.locator('#source-panel').is_visible() and pg.locator('#entry-banner').is_hidden() and pg.locator('#table-wrap').is_hidden() and active(pg)['id'] == 'sources-button' and pg.locator('#status-live').text_content() == opened and parse_qs(urlparse(pg.url).query).get('id') == [entry['id']])
+        pg.keyboard.press('Enter')
+        ok(f'sources/{lang}: restores the same entry', button.get_attribute('aria-pressed') == 'false' and pg.locator('#source-panel').is_hidden() and pg.locator('#entry-banner').is_visible() and pg.locator('#table-wrap').is_visible() and pg.locator('#rows tr').count() == 1 and pg.locator('#rows tr').get_attribute('id') == entry['id'] and pg.locator('#status-live').text_content() == closed and parse_qs(urlparse(pg.url).query).get('id') == [entry['id']])
+        button.click()
+        pg.locator('[data-category="functions"]').click()
+        ok(f'sources/{lang}: category navigation resets panel state', button.get_attribute('aria-pressed') == 'false' and pg.locator('#source-panel').is_hidden() and pg.locator('#status-live').text_content() == closed)
+
+        loaded(pg, f'{base}?v=6&lang={lang}&id={entry["id"]}')
+        pg.locator('.history-button').click()
+        pg.wait_for_selector('#history-differences h3')
+        expected_labels = {str(v): f'v{v}' if v in (5, 6) else f'v{v} — {missing}' for v in range(1, 7)}
+        for selector in ('#compare-from', '#compare-to'):
+            options = pg.locator(selector + ' option').evaluate_all('(nodes)=>nodes.map(n=>({value:n.value,label:n.textContent,disabled:n.disabled}))')
+            ok(f'history/{lang}/{selector}: absent versions labeled and selectable', len(options) == 6 and {o['value']: o['label'] for o in options} == expected_labels and not any(o['disabled'] for o in options), options)
+        pg.select_option('#compare-from', '1')
+        left = pg.locator('#history-columns section').first
+        ok(f'history/{lang}: absent version can be compared', pg.locator('#compare-from').input_value() == '1' and left.locator('.missing-note').count() == 1 and left.locator('a[data-entry]').count() == 0)
+        pg.select_option('#compare-from', '5')
+        ok(f'history/{lang}: existing version remains accessible', left.locator('.missing-note').count() == 0 and left.locator('a[data-entry]').count() == 1)
+        pg.keyboard.press('Escape')
+
+    # Remove only the in-memory fixture to exercise the existing recovery path.
+    pg.evaluate("family=>{window.__e2eFamily=PINE_HISTORY[family.shard].families[family.id];delete PINE_HISTORY[family.shard].families[family.id]}", entry['family'])
+    try:
+        pg.locator('.history-button').click()
+        pg.wait_for_selector('#retry-history')
+        ok('history: missing family offers recovery', bool(pg.locator('#history-note').text_content().strip()) and pg.locator('.history-controls').is_hidden() and active(pg)['id'] == 'history-close')
+    finally:
+        pg.evaluate("family=>{PINE_HISTORY[family.shard].families[family.id]=window.__e2eFamily;delete window.__e2eFamily}", entry['family'])
+    pg.locator('#retry-history').click()
+    pg.wait_for_selector('#history-differences h3')
+    ok('history: retry recovers a restored family', pg.locator('.history-controls').is_visible() and pg.locator('#history-title').text_content() == 'polyline.new' and pg.locator('#retry-history').count() == 0)
+    pg.keyboard.press('Escape')
+
+
 server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), functools.partial(Quiet, directory=str(ROOT)))
 threading.Thread(target=server.serve_forever, daemon=True).start()
 BASE = f'http://127.0.0.1:{server.server_address[1]}/index.html'
@@ -194,6 +247,8 @@ try:
         ok('keyboard history: Tab stays in dialog', pg.evaluate("document.activeElement.closest('#history-dialog')!==null"))
         pg.keyboard.press('Escape')
         ok('keyboard history: close returns focus', pg.evaluate("document.activeElement.matches('.history-button')"), active(pg))
+
+        check_sources_and_history(pg, BASE)
 
         loaded(pg, f'{BASE}?v=5&lang=ru')
         with pg.expect_download() as download:

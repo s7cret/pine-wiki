@@ -21,6 +21,9 @@ for(const test of gold.cases){
  if(!pass)failed++;
  console.log(`${pass?'PASS':'FAIL'} ${test.query.padEnd(28)} rank=${String(position||'missing').padEnd(7)} top=${found.slice(0,3).map(e=>e.name).join(', ')}${excluded.length?' excluded='+excluded.map(e=>e.name).join(', '):''}`);
 }
+const guards=require('./search_alias_tests.js')(search);
+for(const guard of guards)console.log(`${guard.passed?'PASS':'FAIL'} guard: ${guard.name}`);
+const guardFailures=guards.filter(guard=>!guard.passed).length;
 // Warm up before timing; sorting and indexing are deliberately excluded.
 const samples=[];
 for(let repeat=0;repeat<18;repeat++){
@@ -31,4 +34,5 @@ for(let repeat=0;repeat<18;repeat++){
 samples.sort((a,b)=>a-b);
 console.log(`score: median ${samples[Math.floor(samples.length/2)].toFixed(2)} ms for ${cat.entries.length} cards (informational; hardware-dependent)`);
 console.log(`${gold.cases.length-failed}/${gold.cases.length} search regression cases passed`);
-process.exitCode=failed?1:0;
+console.log(`${guards.length-guardFailures}/${guards.length} alias matching guards passed`);
+process.exitCode=failed||guardFailures?1:0;

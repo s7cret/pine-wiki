@@ -7,6 +7,8 @@ Exit code 0 = all checks passed. Release counts are printed, not hard-coded.
 from pathlib import Path
 from importlib import import_module
 import collections, hashlib, json, re, shutil, subprocess, sys
+from data_integrity import (catalog_aggregates, family_version_aggregate, has_text,
+                            normalized_history_aggregate, text_pool_errors)
 
 ROOT = Path(__file__).resolve().parents[1]
 # Share the migration's reviewed correspondences so validation cannot drift
@@ -44,10 +46,6 @@ print(f'manifest: {n_files} files checked')
 CAT = {v: load_js(f'catalog-v{v}.js', f'window.PINE_CATALOG[{v}]=') for v in range(1, 7)}
 HIST = {k: load_js(f'history-{k}.js', f'window.PINE_HISTORY["{k}"]=') for k in manifest['histories']}
 ENTRIES = {v: {e['id']: e for e in c['entries']} for v, c in CAT.items()}
-
-
-def has_text(value):
-    return isinstance(value, dict) and any(str(value.get(k) or '').strip() for k in ('ru', 'en', 'original'))
 
 
 def resolve_text(ref, pool):
@@ -129,13 +127,27 @@ for fid, f in families.items():
     for r in f['related']:
         check(r['id'] in families, f'broken related link {fid} -> {r["id"]}')
     for z in f['versions']:
+        version_entries = ENTRIES.get(z['version'], {})
         for i in z['entry_ids']:
-            check(i in entry_ids, f'family {fid} lists unknown entry {i}')
+            check(i in version_entries, f'family {fid} lists unknown entry {i} in v{z["version"]}')
+        check(len(z['entry_ids']) == len(set(z['entry_ids'])), f'family {fid} v{z["version"]}: duplicate entry_ids')
+        expected_ids = {e['id'] for e in version_entries.values() if e['family']['id'] == fid}
+        check(set(z['entry_ids']) == expected_ids, f'family {fid} v{z["version"]}: entry_ids differ from catalog family')
+        if all(i in version_entries for i in z['entry_ids']):
+            expected = family_version_aggregate([version_entries[i] for i in z['entry_ids']])
+            actual = normalized_history_aggregate(z)
+            for field, value in expected.items():
+                check(actual[field] == value, f'family {fid} v{z["version"]}: history aggregate mismatch: {field}')
 for v, c in CAT.items():
     for e in c['entries']:
         fam = families.get(e['family']['id'])
         check(fam is not None and v in [z['version'] for z in fam['versions']], f'entry {e["id"]} is not listed in its family')
 print(f'history: {len(families)} families, all referenced, all links resolved')
+
+# Pools are independent: even identical hashes must exist in the local shard.
+for label, document in [(f'catalog-v{v}', c) for v, c in CAT.items()] + [(f'history-{k}', h) for k, h in HIST.items()]:
+    failures.extend(text_pool_errors(document, label))
+print('text pools: full catalog/history references, orphans, and empty texts checked')
 
 # 3. per-catalog invariants ------------------------------------------------------
 stats = collections.Counter()
@@ -143,6 +155,10 @@ for v, c in CAT.items():
     ids = [e['id'] for e in c['entries']]
     check(len(set(ids)) == len(ids), f'duplicate ids in v{v}')
     texts = c['texts']
+    expected_counts, expected_structure = catalog_aggregates(c)
+    for field, value in expected_counts.items():
+        check(c['counts'].get(field) == value, f'v{v}: counts mismatch: {field}')
+    check(c['structure_counts'] == expected_structure, f'v{v}: structure_counts mismatch')
     conflict_issues = {(issue.get('entry_id'), issue.get('parameter')) for issue in c.get('source_issues', []) if issue.get('type') == 'source_conflict'}
     for tid, item in texts.items():
         # The empty remarks sentinel is deliberately retained by the source
