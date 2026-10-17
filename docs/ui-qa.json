@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-17",
+  "scope": "Supplemental browser UI checks for Z-03, Z-06, Z-07, Z-09 and Z-10; full catalog/language coverage is recorded by e2e_smoke.py.",
+  "browser": "Installed Google Chrome, controlled by bundled Node Playwright",
+  "layout": [
+    {
+      "width": 390,
+      "scroll": 390,
+      "minFont": 12
+    },
+    {
+      "width": 800,
+      "scroll": 800,
+      "minFont": 12
+    },
+    {
+      "width": 1000,
+      "scroll": 1000,
+      "minFont": 12
+    },
+    {
+      "width": 1400,
+      "scroll": 1400,
+      "minFont": 12
+    }
+  ],
+  "css": {
+    "original_bytes": 13821,
+    "before_consolidation_bytes": 14094,
+    "consolidated_bytes": 13556,
+    "comparison": "Pixel-identical viewport screenshots before/after CSS consolidation at 390, 800, 1000 and 1400 pixels. Pre-consolidation CSS reconstructed from the step-7 patch.",
+    "obsolete_selectors_removed": [
+      "back",
+      "tag",
+      "remark",
+      "muted",
+      "example-details",
+      "history-loading",
+      "source-quote",
+      "source-quote-label"
+    ]
+  },
+  "keyboard_focus": {
+    "category": "constants",
+    "version": "5",
+    "pagination": "category-title",
+    "history": "history-close",
+    "historyReturn": "history-button",
+    "load_error_version": "4",
+    "successful_retry": "category-title"
+  },
+  "history_language": {
+    "actual": "Все назначения",
+    "expected": "Все назначения",
+    "passed": true
+  },
+  "live_region": {
+    "loading_and_loaded": true,
+    "simulated_missing_catalog": "Не удалось загрузить каталог v4."
+  },
+  "contrasts": [
+    {
+      "name": "mobile label",
+      "ratio": 5.33
+    },
+    {
+      "name": "missing note",
+      "ratio": 5.21
+    },
+    {
+      "name": "example label",
+      "ratio": 5.33
+    },
+    {
+      "name": "active category count",
+      "ratio": 4.79
+    },
+    {
+      "name": "muted page",
+      "ratio": 5.36
+    },
+    {
+      "name": "focus ring",
+      "ratio": 6.9
+    },
+    {
+      "name": "form border",
+      "ratio": 4.09
+    }
+  ],
+  "value_type_en": "Value type\n\nconst color",
+  "description_hint_rendered": true,
+  "json_export": {
+    "before_click": {
+      "created": 0,
+      "revoked": 0
+    },
+    "after_click": {
+      "created": 1,
+      "revoked": 1
+    },
+    "download_file_and_http": "passed",
+    "note": "Chrome sandbox blocked downloads and localhost; identical checks passed with approved test escalation."
+  },
+  "versioned_data_requests": {
+    "count": 10,
+    "all_have_hash8": true
+  },
+  "javascript_errors": [],
+  "visual_inspection": [
+    "390px and 1400px overview screenshots",
+    "RU and EN focused constant cards at 390px and 1400px"
+  ],
+  "limitations": [
+    "Pixel comparison covers the captured viewports; it is not an exhaustive comparison of every expanded entry.",
+    "No assistive-technology screen reader was available; live-region text, semantics and keyboard focus were checked in the browser."
+  ]
+}

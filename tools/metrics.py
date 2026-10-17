@@ -46,6 +46,7 @@ def collect():
             'templates': sum(bool(e['examples'].get('template')) for e in entries),
             'pointers': sum(len(e['examples'].get('pointers', [])) for e in entries),
             'search_rank_entries': sum(bool(e.get('search_rank')) for e in entries),
+            'editorial_texts_without_provenance': sum(t.get('basis') in ('editorial_translation', 'editorial_summary') and not t.get('translation_provenance') for t in c['texts'].values()),
             'catalog_bytes': (ROOT / f'catalog-v{version}.js').stat().st_size,
         }
     ui = json.loads((ROOT / 'wiki-i18n.js').read_text(encoding='utf-8').split('window.PINE_UI=', 1)[1].strip().removesuffix(';'))
