@@ -1,20 +1,22 @@
 # QA — Pine Wiki
 
-Дата прогона (Москва): `2026-10-17T20:59:46+03:00`.
-Ревизия: `2026-10-17.audit-fixes`.
-Карточек: 4631; семейств: 1292; ключей UI: 222.
+Дата прогона (Москва): `2026-10-20T01:39:00+03:00`.
+Ревизия: `2026-10-20.audit-fixes`.
+Карточек: 4631; семейств: 1292; ключей UI: 229.
 
 Результат: **PASS**.
-SHA-256 проверенного кода, данных и тестов: `94b086fbf1e8dd0a64cd593d3ec29637ea5771eaf6d701011d9e2f2a5454369b`.
+SHA-256 проверенного кода, данных и тестов: `601012b2648059df936bb77f678b456b90c96471e4dc7d83534cd1bcca0386d0`.
 
 | Команда | Код завершения | Секунды |
 |---|---:|---:|
 | `python.exe tools/build_manifest.py --check` | 0 | 0.078 |
-| `python.exe tools/verify_catalog.py` | 0 | 2.828 |
-| `python.exe tools/test_verifier.py --json test-results/verifier-guards.json` | 0 | 48.203 |
-| `python.exe tools/test_audit_v5_examples.py` | 0 | 1.5 |
-| `node.EXE tools/search_regression.js` | 0 | 0.281 |
-| `python.exe tools/e2e_smoke.py --screenshots test-results/screenshots --json test-results/e2e-results.json` | 0 | 24.516 |
+| `python.exe tools/verify_catalog.py` | 0 | 2.813 |
+| `python.exe tools/test_verifier.py --json test-results/verifier-guards.json` | 0 | 69.578 |
+| `python.exe tools/test_verifier.py --reverse --json test-results/verifier-guards-reverse.json` | 0 | 69.343 |
+| `python.exe tools/test_audit_v5_examples.py` | 0 | 1.657 |
+| `python.exe tools/test_semantic_contracts.py` | 0 | 0.343 |
+| `node.EXE tools/search_regression.js` | 0 | 0.86 |
+| `python.exe tools/e2e_smoke.py --screenshots test-results/screenshots --json test-results/e2e-results.json` | 0 | 34.359 |
 
 ## Фактический вывод проверок
 
@@ -30,8 +32,8 @@ manifest: all 22 hashes and sizes are current
 manifest: 22 files checked
 history: 1292 families, all referenced, all links resolved
 text pools: full catalog/history references, orphans, and empty texts checked
-catalog invariants: {'type_hints': 92, 'search_rank': 46, 'description_hints': 73, 'descriptions_missing': 24, 'templates': 766, 'pointers': 91, 'neighbor_descriptions': 1, 'legacy_params': 8, 'requiredness_conflicts': 27}
-ui strings: 222 keys used, 222 defined (ru+en); 45 dynamic keys checked
+catalog invariants: {'type_hints': 92, 'search_rank': 46, 'description_hints': 73, 'descriptions_missing': 23, 'templates': 752, 'pointers': 90, 'neighbor_descriptions': 1, 'legacy_params': 9, 'requiredness_conflicts': 27}
+ui strings: 229 keys used, 229 defined (ru+en); 45 dynamic keys checked
 js syntax: node --check passed for all files
 release documentation: generated files are current
 release counts: {'v1': 315, 'v2': 365, 'v3': 361, 'v4': 626, 'v5': 1444, 'v6': 1520}
@@ -55,6 +57,41 @@ PASS wrong history parameters aggregate rejected
 PASS wrong history types aggregate rejected
 PASS wrong history requiredness aggregate rejected
 PASS wrong history return_types aggregate rejected
+PASS default changed despite unchanged evidence rejected
+PASS unrelated result donor rejected
+PASS family absent from declared shard rejected
+PASS truncated thousands literal rejected
+PASS execution claim without run evidence rejected
+PASS history cleanup preserves live data and is byte-idempotent
+PASS literal hex identifiers do not masquerade as text references
+PASS isolated version directive rejected after hash rebuild
+PASS foreign description donor rejected despite valid text/source
+PASS missing dynamically assembled role key rejected
+PASS unused UI key rejected
+```
+
+### `python.exe tools/test_verifier.py --reverse --json test-results/verifier-guards-reverse.json`
+
+```text
+PASS clean isolated fixture
+PASS execution claim without run evidence rejected
+PASS truncated thousands literal rejected
+PASS family absent from declared shard rejected
+PASS unrelated result donor rejected
+PASS default changed despite unchanged evidence rejected
+PASS wrong history return_types aggregate rejected
+PASS wrong history requiredness aggregate rejected
+PASS wrong history types aggregate rejected
+PASS wrong history parameters aggregate rejected
+PASS wrong distinct structure count rejected
+PASS wrong category record count rejected
+PASS wrong public record count rejected
+PASS empty history text without basis rejected
+PASS missing history related note rejected
+PASS missing history default-contract text rejected
+PASS missing history supplement text rejected
+PASS history-2 orphan text rejected after hash rebuild
+PASS catalog-v5 orphan text rejected after hash rebuild
 PASS history cleanup preserves live data and is byte-idempotent
 PASS literal hex identifiers do not masquerade as text references
 PASS isolated version directive rejected after hash rebuild
@@ -69,6 +106,16 @@ PASS unused UI key rejected
 PASS: absent output regenerates all 574 reviewed records byte for byte
 PASS: corrupt output is detected read-only and can be regenerated
 PASS: missing canonical catalog entry is rejected without overwriting output
+```
+
+### `python.exe tools/test_semantic_contracts.py`
+
+```text
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.252s
+
+OK
 ```
 
 ### `node.EXE tools/search_regression.js`
@@ -141,6 +188,7 @@ PASS guard: concept alias inflection outranks an incidental title match
 PASS guard: exact API name outranks its Russian alias forms
 PASS guard: short API names keep token boundaries
 PASS guard: empty search still matches all entries
+182/182 exact symbolic search cases passed across v1–v6
 score: median 0.47 ms for 1520 cards (informational; hardware-dependent)
 52/52 search regression cases passed
 15/15 alias matching guards passed
@@ -388,16 +436,58 @@ PASS history/en: absent version can be compared
 PASS history/en: existing version remains accessible
 PASS history: missing family offers recovery
 PASS history: retry recovers a restored family
+PASS audit search/ru/+: results
+PASS audit search/ru/+: direct route retains query
+PASS audit search/ru/[]: results
+PASS audit search/ru/[]: direct route retains query
+PASS audit search/ru/:=: results
+PASS audit search/ru/:=: direct route retains query
+PASS audit search/ru/==: results
+PASS audit search/ru/==: direct route retains query
+PASS audit search/ru/!=: results
+PASS audit search/ru/!=: direct route retains query
+PASS audit search/ru/=>: results
+PASS audit search/ru/=>: direct route retains query
+PASS audit search/ru/?:: results
+PASS audit search/ru/?:: direct route retains query
+PASS audit search/ru///: results
+PASS audit search/ru///: direct route retains query
+PASS audit timestamp/ru: normalized RFC and ISO anchors
+PASS audit limit/ru/request.security: shared caveat at card
+PASS audit limit/ru/request.security_lower_tf: shared caveat at card
+PASS audit cross/ru: absence separated from manual supplement
+PASS audit search/en/+: results
+PASS audit search/en/+: direct route retains query
+PASS audit search/en/[]: results
+PASS audit search/en/[]: direct route retains query
+PASS audit search/en/:=: results
+PASS audit search/en/:=: direct route retains query
+PASS audit search/en/==: results
+PASS audit search/en/==: direct route retains query
+PASS audit search/en/!=: results
+PASS audit search/en/!=: direct route retains query
+PASS audit search/en/=>: results
+PASS audit search/en/=>: direct route retains query
+PASS audit search/en/?:: results
+PASS audit search/en/?:: direct route retains query
+PASS audit search/en///: results
+PASS audit search/en///: direct route retains query
+PASS audit timestamp/en: normalized RFC and ISO anchors
+PASS audit limit/en/request.security: shared caveat at card
+PASS audit limit/en/request.security_lower_tf: shared caveat at card
+PASS audit cross/en: absence separated from manual supplement
+PASS audit array.from: one variadic group
+PASS audit round: two call forms, no three-argument template
 PASS JSON export
 PASS page parameter
 PASS manifest hash on data requests
 PASS console/network clean
 
-243/243 browser checks passed
+285/285 browser checks passed
 ```
 
 ## Границы проверки
 
-Проверены сохранённые каталоги и поведение справочника. Pine-код не компилировался и не исполнялся; содержимое не сверялось заново с текущей документацией TradingView. Указанные источники и подсказки не подтверждают поведение Pine Editor.
+Проверены сохранённые каталоги и поведение справочника. Pine-код не компилировался и не исполнялся; выбранные темы аудита 20.10.2026 сверены с первичными страницами TradingView, без сплошной проверки корпуса. Указанные источники и подсказки не подтверждают поведение Pine Editor.
 
 Повторить: `python tools/qa_report.py`. Отчёт создаётся даже при ошибке; успешность берётся из кодов завершения, а не из заранее написанного текста.

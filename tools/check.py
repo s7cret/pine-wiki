@@ -36,7 +36,9 @@ def main():
         [sys.executable, 'tools/build_manifest.py', '--check'],
         [sys.executable, 'tools/verify_catalog.py'],
         [sys.executable, 'tools/test_verifier.py', '--json', 'test-results/verifier-guards.json'],
+        [sys.executable, 'tools/test_verifier.py', '--reverse', '--json', 'test-results/verifier-guards-reverse.json'],
         [sys.executable, 'tools/test_audit_v5_examples.py'],
+        [sys.executable, 'tools/test_semantic_contracts.py'],
         [node, 'tools/search_regression.js'],
         [sys.executable, 'tools/e2e_smoke.py', '--screenshots', 'test-results/screenshots', '--json', 'test-results/e2e-results.json'],
     ]

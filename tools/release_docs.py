@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def readme(m):
     v = m['versions']
     total = lambda key: sum(row[key] for row in v.values())
-    rows = '\n'.join(f"| v{key} | {r['cards']} | {r['example_items']} | {r['parameters']} | {r['empty_parameter_descriptions']} | {r['parameter_description_hints']} | {r['parameters_without_description_or_hint']} |" for key, r in v.items())
+    rows = '\n'.join(f"| v{key} | {r['cards']} | {r['example_items']} | {r['parameters']} | {r['empty_parameter_descriptions']} ({r['physically_empty_parameter_descriptions']} + {r['placeholder_parameter_descriptions']}) | {r['parameter_description_hints']} | {r['parameters_without_description_or_hint']} |" for key, r in v.items())
     required = '\n'.join(f"| v{key} | {r['unknown_requiredness']} / {r['parameters']} ({100*r['unknown_requiredness']/r['parameters']:.1f} %) | {r['conflicting_requiredness']} |" for key, r in v.items() if r['parameters'])
     return f'''# Pine Script Reference Wiki · v1–v6
 
@@ -31,11 +31,11 @@ python -m http.server 8000
 
 ## Данные текущей сборки
 
-| Версия | Карточки | Элементы примеров | Параметры | Без первичного описания | С подсказкой | Без описания и подсказки |
+| Версия | Карточки | Элементы примеров | Параметры | Без содержательного текста (пустые + заглушки) | С подсказкой | Без описания и подсказки |
 |---|---:|---:|---:|---:|---:|---:|
 {rows}
 
-Подсказка из другой версии не считается первичным описанием. Метрики генерирует `tools/metrics.py`; исходная линия сохранена в `docs/metrics-baseline.json`, итог — в `docs/metrics-final.json`.
+Заглушка сообщает об отсутствии описания и не считается содержательным текстом. Подсказка соседней версии и редакционное дополнение учитываются отдельно. Физически пустых полей: {total('physically_empty_parameter_descriptions')}; из них с подсказкой: {total('physically_empty_with_hint')}. Заглушек: {total('placeholder_parameter_descriptions')}; редакционных дополнений к параметрам: {total('editorial_parameter_supplements')}. Метрики генерирует `tools/metrics.py`; исходная линия сохранена в `docs/metrics-baseline.json`, итог — в `docs/metrics-final.json`.
 
 ## Исправления
 
@@ -72,6 +72,8 @@ python tools/migrations/02_parameter_description_hints.py
 python tools/migrations/03_search_aliases.py
 python tools/migrations/04_register_requiredness_conflicts.py
 python tools/migrations/05_clean_history_texts.py
+python tools/migrations/06_audit_20261020.py
+python tools/migrations/07_audit_examples.py
 python tools/audit_v5_examples.py
 python tools/build_manifest.py --revision {m['revision']}
 python tools/report_sources.py
@@ -83,7 +85,7 @@ python tools/qa_report.py
 
 ## Известные ограничения
 
-- У {total('empty_parameter_descriptions')} параметров нет первичного описания; из них {total('parameters_without_description_or_hint')} без безопасной подсказки. CSV: `docs/empty-parameter-descriptions.csv` и `docs/parameter-descriptions-without-hints.csv`. Неоднозначные `rsi`, вариадические группы `min/max/avg` и `array.from(..args)` не заполнялись предположениями.
+- У {total('empty_parameter_descriptions')} параметров нет первичного описания; из них {total('parameters_without_description_or_hint')} без безопасной подсказки. CSV: `docs/empty-parameter-descriptions.csv` и `docs/parameter-descriptions-without-hints.csv`. Исторические роли `rsi` v4 дополнены по руководству миграции; исходные пустые поля сохранены. Вариадические группы `min/max/avg` не заполнялись предположениями.
 - Пустые строки, потерянные при исходной нарезке примеров v5, не восстановлены: первичный снимок с ними не приложен. Сохранены порядок строк и отступы; Pine-код не компилировался и не исполнялся.
 - Неизвестная обязательность и конфликты остаются фактами сохранённых источников:
 
@@ -92,16 +94,16 @@ python tools/qa_report.py
 {required}
 
 - Конфликты перечислены в `docs/requiredness-conflicts.csv` и зарегистрированы в `source_issues`. Отсутствие значения по умолчанию не доказывает обязательность; противоречивые свидетельства не подменяются выводом из сигнатуры.
-- В v1/v2 исторические источники неполны; отсутствующие записи не достраивались. Один параметр `array.from(..args)` v4 остаётся без типа и подсказки типа.
+- В v1/v2 исторические источники неполны; отсутствующие записи не достраивались. У `array.from` v4 исходные aliases объединены в одну логическую группу; спорная const-аннотация сохранена в raw, series-пример привязан отдельно.
 - {v['6']['editorial_texts_without_provenance']} редакторских текстов v6 не имеют машинной записи происхождения. Это ограничение сохранённого снимка; новые миграции не заявляют, что провели их внешнюю проверку.
-- Содержимое не сверялось заново с живыми страницами TradingView. Краткое описание функции вместо отсутствующего Returns — пояснение, не спецификация поведения.
+- Выбранные темы аудита от 20.10.2026 сверены с первичными страницами TradingView; это не сплошная повторная проверка корпуса. Краткое описание функции вместо отсутствующего Returns — пояснение, не спецификация поведения.
 - Устаревший `pine-result-less-functions.md` исключён из текущей поставки: он не используется интерфейсом и противоречил исправленным каталогам. Его исходная версия доступна в git-теге `baseline-2026-10-16`.
 
-Уточнения и противоречия ТЗ обоснованы в `docs/TZ_DECISIONS.md`.
+Исходные решения: `docs/TZ_DECISIONS.md`. Исправления аудита 20.10.2026, границы проверки и оставшиеся вопросы: `docs/AUDIT_2026-10-20.md`.
 
 ## Лицензия и источники
 
-Собственный код распространяется по [MIT](LICENSE), как выбрал владелец. Документация, примеры, снимки и производные переводы сторонних авторов описаны отдельно в [NOTICE](NOTICE) и [THIRD_PARTY.md](THIRD_PARTY.md); их лицензия не заменяется MIT проекта. Перечень источников: `docs/source-inventory.csv`. Права на публичную раздачу сторонних материалов в этой задаче не устанавливались; сайт и репозиторий не публиковались.
+Собственный код распространяется по [MIT](LICENSE), как выбрал владелец. Документация, примеры, снимки и производные переводы сторонних авторов описаны отдельно в [NOTICE](NOTICE) и [THIRD_PARTY.md](THIRD_PARTY.md); их лицензия не заменяется MIT проекта. Перечень источников: `docs/source-inventory.csv`. Права на публичную раздачу сторонних материалов в этой задаче не устанавливались; сайт опубликован на GitHub Pages.
 
 Pine Wiki — неофициальный справочник, не связанный с TradingView. Поддержка описанных конструкций другими реализациями языка здесь не оценивается. В сохранённых пояснениях происхождения встречается OpenPine — название отдельного проекта реализации Pine Script; эти записи сообщают, что его совместимость здесь не проверялась.
 '''

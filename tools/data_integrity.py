@@ -84,7 +84,7 @@ def catalog_aggregates(catalog):
               "categories": {category: {
                   "records": sum(e["category"] == category for e in entries),
                   "elements": len({e["structure"]["key"] for e in entries if e["category"] == category})
-              } for category in {e["category"] for e in entries}}}
+              } for category in sorted({e["category"] for e in entries})}}
     return counts, structure
 
 
@@ -94,8 +94,8 @@ def family_version_aggregate(entries):
     names = {p["name"] for p in parameters}
     return {
         "parameters": sorted(names),
-        "types": {name: sorted({t for p in parameters if p["name"] == name for t in p["types"]}) for name in names},
-        "requiredness": {name: sorted({p.get("state", "unknown") for p in parameters if p["name"] == name}) for name in names},
+        "types": {name: sorted({t for p in parameters if p["name"] == name for t in p["types"]}) for name in sorted(names)},
+        "requiredness": {name: sorted({p.get("state", "unknown") for p in parameters if p["name"] == name}) for name in sorted(names)},
         "return_types": sorted({t for entry in entries for t in entry["result"]["types"]})
     }
 

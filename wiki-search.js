@@ -52,7 +52,10 @@
   const {q,qt,short}=prepare(query);
   if(!q)return 0;
   const exactAlias=z.aliases.includes(q),inflectedAlias=z.inflections.has(q);
-  if(!qt.length||(!exactAlias&&!inflectedAlias&&!qt.every(w=>matches(z.all,w))))return -1;
+  // Symbols have no word tokens. Match only complete names or explicit aliases,
+  // preserving the distinction between =, ==, := and =>.
+  if(!qt.length)return z.name===q?11000:z.names.includes(q)?9500:exactAlias?5500:-1;
+  if(!exactAlias&&!inflectedAlias&&!qt.every(w=>matches(z.all,w)))return -1;
   const last=z.name.split('.').pop();
   let s=z.name===q?11000:z.names.includes(q)?9500:last===q?8500:exactAlias?5500:inflectedAlias?5200:z.title===q?4500:z.search.includes(q)?1800:
         z.names.some(n=>n.startsWith(q))?900:z.aliases.some(a=>a.startsWith(q))?500:0;

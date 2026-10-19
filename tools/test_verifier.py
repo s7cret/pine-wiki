@@ -31,6 +31,7 @@ def write(path, prefix, value):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--json', type=Path)
+    parser.add_argument('--reverse', action='store_true', help='Run independent mutations in reverse order')
     args = parser.parse_args()
     results = []
     environment = dict(os.environ, PYTHONIOENCODING='utf-8')
@@ -45,13 +46,22 @@ def main():
             shutil.copy2(source, fixture / source.name)
         # Test the data/UI verifier alone; generated release prose is not part
         # of this intentionally malformed fixture.
-        for name in ('verify_catalog.py', 'build_manifest.py', 'data_integrity.py'):
+        for name in ('verify_catalog.py', 'build_manifest.py', 'data_integrity.py', 'semantic_contracts.py'):
             shutil.copy2(ROOT / 'tools' / name, fixture / 'tools' / name)
         (fixture / 'tools' / 'migrations').mkdir()
         for name in ('02_parameter_description_hints.py', 'catalog_io.py', '05_clean_history_texts.py'):
             shutil.copy2(ROOT / 'tools' / 'migrations' / name, fixture / 'tools' / 'migrations' / name)
 
+        baseline = {p.name: p.read_bytes() for p in fixture.iterdir() if p.is_file()}
+        previous_scenario = 'fixture creation'
+
+        def assert_clean():
+            changed = [name for name, raw in baseline.items() if (fixture / name).read_bytes() != raw]
+            if changed:
+                raise AssertionError(f'Fixture contamination after {previous_scenario}: {changed[:5]}')
+
         def verify(name, expected=None):
+            nonlocal previous_scenario
             subprocess.run([sys.executable, str(fixture / 'tools' / 'build_manifest.py')], check=True, capture_output=True, env=environment)
             run = subprocess.run([sys.executable, str(fixture / 'tools' / 'verify_catalog.py')], capture_output=True, text=True, encoding='utf-8', env=environment)
             output = run.stdout + run.stderr
@@ -61,10 +71,22 @@ def main():
             print(('PASS ' if passed else 'FAIL ') + name)
             if not passed:
                 print(output)
+            # Restore every fixture file, including the rebuilt manifest, from
+            # immutable bytes. A scenario can affect more than its named file.
+            for filename, raw in baseline.items():
+                (fixture / filename).write_bytes(raw)
+            previous_scenario = name
+            assert_clean()
 
         verify('clean isolated fixture')
 
+        pending_mutations = []
+
         def mutation(filename, prefix, change, name, expected):
+            pending_mutations.append((filename,prefix,change,name,expected))
+
+        def run_mutation(filename, prefix, change, name, expected):
+            assert_clean()
             target = fixture / filename
             data = load(target, prefix)
             change(data)
@@ -135,8 +157,43 @@ def main():
             mutation('history-0.js', 'window.PINE_HISTORY["0"]=', change_aggregate,
                      f'wrong history {field} aggregate rejected', f'history aggregate mismatch: {field}')
 
+        def flip_default(data):
+            e=next(e for e in data['entries'] if e['name']=='indicator')
+            p=next(p for p in e['parameters'] if p['name']=='overlay')
+            p['default_contract']['values']=['true']
+        mutation('catalog-v6.js','window.PINE_CATALOG[6]=',flip_default,
+                 'default changed despite unchanged evidence rejected','DEFAULT_EVIDENCE')
+
+        def foreign_result(data):
+            e=next(e for e in data['entries'] if e['name']=='floor')
+            e['result']['description_donor']={'version':4,'entry_id':'primary:v4:functions:abs:overload:0'}
+        mutation('catalog-v4.js','window.PINE_CATALOG[4]=',foreign_result,
+                 'unrelated result donor rejected','RESULT_DONOR')
+
+        def wrong_shard(data):
+            next(e for e in data['entries'] if e['name']=='indicator')['family']['shard']='f'
+        mutation('catalog-v6.js','window.PINE_CATALOG[6]=',wrong_shard,
+                 'family absent from declared shard rejected','FAMILY_ROUTE')
+
+        def truncated_number(data):
+            e=next(e for e in data['entries'] if e['name']=='request.security')
+            p=next(p for p in e['parameters'] if p['name']=='calc_bars_count')
+            p['default_contract']['values']=['100']
+            p['default_contract']['evidence'][0]['value']='100'
+        mutation('catalog-v5.js','window.PINE_CATALOG[5]=',truncated_number,
+                 'truncated thousands literal rejected','DEFAULT_EVIDENCE')
+
+        def fake_execution(data):
+            next(e for e in data['entries'] if e['examples']['items'])['examples']['items'][0]['execution_status']='executed'
+        mutation('catalog-v6.js','window.PINE_CATALOG[6]=',fake_execution,
+                 'execution claim without run evidence rejected','EXAMPLE_STATUS')
+
+        for scenario in reversed(pending_mutations) if args.reverse else pending_mutations:
+            run_mutation(*scenario)
+
         # The cleanup must remove only the newly injected orphan, preserve the
         # entire original family graph/text pool, and be byte-idempotent.
+        assert_clean()
         target = fixture / 'history-2.js'
         prefix = 'window.PINE_HISTORY["2"]='
         clean_history = load(target, prefix)

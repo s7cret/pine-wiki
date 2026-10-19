@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 from build_manifest import load_manifest
+from semantic_contracts import meaningful_text
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -14,7 +15,7 @@ def load_catalog(version):
 
 def has_text(catalog, ref):
     t = catalog['texts'].get(ref, {})
-    return any(str(t.get(k) or '').strip() for k in ('ru', 'en', 'original'))
+    return meaningful_text(t)
 
 
 def collect():
@@ -27,6 +28,8 @@ def collect():
         params = [p for e in entries for p in e.get('parameters', [])]
         families.update(e['family']['id'] for e in entries)
         empty = [p for p in params if not has_text(c, p.get('description'))]
+        physical_empty = [p for p in params if not any(str(c['texts'].get(p.get('description'), {}).get(k) or '').strip() for k in ('ru','en','original'))]
+        placeholders = [p for p in params if c['texts'].get(p.get('description'), {}).get('content_status') == 'missing_description_notice']
         result_empty = [e for e in entries if not has_text(c, e.get('result', {}).get('description'))]
         versions[str(version)] = {
             'cards': len(entries),
@@ -34,6 +37,11 @@ def collect():
             'fragmented_example_cards': sum(len(e['examples'].get('items', [])) > 1 and all('\n' not in i['code'] for i in e['examples']['items']) for e in entries),
             'parameters': len(params),
             'empty_parameter_descriptions': len(empty),
+            'physically_empty_parameter_descriptions': len(physical_empty),
+            'placeholder_parameter_descriptions': len(placeholders),
+            'physically_empty_with_hint': sum(bool(p.get('description_hint')) for p in physical_empty),
+            'editorial_parameter_supplements': sum(bool(p.get('description_supplement')) for p in params),
+            'substantive_primary_parameter_descriptions': sum(has_text(c,p.get('description')) and c['texts'].get(p.get('description'),{}).get('basis') in ('official_translation','unchanged') for p in params),
             'parameter_description_hints': sum(bool(p.get('description_hint')) for p in params),
             'parameters_without_description_or_hint': sum(not p.get('description_hint') for p in empty),
             'unknown_requiredness': sum(p.get('state') == 'unknown' for p in params),

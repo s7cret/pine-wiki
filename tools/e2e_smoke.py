@@ -6,7 +6,7 @@ E2E_BROWSER_EXECUTABLE optionally selects an installed Chrome/Chromium binary.
 """
 import argparse, functools, http.server, json, os, re, sys, threading
 from pathlib import Path
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, urlparse, quote
 from playwright.sync_api import sync_playwright
 
 if hasattr(sys.stdout, 'reconfigure'):
@@ -47,6 +47,33 @@ def active(pg):
 def donor_link(pg, selector, donor):
     hrefs = pg.locator(selector).evaluate_all('(nodes)=>nodes.map(n=>n.href)')
     return any(parse_qs(urlparse(href).query).get('id') == [donor['entry_id']] and parse_qs(urlparse(href).query).get('v') == [str(donor['version'])] for href in hrefs)
+
+
+def check_october_audit(pg, base):
+    for lang in ('ru','en'):
+        for symbol in ('+', '[]', ':=', '==', '!=', '=>', '?:', '//'):
+            loaded(pg,f'{base}?v=6&lang={lang}&q={quote(symbol,safe="")}')
+            ok(f'audit search/{lang}/{symbol}: results', count(pg)>0)
+            pg.locator('#rows .entry-tools a[data-entry]').first.click()
+            ok(f'audit search/{lang}/{symbol}: direct route retains query', parse_qs(urlparse(pg.url).query).get('q')==[symbol] and bool(parse_qs(urlparse(pg.url).query).get('id')))
+        loaded(pg,f'{base}?v=4&lang={lang}&id=primary:v4:functions:timestamp:overload:0')
+        links=pg.locator('#rows .parameter a').evaluate_all('(nodes)=>nodes.map(n=>n.href)')
+        ok(f'audit timestamp/{lang}: normalized RFC and ISO anchors', 'https://tools.ietf.org/html/rfc2822#section-3.3' in links and 'https://en.wikipedia.org/wiki/ISO_8601' in links)
+        for name in ('request.security','request.security_lower_tf'):
+            loaded(pg,f'{base}?v=6&lang={lang}&id=primary:v6:functions:{name}:overload:0')
+            issue=pg.locator('#rows [data-issue="SOURCE.GAP.V6.REQUEST_SECURITY_UNIQUE_LIMIT_PLAN"]')
+            ok(f'audit limit/{lang}/{name}: shared caveat at card',issue.count()==1 and '40' in issue.inner_text() and '64' in issue.inner_text() and 'Ultimate' in issue.inner_text())
+        loaded(pg,f'{base}?v=4&lang={lang}&id=primary:v4:functions:cross:overload:0')
+        pg.locator('#rows .history-button').click();pg.wait_for_selector('#history-differences h3')
+        pg.select_option('#compare-from','3');pg.select_option('#compare-to','4')
+        expected=pg.evaluate(f'window.PINE_UI.descriptionMissingComparison[{1 if lang=="en" else 0}]')
+        ok(f'audit cross/{lang}: absence separated from manual supplement',expected in pg.inner_text('#history-differences') and pg.locator('#history-columns section').nth(1).locator('.meta').count()>0)
+        pg.keyboard.press('Escape')
+    loaded(pg,f'{base}?v=4&lang=ru&id=primary:v4:functions:array.from:overload:0')
+    ok('audit array.from: one variadic group',pg.locator('#rows .parameter').count()==1 and pg.locator('#rows .parameter>code').text_content()=='args')
+    loaded(pg,f'{base}?v=4&lang=ru&id=primary:v4:functions:round:overload:0')
+    forms=pg.locator('#rows details[data-detail="parameters"]>code.syntax').all_text_contents()
+    ok('audit round: two call forms, no three-argument template',forms==['round(x)','round(number, precision)'] and 'round(bar_index, close, 2)' not in pg.locator('#rows').text_content())
 
 
 def check_sources_and_history(pg, base):
@@ -212,7 +239,7 @@ try:
 
         loaded(pg, f'{BASE}?v=6&lang=ru')
         pg.check('#examples-only')
-        real = pg.evaluate("()=>window.PINE_CATALOG[6].entries.filter(e=>['source_example','source_occurrence','compatibility_example'].includes(e.examples.status)&&!e.technical).length")
+        real = pg.evaluate("()=>window.PINE_CATALOG[6].entries.filter(e=>['source_example','source_occurrence','compatibility_example','editorial_probe'].includes(e.examples.status)&&!e.technical).length")
         ok('examples-only counts real examples', count(pg) == real, f'{count(pg)}/{real}')
         pg.uncheck('#examples-only')
         for v in range(1, 7):
@@ -249,6 +276,7 @@ try:
         ok('keyboard history: close returns focus', pg.evaluate("document.activeElement.matches('.history-button')"), active(pg))
 
         check_sources_and_history(pg, BASE)
+        check_october_audit(pg, BASE)
 
         loaded(pg, f'{BASE}?v=5&lang=ru')
         with pg.expect_download() as download:

@@ -9,6 +9,7 @@ from importlib import import_module
 import collections, hashlib, json, re, shutil, subprocess, sys
 from data_integrity import (catalog_aggregates, family_version_aggregate, has_text,
                             normalized_history_aggregate, text_pool_errors)
+from semantic_contracts import contract_errors, history_contracts
 
 ROOT = Path(__file__).resolve().parents[1]
 # Share the migration's reviewed correspondences so validation cannot drift
@@ -126,6 +127,7 @@ check(set(families) == referenced, f'unreferenced families: {len(set(families) -
 for fid, f in families.items():
     for r in f['related']:
         check(r['id'] in families, f'broken related link {fid} -> {r["id"]}')
+        check(r['id'] in HIST.get(r.get('shard'), {}).get('families', {}), f'FAMILY_ROUTE: broken related shard {fid} -> {r["id"]}')
     for z in f['versions']:
         version_entries = ENTRIES.get(z['version'], {})
         for i in z['entry_ids']:
@@ -138,9 +140,12 @@ for fid, f in families.items():
             actual = normalized_history_aggregate(z)
             for field, value in expected.items():
                 check(actual[field] == value, f'family {fid} v{z["version"]}: history aggregate mismatch: {field}')
+            contracts = history_contracts([version_entries[i] for i in z['entry_ids']])
+            check(z.get('default_contracts') == contracts, f'HISTORY_DEFAULT: {fid} v{z["version"]} contracts differ from catalog')
 for v, c in CAT.items():
     for e in c['entries']:
         fam = families.get(e['family']['id'])
+        check(e['family']['id'] in HIST.get(e['family'].get('shard'), {}).get('families', {}), f'FAMILY_ROUTE: {e["id"]} is absent from its declared shard')
         check(fam is not None and v in [z['version'] for z in fam['versions']], f'entry {e["id"]} is not listed in its family')
 print(f'history: {len(families)} families, all referenced, all links resolved')
 
@@ -173,6 +178,15 @@ for v, c in CAT.items():
     for e in c['entries']:
         x = e['examples']
         items = x.get('items', [])
+        for item in items:
+            check(item.get('origin') in ('official_source','syntax_illustration','compatibility_example','editorial_probe','adaptation'), f'EXAMPLE_STATUS: {e["id"]}: origin missing')
+            check(item.get('role') in ('full_script','snippet','negative_example'), f'EXAMPLE_STATUS: {e["id"]}: role missing')
+            check(item.get('compilation_status') in ('not_compiled','compiled','expected_error'), f'EXAMPLE_STATUS: {e["id"]}: compilation status missing')
+            check(item.get('execution_status') in ('not_executed','executed'), f'EXAMPLE_STATUS: {e["id"]}: execution status missing')
+            check(item.get('code_sha256') == hashlib.sha256(item.get('code','').encode()).hexdigest(), f'EXAMPLE_STATUS: {e["id"]}: code hash mismatch')
+            if item.get('compilation_status') == 'compiled' or item.get('execution_status') == 'executed':
+                run=item.get('validation_run',{})
+                check(all(run.get(k) for k in ('date','version','data','parameters','observed_result')), f'EXAMPLE_STATUS: {e["id"]}: successful validation has no run evidence')
         check(bool(items) == (x['status'] != 'missing'), f'v{v} {e["id"]}: examples.status does not match items')
         check(not any(re.fullmatch(r'\s*//\s*@version\s*=\s*\d+\s*', item.get('code', '')) for item in items), f'v{v} {e["id"]}: isolated version-directive example fragment')
         # Historical operator syntax illustrations can list three independent
@@ -193,6 +207,7 @@ for v, c in CAT.items():
                 check(bool(CYR.search(p[k].get('ru', ''))) and bool(p[k].get('en')), f'v{v} {e["id"]}: pointer {k} is not bilingual')
             check(not items, f'v{v} {e["id"]}: pointer on an entry that has real examples')
         for p in e['parameters']:
+            failures.extend(f'v{v} {e["id"]}.{p["name"]}: {err}' for err in contract_errors(p.get('default_contract', {}), texts))
             if p.get('state') == 'conflict':
                 stats['requiredness_conflicts'] += 1
                 check((e['id'], p['name']) in conflict_issues, f'v{v} {e["id"]}.{p["name"]}: requiredness conflict has no source issue')
@@ -235,6 +250,13 @@ for v, c in CAT.items():
             stats['neighbor_descriptions'] += 1
             d = r.get('description_donor') or {}
             check(d.get('entry_id') in entry_ids and d.get('version'), f'v{v} {e["id"]}: donor missing')
+            donor = ENTRIES.get(d.get('version'), {}).get(d.get('entry_id'))
+            check(donor is not None and donor['family']['id'] == e['family']['id'] and donor['category'] == e['category'] and d.get('version') != v,
+                  f'RESULT_DONOR: v{v} {e["id"]}: unrelated result donor')
+            donor_pool = CAT.get(d.get('version'), {}).get('texts', {})
+            check(donor is not None and resolve_text(r.get('description'), texts) == resolve_text((donor or {}).get('result', {}).get('description'), donor_pool),
+                  f'RESULT_DONOR: v{v} {e["id"]}: result differs from donor text')
+            check(donor is not None and r.get('description_source') in donor.get('sources', []), f'RESULT_DONOR: v{v} {e["id"]}: result source differs from donor')
         if v >= 3 and e['category'] in ('functions', 'methods'):
             check(bool(texts.get(r.get('description'))), f'v{v} {e["id"]}: function without any result description')
         if e.get('search_rank'):

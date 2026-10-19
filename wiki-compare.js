@@ -19,5 +19,9 @@
   if(av.length&&!bv.length)return 'less_documented';
   return same(oldText,newText)?'same':'wording';
  }
- root.PINE_COMPARE={required,defaults};
+ function description(a,b){
+  if(a?.description_content_status==='missing_description_notice'||b?.description_content_status==='missing_description_notice')return 'missing';
+  return same(a?.description_hashes,b?.description_hashes)?'same':'changed';
+ }
+ root.PINE_COMPARE={required,defaults,description};
 })(typeof window==='object'?window:globalThis);
