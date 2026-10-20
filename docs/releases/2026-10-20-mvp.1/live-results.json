@@ -1,0 +1,400 @@
+{
+  "checks": [
+    {
+      "name": "live consumer pin matches local release",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "live manifest external digest",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "live bundle hash documentation.json",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "live bundle hash evidence.json",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "live bundle hash identities.json",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "live bundle hash profile-programs.json",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "live bundle hash registry.schema.json",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "live bundle hash semantic.json",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "live bundle offline reader",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "live revision",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/ru/+: results",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/ru/+: direct route retains query",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/ru/[]: results",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/ru/[]: direct route retains query",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/ru/:=: results",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/ru/:=: direct route retains query",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/ru/==: results",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/ru/==: direct route retains query",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/ru/!=: results",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/ru/!=: direct route retains query",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/ru/=>: results",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/ru/=>: direct route retains query",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/ru/?:: results",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/ru/?:: direct route retains query",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/ru///: results",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/ru///: direct route retains query",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit timestamp/ru: normalized RFC and ISO anchors",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit limit/ru/request.security: shared caveat at card",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit limit/ru/request.security_lower_tf: shared caveat at card",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit cross/ru: absence separated from manual supplement",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/en/+: results",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/en/+: direct route retains query",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/en/[]: results",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/en/[]: direct route retains query",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/en/:=: results",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/en/:=: direct route retains query",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/en/==: results",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/en/==: direct route retains query",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/en/!=: results",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/en/!=: direct route retains query",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/en/=>: results",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/en/=>: direct route retains query",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/en/?:: results",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/en/?:: direct route retains query",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/en///: results",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit search/en///: direct route retains query",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit timestamp/en: normalized RFC and ISO anchors",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit limit/en/request.security: shared caveat at card",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit limit/en/request.security_lower_tf: shared caveat at card",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit cross/en: absence separated from manual supplement",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit array.from: one variadic group",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "audit round: two call forms, no three-argument template",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec/ru: card links formal contract",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec/ru: actual renderer not_compiled/not_executed",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec/ru: actual renderer compiled/executed",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec/ru: actual renderer error/not_executed",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec/ru: actual renderer compiled/blocked",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec/ru: actual renderer unknown/unknown",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec/ru: conflicting v5 default stays unresolved",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec/en: card links formal contract",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec/en: actual renderer not_compiled/not_executed",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec/en: actual renderer compiled/executed",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec/en: actual renderer error/not_executed",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec/en: actual renderer compiled/blocked",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec/en: actual renderer unknown/unknown",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec/en: conflicting v5 default stays unresolved",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec https/ru: facts, runs and review queue",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec https/ru/390: no horizontal overflow",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec https/ru/1400: no horizontal overflow",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec https/en: facts, runs and review queue",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec https/en/390: no horizontal overflow",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec https/en/1400: no horizontal overflow",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec file/ru: facts, runs and review queue",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec file/ru/390: no horizontal overflow",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec file/ru/1400: no horizontal overflow",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec file/en: facts, runs and review queue",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec file/en/390: no horizontal overflow",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "spec file/en/1400: no horizontal overflow",
+      "passed": true,
+      "info": ""
+    },
+    {
+      "name": "live console/network clean",
+      "passed": true,
+      "info": "[]"
+    }
+  ],
+  "problems": []
+}

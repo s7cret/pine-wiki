@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "archive_created_at": "2026-10-20T08:15:00+00:00",
+  "evidence_scope": "Archive of the previously recorded verification of verified_release_commit; not a new validation run.",
+  "verified_release_commit": "dddcceffd95279e700dfdd9d2c52b3c1727bfd99",
+  "release_url": "https://github.com/s7cret/pine-wiki/commit/dddcceffd95279e700dfdd9d2c52b3c1727bfd99",
+  "site_url": "https://s7cret.github.io/pine-wiki/",
+  "local_gate": {
+    "passed": true,
+    "checked_at": "2026-10-20T03:41:36+03:00",
+    "source_sha256": "443a6cd39a0d7c0a0872a180a39edf5c2d33257ab20671b36e18838cbbeed508",
+    "report": "../../qa-results.json"
+  },
+  "ci": {
+    "url": "https://github.com/s7cret/pine-wiki/actions/runs/39349226821",
+    "conclusion": "success"
+  },
+  "consumer_lock": {
+    "bundle": "bundles/pine6.core-mvp.1-20261020.r1",
+    "consumer_source_sha256": "a347e9792bedc2e809ecd05d077f016bec0b759dd6bdf5148ac15b796bd9a22d",
+    "implementation_commit": "c12954ba3494f46048cfbf241eec9a9c343c7ed9",
+    "manifest_sha256": "79a1ac0e1a61d39b75f7cdd0ae9e7cfe3a8af1593097d46c02d2e2cf61a0648e",
+    "semantic_hash": "3c64db52fa5a81606dce477a7aa105007613a72739727a9ac2bf2cf3631988c8",
+    "semantic_profile_id": "pine6.core-mvp.1"
+  },
+  "recorded_live_checks": {
+    "passed": 79,
+    "total": 79,
+    "observed_at": null,
+    "timestamp_status": "not_recorded"
+  },
+  "artifacts": {
+    "live-results.json": {
+      "sha256": "a59864e34a601cae341069199da3a645f96a1c6fcd6cc53de26e902930203f9c",
+      "bytes": 8703
+    },
+    "live-semantic.png": {
+      "sha256": "a9bbd33b3cbdb3309341274b082250a15e5b27afb8fb8ff57ec3503e04faf7aa",
+      "bytes": 55090
+    }
+  },
+  "limitations": [
+    "footprint runtime blocked by TradingView plan RE10063",
+    "PW-16 root cause unknown",
+    "limited pine6.core-mvp.1; three v5 defaults unresolved"
+  ]
+}
