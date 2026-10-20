@@ -1,5 +1,5 @@
 {
-  "revision": "2026-10-20.semantic-mvp.1",
+  "revision": "2026-10-20.audit6091.r2",
   "cards_total": 4631,
   "families": 1292,
   "ui_keys_defined": 243,
@@ -142,7 +142,7 @@
       "pointers": 0,
       "search_rank_entries": 9,
       "editorial_texts_without_provenance": 281,
-      "catalog_bytes": 8749198
+      "catalog_bytes": 8749351
     },
     "6": {
       "cards": 1520,
@@ -170,7 +170,7 @@
       "pointers": 83,
       "search_rank_entries": 8,
       "editorial_texts_without_provenance": 294,
-      "catalog_bytes": 10013013
+      "catalog_bytes": 10071011
     }
   }
 }

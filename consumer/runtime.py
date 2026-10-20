@@ -1,5 +1,5 @@
 """Lower resolved calls into operations; execute without rebinding names/prose."""
-import copy,hashlib,json,math,sys
+import ast,copy,hashlib,inspect,json,math,sys
 from pathlib import Path
 from .errors import Diagnostic
 
@@ -10,19 +10,36 @@ DEFAULT_OPERATIONS={'numeric.abs','numeric.round','numeric.int','numeric.float',
                     *('operator.'+op for op in OPERATORS)}
 
 
+def implemented_operations():
+    """Inventory actual dispatch branches, rather than the advertised capability set."""
+    tree=ast.parse(inspect.getsource(sys.modules[__name__]));found=set()
+    runtime=next(n for n in tree.body if isinstance(n,ast.ClassDef) and n.name=='Runtime')
+    for node in ast.walk(runtime):
+        if not isinstance(node,ast.Compare) or len(node.ops)!=1:continue
+        if isinstance(node.left,ast.Name) and node.left.id=='op':
+            rhs=node.comparators[0]
+            vals=[rhs.value] if isinstance(rhs,ast.Constant) else [v.value for v in rhs.elts if isinstance(v,ast.Constant)] if isinstance(rhs,(ast.Tuple,ast.List)) else []
+            for value in vals:
+                if isinstance(value,str):found.add('operator.'+value if value in OPERATORS else value)
+        if isinstance(node.left,ast.Name) and node.left.id=='kind' and isinstance(node.comparators[0],ast.Constant) and node.comparators[0].value=='history':found.add('series.history')
+    found.add('operator.not') # Unary dispatch is separate from the binary op variable.
+    return DEFAULT_OPERATIONS&found
+
+
 def hash_value(value):return hashlib.sha256(json.dumps(value,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
 
 
 def source_identity():
-    files=sorted(Path(__file__).parent.glob('*.py'))
-    return hash_value({p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in files})
+    root=Path(__file__).resolve().parents[1]
+    files=sorted([*Path(__file__).parent.glob('*.py'),root/'tools/spec_bundle.py'])
+    return hash_value({p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in files})
 
 
 def build_identity(operations):return hash_value({'implementation':'pine-wiki-offline-consumer.1','source_sha256':source_identity(),'python_version':list(sys.version_info[:3]),'operations':sorted(operations)})
 
 
 def lower(resolved,operations=None):
-    operations=set(DEFAULT_OPERATIONS if operations is None else operations)
+    operations=set(implemented_operations() if operations is None else operations)
     missing=set(resolved['required_operations'])-operations
     if missing:raise Diagnostic('IMPLEMENTATION_MISSING','Missing operations: '+', '.join(sorted(missing)),'rule.admission.capabilities')
     ir=copy.deepcopy(resolved)
@@ -80,7 +97,7 @@ class StatePhases:
 
 class Runtime:
     def __init__(self,bundle,operations=None):
-        self.bundle=bundle;self.operations=set(DEFAULT_OPERATIONS if operations is None else operations)
+        self.bundle=bundle;self.operations=set(implemented_operations() if operations is None else operations)
         registry=bundle['semantic']['registry'];assertions={a['assertion_id']:a for a in registry['assertions']};decisions={d['decision_id']:d for d in registry['decisions']}
         self.rules={}
         for r in registry['rules']:
@@ -88,18 +105,21 @@ class Runtime:
             if a['review_status']=='corroborated' and d and d['status']=='accepted':self.rules[r['rule_id']]=assertions[d['selected_assertion']]['value']
         self.rule_proof={r['rule_id']:assertions[r['semantic_assertion']] for r in registry['rules']}
         self.source_proof={a['assertion_id']:a['evidence_refs'] for a in bundle['evidence']['assertion_evidence']}
-        self.state={};self.events=[];self.plots={};self.current_plot={};self.values={};self.persisted={};self.once=set();self.request_cache={};self.histories={};self.request_keys=set()
+        self.state={};self.events=[];self.plots={};self.current_plot={};self.values={};self.persisted={};self.once=set();self.request_cache={};self.histories={};self.request_keys=set();self.output_metadata={}
 
     def failure(self,category,message,node=None,rule='rule.runtime',reason=None):
         a=self.rule_proof.get(rule,{})
-        raise Diagnostic(category,message,rule,(node or {}).get('span'),reason,self.source_proof.get(a.get('assertion_id'),[]),a.get('decision_ref'))
+        error=Diagnostic(category,message,rule,(node or {}).get('span'),reason,self.source_proof.get(a.get('assertion_id'),[]),a.get('decision_ref'))
+        error.data['phase']='runtime';raise error
 
     def admit(self,ir,context):
         if ir.get('artifact_hash')!=hash_value({k:v for k,v in ir.items() if k!='artifact_hash'}):self.failure('ARTIFACT_INCOMPATIBLE','Artifact contents were changed')
         if ir.get('format')!='pine-wiki.lowered-program.1' or ir.get('semantic_hash')!=self.bundle['manifest']['semantic_hash'] or ir.get('semantic_profile_id')!=self.bundle['manifest']['semantic_profile_id']:
             self.failure('ARTIFACT_INCOMPATIBLE','Artifact profile or semantic identity differs')
         if ir.get('build_identity')!=build_identity(self.operations):self.failure('ARTIFACT_INCOMPATIBLE','Artifact implementation build differs')
-        if not context.get('chart_bars') or not context.get('symbol') or not context.get('timeframe'):self.failure('CONTEXT_UNAVAILABLE','Chart data/context missing')
+        if not isinstance(context,dict):self.failure('CONTEXT_UNAVAILABLE','Context must be an object')
+        missing=[key for key in ('context_id','chart_bars','symbol','timeframe','mode') if not context.get(key)]
+        if missing:self.failure('CONTEXT_UNAVAILABLE','Missing required context fields: '+', '.join(missing),rule='rule.context.current')
         if context.get('mode')!='historical_confirmed':self.failure('ARTIFACT_INCOMPATIBLE','Only confirmed historical execution is in this profile',reason='PROFILE_UNCOVERED')
         needed=set(ir['required_operations'])-self.operations
         if needed:self.failure('IMPLEMENTATION_MISSING','Required operation not available: '+str(sorted(needed)))
@@ -134,7 +154,9 @@ class Runtime:
         if kind=='context_default':
             if node['rule_ref']=='rule.request.chart_bars':return len(self.context['chart_bars'])
             self.failure('SPEC_UNRESOLVED','Contextual default rule missing',node)
-        if kind=='name':return values[node['binding_id']] if 'binding_id' in node else self.symbol(node['name'],bars,index,context)
+        if kind=='name':
+            if 'constant_capture' in node:return copy.deepcopy(node['constant_capture'])
+            return values[node['binding_id']] if 'binding_id' in node else self.symbol(node['name'],bars,index,context)
         if kind=='tuple':return tuple(self.evaluate(n,bars,index,context,values) for n in node['members'])
         if kind=='unary':
             value=self.evaluate(node['operand'],bars,index,context,values)
@@ -151,7 +173,9 @@ class Runtime:
             if op=='-':return a-b
             if op=='*':return a*b
             if op=='/':return a/b if b else None
-            if op=='%':return math.fmod(a,b) if b else None
+            if op=='%':
+                if self.rules['rule.numeric.modulo']['quotient']!='floor':self.failure('IMPLEMENTATION_MISSING','Unsupported modulo quotient policy',node,'rule.numeric.modulo')
+                return a%b if b else None
             if op=='==':return a==b
             if op=='!=':return a!=b
             if op=='<':return a<b
@@ -165,14 +189,15 @@ class Runtime:
             offset=self.evaluate(node['offset'],bars,index,context,values)
             if not isinstance(offset,int) or isinstance(offset,bool) or offset<0:self.failure('LANGUAGE_INVALID','History offset must be nonnegative int',node,'rule.types')
             expression=node['expression'];key=(context['context_id'],node['node_id'])
+            missing=False if node.get('resolved',{}).get('type',{}).get('name')=='bool' and self.rules['rule.history']['missing_bool'] is False else None
             if expression['kind']=='name' and 'symbol_id' in expression:
-                return None if index-offset<0 else self.symbol(expression['name'],bars,index-offset,context)
+                return missing if index-offset<0 else self.symbol(expression['name'],bars,index-offset,context)
             if expression['kind']=='name' and 'binding_id' in expression:
-                return values.get(expression['binding_id']) if offset==0 else self.histories.get((context['context_id'],expression['binding_id']),{}).get(index-offset)
+                return values.get(expression['binding_id'],missing) if offset==0 else self.histories.get((context['context_id'],expression['binding_id']),{}).get(index-offset,missing)
             current=self.evaluate(expression,bars,index,context,values)
             history=self.histories.setdefault(key,{})
             history[index]=current
-            return history.get(index-offset)
+            return history.get(index-offset,missing)
         if kind=='operation':return self.operation(node,bars,index,context,values)
         self.failure('ARTIFACT_INCOMPATIBLE','Unknown IR node '+kind,node)
 
@@ -191,7 +216,9 @@ class Runtime:
             else:arguments[p['name']]=value
         if op=='harness.indicator':return None
         if op=='visual.plot':
-            title=arguments['title'] or node['node_id'];self.current_plot[title]=arguments['series'];return None
+            output_id=node['node_id'];title=arguments['title'] or output_id
+            self.output_metadata[output_id]={'output_id':output_id,'title':title}
+            self.current_plot[output_id]=arguments['series'];return None
         if op=='numeric.abs':return None if arguments['number'] is None else abs(arguments['number'])
         if op=='numeric.round':
             if self.rules['rule.numeric.round']['ties']!='toward_positive_infinity':self.failure('IMPLEMENTATION_MISSING','Rounding tie policy not implemented',node,'rule.numeric.round')
@@ -212,6 +239,8 @@ class Runtime:
             return array
         if op=='collection.get':
             array=arguments['id'];offset=arguments['index']
+            policy=self.rules['rule.array.index']
+            if type(offset) is int and offset<0 and policy['negative_indices']=='relative_to_size':offset+=len(array)
             if type(offset) is not int or not 0<=offset<len(array):self.failure('LANGUAGE_INVALID','Array index out of range',node,'rule.array.index')
             return array[offset]
         if op=='series.true_range':return self.true_range(bars,index,arguments['handle_na'])
@@ -249,6 +278,7 @@ class Runtime:
             if cache not in self.request_cache:
                 if not requested.get('bars') or not all('close_time' in b for b in requested['bars']) or not all('close_time' in b for b in bars):
                     self.failure('CONTEXT_UNAVAILABLE','Request alignment requires nonempty bars with close_time',node,'rule.request.alignment')
+                if not requested.get('context_id'):self.failure('CONTEXT_UNAVAILABLE','Missing required requested context field: context_id',node,'rule.request.alignment')
                 remote_bars=requested['bars'][-count:];remote_context={**requested,'mode':'historical_confirmed'};series=[]
                 for remote_index,bar in enumerate(remote_bars):
                     result=self.evaluate(deferred['expression'],remote_bars,remote_index,remote_context,{})
@@ -293,5 +323,8 @@ class Runtime:
             self.current_plot={};values={};self.statements(ir['ast']['statements'],bars,index,context,values)
             for title in set(self.plots)|set(self.current_plot):self.plots.setdefault(title,[None]*index).append(self.current_plot.get(title))
             for bid,value in values.items():self.histories.setdefault((context['context_id'],bid),{})[index]=copy.deepcopy(value)
-        return {'plots':self.plots,'events':self.events,'semantic_hash':ir['semantic_hash'],'build_identity':ir['build_identity'],
+        outputs=[{**metadata,'values':self.plots[oid]} for oid,metadata in self.output_metadata.items()]
+        titles=[o['title'] for o in outputs]
+        plots={o['title'] if titles.count(o['title'])==1 and o['title'] not in self.output_metadata else o['output_id']:o['values'] for o in outputs}
+        return {'plots':plots,'outputs':outputs,'events':self.events,'semantic_hash':ir['semantic_hash'],'build_identity':ir['build_identity'],
                 'context_identity':hash_value(context),'runtime_cache_key':hash_value({'compile_key':ir['compile_cache_key'],'context':hash_value(context)})}

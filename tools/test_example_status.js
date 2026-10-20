@@ -16,6 +16,7 @@ for(const key of ['code_sha256','definition_hash','context_hash','language_versi
  assert.equal(api.applies(item,{...run,[key]:'changed'}),false,key);checks++;
 }
 assert.equal(api.presentation({...item,compilation_status:'future',execution_status:'future'}).execution,'unknown');checks++;
+assert.equal(api.applies(item,{...run,compiler:{status:'error'},runtime:{status:'executed'},comparison:{passed:true}}),false);checks++;
 const fs=require('node:fs');const text=fs.readFileSync(require('node:path').join(__dirname,'../wiki-i18n.js'),'utf8');
 const ui=JSON.parse(text.split('window.PINE_UI=')[1].trim().replace(/;$/,''));
 for(const key of ['notCompiled','compiledStatus','notExecutedStatus','executedStatus','exampleError','exampleBlocked','exampleUnknown','exampleStale','runRecord']){

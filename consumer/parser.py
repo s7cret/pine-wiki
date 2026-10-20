@@ -108,6 +108,8 @@ class Parser:
                 return self.node('tuple_declaration',token,names=names,value=value,mode=mode)
         if self.token.kind=='NAME' and self.tokens[self.i+1].text in ('=',':='):
             name=self.take().text;operator=self.take().text;value=self.expression();self.take(kind='NEWLINE')
+            if not re.fullmatch(r'[A-Za-z_][A-Za-z_0-9]*',name):invalid('A variable identifier cannot contain a dot','rule.grammar',{'line':token.line,'column':token.column})
+            if operator==':=' and (annotation or mode!='normal'):invalid('Reassignment cannot declare a type or mode','rule.grammar',{'line':token.line,'column':token.column})
             return self.node('declaration' if operator=='=' else 'reassignment',token,name=name,value=value,mode=mode,annotation=annotation)
         if mode!='normal' or annotation:invalid('Declaration expected',span=self.span())
         expression=self.expression();self.take(kind='NEWLINE');return self.node('expression_statement',token,expression=expression)

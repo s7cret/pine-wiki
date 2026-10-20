@@ -82,7 +82,7 @@ def check_semantic_release(pg,base):
         ok(f'spec/{lang}: card links formal contract',pg.locator('#rows [data-detail="semantic-contract"] a[href="spec/index.html"]').count()==1)
         cases=[('not_compiled','not_executed','notCompiled','notExecutedStatus'),('compiled','executed','compiledStatus','executedStatus'),('error','not_executed','exampleError','notExecutedStatus'),('compiled','blocked','compiledStatus','exampleBlocked'),('unknown','unknown','exampleUnknown','exampleUnknown')]
         for compilation,execution,compile_key,run_key in cases:
-            pg.evaluate("""({compilation,execution})=>{let e=PINE_CATALOG[6].entries.find(e=>e.id==='primary:v6:functions:request.security:overload:0');let item=e.examples.items.find(i=>i.example_id==='example.audit.lookahead-6');e.examples.items=[item];item.compilation_status=compilation;item.execution_status=execution;item.validation_run.compiler.status=compilation;item.validation_run.runtime.status=execution;}""",{'compilation':compilation,'execution':execution})
+            pg.evaluate("""({compilation,execution})=>{let e=PINE_CATALOG[6].entries.find(e=>e.id==='primary:v6:functions:request.security:overload:0');let item=e.examples.items.find(i=>i.example_id==='example.audit.lookahead-6');e.examples.items=[item];item.compilation_status=compilation;item.execution_status=execution;item.validation_run.compiler.status=compilation;item.validation_run.runtime.status=execution;item.validation_run.comparison={passed:compilation==='compiled'&&execution==='executed'};}""",{'compilation':compilation,'execution':execution})
             pg.select_option('#language','en' if lang=='ru' else 'ru');pg.select_option('#language',lang)
             detail=pg.locator('#rows details[data-detail="examples"]');detail.evaluate('(e)=>e.open=true')
             expected=pg.evaluate('keys=>keys.map(k=>PINE_UI[k][document.documentElement.lang==="en"?1:0])',[compile_key,run_key])
@@ -94,6 +94,7 @@ def check_semantic_release(pg,base):
         for lang in ('ru','en'):
             pg.select_option('#locale',lang)
             ok(f'spec {urlparse(address).scheme}/{lang}: facts, runs and review queue',pg.locator('#facts article').count()>20 and pg.locator('#probes article').count()>=15 and 'PW-16' in pg.locator('#workflow').text_content())
+            ok(f'spec {urlparse(address).scheme}/{lang}: implementation coverage and own evidence labeled',pg.locator('.implementation-coverage').inner_text().strip()=='10 / 10' and 'Pine Wiki offline consumer regression' in pg.locator('#probes').inner_text())
             for width in (390,1400):
                 pg.set_viewport_size({'width':width,'height':900})
                 ok(f'spec {urlparse(address).scheme}/{lang}/{width}: no horizontal overflow',pg.evaluate('document.documentElement.scrollWidth<=innerWidth+2'))

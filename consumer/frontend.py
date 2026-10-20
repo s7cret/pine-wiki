@@ -1,5 +1,6 @@
 """Resolve names, ordered arguments, overloads, types and defaults exactly once."""
 import copy,hashlib,json
+from tools.spec_bundle import effective
 from .errors import Diagnostic,invalid
 from .parser import parse
 
@@ -24,11 +25,10 @@ class Frontend:
         raise Diagnostic(category,message,rule_id,span,reason,self.evidence.get(a.get('assertion_id'),[]),a.get('decision_ref'),a.get('issue_refs'))
 
     def effective(self,aid,span=None):
-        a=self.assertions[aid];decision=self.decisions.get(a.get('decision_ref'))
-        if a['review_status']!='corroborated' or not decision or decision['status']!='accepted':
+        a=self.assertions[aid];value=effective(a,self.registry,version=6,profile_id=self.manifest['semantic_profile_id'])
+        if value.get('kind')=='unknown' and value.get('reason')=='SPEC_UNRESOLVED':
             self.fail('SPEC_UNRESOLVED','Required assertion is not resolved: '+aid,aid,span,assertion=a)
-        selected=self.assertions[decision['selected_assertion']]
-        return copy.deepcopy(selected['value'])
+        return value
 
     def rule(self,rid,span=None):
         self.used_rules.add(rid)
@@ -174,7 +174,7 @@ class Frontend:
         for b in bound:
             if b['name']=='length' and node['name']=='ta.ema':
                 self.rule('rule.ema.length',node['span']);arg=b['nodes'][0]
-                if arg.get('resolved',{}).get('known') and arg['resolved']['value']<=0:invalid('EMA length must be positive','rule.ema.length',node['span'])
+                if arg.get('resolved',{}).get('known') and (arg['resolved']['value'] is None or arg['resolved']['value']<=0):invalid('EMA length must be positive','rule.ema.length',node['span'])
                 self.obligations.append({'rule_id':'rule.ema.length','call_node':node['node_id'],'parameter_id':b['parameter_id'],'phase':'runtime'})
         refs=['rule.arguments.left_to_right','rule.context.current','rule.state.call_site_context','rule.execution.skipped_call']
         if node['name']=='ta.ema':refs+=['rule.ema']
@@ -182,7 +182,9 @@ class Frontend:
         if node['name']=='ta.tr':refs+=['rule.tr.true','rule.tr.false']
         if node['name']=='array.get':refs+=['rule.array.index']
         if node['name']=='array.from':refs+=['rule.array.element']
-        if node['name']=='request.security':refs+=['rule.request.alignment','rule.platform.request.unique','rule.request.lookahead.default']
+        if node['name']=='request.security':
+            refs+=['rule.request.alignment','rule.platform.request.unique']
+            if any(b['name']=='lookahead' and b['inserted_default'] for b in bound):refs+=['rule.request.lookahead.default']
         for rid in refs:self.rule(rid,node['span'])
         self.operations.add(signature['operation'])
         fact={'call_node':node['node_id'],'symbol_id':symbol['symbol_id'],'overload_id':ov['overload_id'],'parameter_bindings':[{k:v for k,v in b.items() if k!='nodes'} for b in bound],
@@ -201,6 +203,7 @@ class Frontend:
                 if self.deferred_depth and not local['info']['known']:
                     self.fail('ARTIFACT_INCOMPATIBLE','Dynamic outer captures require the next profile','rule.uncovered.request_captures',span,'PROFILE_UNCOVERED')
                 node['binding_id']=local['binding_id'];info=copy.deepcopy(local['info'])
+                if self.deferred_depth:node['constant_capture']=copy.deepcopy(info['value'])
             else:
                 s=self.symbols.get(('variable',node['name'])) or self.symbols.get(('constant',node['name']))
                 if not s:
@@ -214,6 +217,8 @@ class Frontend:
         elif kind=='tuple':
             infos=[self.expression(n) for n in node['members']];info=self.describe({'kind':'tuple','members':[i['type'] for i in infos]},self.strongest(infos))
         elif kind=='history':
+            policy=self.rule('rule.history',span)
+            if node['expression']['kind']=='literal' and policy['literal_history']=='forbidden':invalid('History of literal values is forbidden in v6','rule.history',span)
             value=self.expression(node['expression']);offset=self.expression(node['offset'])
             if offset['type']!=primitive('int'):invalid('History offset must be an integer','rule.types',span)
             if offset['known'] and offset['value']<0:invalid('History offset must be nonnegative','rule.types',span)
@@ -231,12 +236,23 @@ class Frontend:
                 typ=primitive('bool');self.rule('rule.execution.skipped_call',span)
             elif op in ('==','!=','<','>','<=','>='):
                 an,bn=a['type'].get('name'),b['type'].get('name')
+                if op in ('<','>','<=','>=') and not (an in ('int','float') and bn in ('int','float')):invalid('Ordering requires numeric operands','rule.types',span)
                 if a['type']!=b['type'] and not ({an,bn}<={'int','float','na'}):invalid('Incompatible comparison operands','rule.types',span)
                 typ=primitive('bool')
             else:
                 if a['type'].get('name') not in ('int','float') or b['type'].get('name') not in ('int','float'):invalid('Numeric operands required','rule.types',span)
                 typ=primitive('float' if op=='/' or 'float' in (a['type']['name'],b['type']['name']) else 'int')
             self.operations.add('operator.'+op);info=self.describe(typ,self.strongest([a,b]))
+            if op=='%':self.rule('rule.numeric.modulo',span)
+            if a['known'] and b['known']:
+                av,bv=a['value'],b['value']
+                if av is not None and bv is not None:
+                    if op in ('/','%') and bv==0:info.update(known=True,value=None)
+                    else:
+                        folded={'+':lambda:av+bv,'-':lambda:av-bv,'*':lambda:av*bv,'/':lambda:av/bv,'%':lambda:av%bv,
+                                '==':lambda:av==bv,'!=':lambda:av!=bv,'<':lambda:av<bv,'>':lambda:av>bv,'<=':lambda:av<=bv,'>=':lambda:av>=bv,
+                                'and':lambda:av and bv,'or':lambda:av or bv}
+                        info.update(known=True,value=folded[op]())
         elif kind=='conditional':
             cond=self.expression(node['condition']);a=self.expression(node['yes']);b=self.expression(node['no'])
             if cond['type']!=primitive('bool'):invalid('Bool condition required','rule.types',span)
@@ -246,6 +262,8 @@ class Frontend:
                 if names<={'int','float','na'}:typ=primitive('float' if 'float' in names else 'int')
                 else:invalid('Incompatible conditional branch types','rule.types',span)
             info=self.describe(typ,self.strongest([cond,a,b]))
+            chosen=a if cond.get('value') else b
+            if cond['known'] and chosen['known']:info.update(known=True,value=chosen['value'])
         else:invalid('Unsupported expression '+kind,'rule.grammar',span)
         node['resolved']=info;return info
 
@@ -254,15 +272,24 @@ class Frontend:
             kind=node['kind'];span=node['span']
             if kind in ('declaration','reassignment'):
                 info=self.expression(node['value']);annotation=node.get('annotation')
+                if info['type']==primitive('void'):
+                    if node['value'].get('kind')=='call' and node['value'].get('name')=='plot':self.fail('ARTIFACT_INCOMPATIBLE','Pine plot handles are outside the observation harness','rule.uncovered.plot_handle',span,'PROFILE_UNCOVERED')
+                    invalid('A void result cannot be assigned','rule.types',span)
+                if kind=='declaration' and not annotation and info['type']==primitive('na'):invalid('An na initializer needs an explicit type or cast','rule.types',span)
                 if annotation:
                     if not self.match(primitive(annotation),info,{}):invalid('Declared type mismatch','rule.types',span)
                     info={**info,'type':primitive(annotation)}
-                if kind=='declaration':node['binding_id']=self.bind_new(node['name'],info,span,node['mode'])
+                    if annotation=='float' and info['known'] and type(info['value']) is int:info['value']=float(info['value'])
+                if kind=='declaration':
+                    if node.get('mutable'):info={**info,'qualifier':'series','known':False}
+                    node['binding_id']=self.bind_new(node['name'],info,span,node['mode'])
                 else:
                     binding=self.variable(node['name'])
                     if not binding:invalid('Reassignment needs an existing declaration','rule.scope',span)
                     if not self.match(binding['info']['type'],info,{}):invalid('Reassignment type mismatch','rule.types',span)
-                    binding['info']={**info,'known':False};node['binding_id']=binding['binding_id']
+                    info={**info,'type':binding['info']['type'],'qualifier':'series','known':False}
+                    binding['info']=info;node['binding_id']=binding['binding_id']
+                    node['annotation']=info['type'].get('name')
                 node['resolved']=info
             elif kind=='tuple_declaration':
                 info=self.expression(node['value'])
@@ -276,13 +303,29 @@ class Frontend:
                 else:self.rule('rule.execution.rollback',span)
 
     def compile(self,source):
+        phase='parse'
         try:
-            grammar_policy=self.rule('rule.grammar');ast=parse(source,self.bundle['semantic']['grammar']);self.statements(ast['statements'])
+            grammar_policy=self.rule('rule.grammar');ast=parse(source,self.bundle['semantic']['grammar'])
+            phase='compile'
+            # Pine v6 mutable bindings are series across the whole lexical scope,
+            # including calls that precede a later assignment. Shadowed names are separate.
+            def mark_mutable(statements,scopes):
+                for node in statements:
+                    if node['kind']=='declaration':scopes[-1][node['name']]=node
+                    elif node['kind']=='tuple_declaration':
+                        for name in node['names']:scopes[-1][name]=node
+                    elif node['kind']=='reassignment':
+                        target=next((scope[node['name']] for scope in reversed(scopes) if node['name'] in scope),None)
+                        if target is not None:target['mutable']=True
+                    elif node['kind'] in ('if','once'):
+                        mark_mutable(node['body'],scopes+[{}]);mark_mutable(node.get('otherwise',[]),scopes+[{}])
+            mark_mutable(ast['statements'],[{}]);self.statements(ast['statements'])
             declarations=[c for c in self.facts if c['operation']==grammar_policy['program_declaration_operation']]
             if len(declarations)!=grammar_policy['program_declaration_count']:invalid('Exactly one indicator declaration is required','rule.grammar',ast['span'])
             if not any(c['operation']==grammar_policy['profile_output_operation'] for c in self.facts):
                 self.fail('ARTIFACT_INCOMPATIBLE','A plot observation is required by this executable profile','rule.uncovered.output',ast['span'],'PROFILE_UNCOVERED')
         except Diagnostic as error:
+            error.data['phase']=phase
             rule=self.rules.get(error.data.get('rule_id'))
             if rule:
                 a=self.assertions[rule['semantic_assertion']];error.data['evidence_refs']=self.evidence.get(a['assertion_id'],[]);error.data['decision_ref']=a['decision_ref']

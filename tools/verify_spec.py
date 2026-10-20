@@ -3,7 +3,7 @@ import hashlib,json,sys
 from pathlib import Path
 from jsonschema import Draft202012Validator
 from spec_bundle import ROOT,read_json,validate_registry,load_bundle,digest
-from probe_contracts import validate_definition,run_applies
+from probe_contracts import validate_definition,run_applies,run_status_consistent
 sys.path.insert(0,str(ROOT/'tools/migrations'))
 from catalog_io import load_catalog
 
@@ -30,7 +30,8 @@ def validate():
     for run in runs:
         Draft202012Validator(read_json(ROOT/'spec/schema/probe-run.schema.json')).validate(run)
         d=by[run['definition_id']]
-        assert run_applies({'code_sha256':d['code_sha256'],'language_version':d['language_version'],'probe_definition_hash':d['definition_hash']},run),'PROBE_BINDING: '+run['run_id']
+        assert run_status_consistent(run,d),'PROBE_STATUS: '+run['run_id']
+        assert run_applies({'code_sha256':d['code_sha256'],'language_version':d['language_version'],'probe_definition_hash':d['definition_hash'],'definition':d},run),'PROBE_BINDING: '+run['run_id']
         assert run['context_hash']==digest({'data':run['data'],'parameters':run['parameters'],'environment':run['environment']}),'PROBE_CONTEXT: '+run['run_id']
         artifact=ROOT/run['artifact'];assert artifact.resolve().is_relative_to((ROOT/'spec/run-artifacts').resolve()),'PROBE_PATH'
         assert hashlib.sha256(artifact.read_bytes()).hexdigest()==run['artifact_sha256'],'PROBE_ARTIFACT: '+run['run_id']

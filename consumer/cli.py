@@ -5,7 +5,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 from spec_bundle import load_bundle,read_json
 from .errors import Diagnostic
 from .frontend import Frontend
-from .runtime import Runtime,lower,DEFAULT_OPERATIONS,source_identity,hash_value
+from .runtime import Runtime,lower,implemented_operations,source_identity,hash_value
 
 
 def main():
@@ -17,7 +17,7 @@ def main():
             raise Diagnostic('ARTIFACT_INCOMPATIBLE','Consumer source differs from its pinned build')
         bundle=load_bundle(root/lock['bundle'],lock['manifest_sha256'],lock['semantic_profile_id'])
         resolved=Frontend(bundle).compile(args.source.read_text(encoding='utf8'))
-        operations=DEFAULT_OPERATIONS-({args.omit_operation} if args.omit_operation else set())
+        operations=implemented_operations()-({args.omit_operation} if args.omit_operation else set())
         ir=lower(resolved,operations)
         if args.compile_only:result={'resolved_program':resolved,'artifact':ir}
         elif not args.context:raise Diagnostic('CONTEXT_UNAVAILABLE','--context is required to execute')
