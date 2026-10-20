@@ -1,22 +1,27 @@
 # QA — Pine Wiki
 
-Дата прогона (Москва): `2026-10-20T01:39:00+03:00`.
-Ревизия: `2026-10-20.audit-fixes`.
-Карточек: 4631; семейств: 1292; ключей UI: 229.
+Дата прогона (Москва): `2026-10-20T03:41:36+03:00`.
+Ревизия: `2026-10-20.semantic-mvp.1`.
+Карточек: 4631; семейств: 1292; ключей UI: 243.
 
 Результат: **PASS**.
-SHA-256 проверенного кода, данных и тестов: `601012b2648059df936bb77f678b456b90c96471e4dc7d83534cd1bcca0386d0`.
+SHA-256 проверенного кода, данных и тестов: `443a6cd39a0d7c0a0872a180a39edf5c2d33257ab20671b36e18838cbbeed508`.
 
 | Команда | Код завершения | Секунды |
 |---|---:|---:|
-| `python.exe tools/build_manifest.py --check` | 0 | 0.078 |
-| `python.exe tools/verify_catalog.py` | 0 | 2.813 |
-| `python.exe tools/test_verifier.py --json test-results/verifier-guards.json` | 0 | 69.578 |
-| `python.exe tools/test_verifier.py --reverse --json test-results/verifier-guards-reverse.json` | 0 | 69.343 |
-| `python.exe tools/test_audit_v5_examples.py` | 0 | 1.657 |
-| `python.exe tools/test_semantic_contracts.py` | 0 | 0.343 |
-| `node.EXE tools/search_regression.js` | 0 | 0.86 |
-| `python.exe tools/e2e_smoke.py --screenshots test-results/screenshots --json test-results/e2e-results.json` | 0 | 34.359 |
+| `python.exe tools/build_manifest.py --check` | 0 | 0.062 |
+| `python.exe tools/verify_catalog.py` | 0 | 2.875 |
+| `python.exe tools/verify_spec.py` | 0 | 0.875 |
+| `python.exe tools/project_spec.py --check` | 0 | 1.079 |
+| `python.exe tools/test_spec.py` | 0 | 2.718 |
+| `node.EXE tools/test_example_status.js` | 0 | 0.047 |
+| `python.exe tools/test_release_consumer.py` | 0 | 2.094 |
+| `python.exe tools/test_verifier.py --json test-results/verifier-guards.json` | 0 | 76.984 |
+| `python.exe tools/test_verifier.py --reverse --json test-results/verifier-guards-reverse.json` | 0 | 76.485 |
+| `python.exe tools/test_audit_v5_examples.py` | 0 | 1.672 |
+| `python.exe tools/test_semantic_contracts.py` | 0 | 0.328 |
+| `node.EXE tools/search_regression.js` | 0 | 0.843 |
+| `python.exe tools/e2e_smoke.py --screenshots test-results/screenshots --json test-results/e2e-results.json` | 0 | 31.954 |
 
 ## Фактический вывод проверок
 
@@ -33,17 +38,77 @@ manifest: 22 files checked
 history: 1292 families, all referenced, all links resolved
 text pools: full catalog/history references, orphans, and empty texts checked
 catalog invariants: {'type_hints': 92, 'search_rank': 46, 'description_hints': 73, 'descriptions_missing': 23, 'templates': 752, 'pointers': 90, 'neighbor_descriptions': 1, 'legacy_params': 9, 'requiredness_conflicts': 27}
-ui strings: 229 keys used, 229 defined (ru+en); 45 dynamic keys checked
+ui strings: 243 keys used, 243 defined (ru+en); 45 dynamic keys checked
 js syntax: node --check passed for all files
 release documentation: generated files are current
 release counts: {'v1': 315, 'v2': 365, 'v3': 361, 'v4': 626, 'v5': 1444, 'v6': 1520}
 ALL CHECKS PASSED
 ```
 
+### `python.exe tools/verify_spec.py`
+
+```text
+Specification: 56 assertions; 24 definitions; 18 bound receipts; 6 complete programs
+```
+
+### `python.exe tools/project_spec.py --check`
+
+```text
+Semantic card/history/search projections: current
+```
+
+### `python.exe tools/test_spec.py`
+
+```text
+test_A01_unordered_records_and_stable_identity (__main__.SpecGates.test_A01_unordered_records_and_stable_identity) ... ok
+test_A02_translation_does_not_invalidate_semantic_cache (__main__.SpecGates.test_A02_translation_does_not_invalidate_semantic_cache) ... ok
+test_A03_one_reviewed_fact_changes_all_views_and_runtime (__main__.SpecGates.test_A03_one_reviewed_fact_changes_all_views_and_runtime) ... ok
+test_A04_positional_order_affects_hash_but_not_parameter_identity (__main__.SpecGates.test_A04_positional_order_affects_hash_but_not_parameter_identity) ... ok
+test_A05_needed_unknown_is_spec_unresolved (__main__.SpecGates.test_A05_needed_unknown_is_spec_unresolved) ... ok
+test_A06_explicit_argument_bypasses_unused_unknown (__main__.SpecGates.test_A06_explicit_argument_bypasses_unused_unknown) ... ok
+test_A07_locked_bundle_and_consumer_are_offline (__main__.SpecGates.test_A07_locked_bundle_and_consumer_are_offline) ... ok
+test_A08_missing_implementation_is_distinct (__main__.SpecGates.test_A08_missing_implementation_is_distinct) ... ok
+test_A09_context_absence_is_not_language_invalid (__main__.SpecGates.test_A09_context_absence_is_not_language_invalid) ... ok
+test_A10_external_pin_schema_and_artifact_integrity (__main__.SpecGates.test_A10_external_pin_schema_and_artifact_integrity) ... ok
+test_A11_export_is_byte_deterministic (__main__.SpecGates.test_A11_export_is_byte_deterministic) ... ok
+test_A12_successful_run_is_bound_to_definition_code_context (__main__.SpecGates.test_A12_successful_run_is_bound_to_definition_code_context) ... ok
+test_A13_hour_binding_rejects_name_ambiguity (__main__.SpecGates.test_A13_hour_binding_rejects_name_ambiguity) ... ok
+test_A14_six_complete_programs_match_independent_series (__main__.SpecGates.test_A14_six_complete_programs_match_independent_series) ... ok
+test_A15_duplicate_examples_and_placeholders_do_not_raise_rule_coverage (__main__.SpecGates.test_A15_duplicate_examples_and_placeholders_do_not_raise_rule_coverage) ... ok
+test_A16_stateful_context_sequences_events_and_rollback (__main__.SpecGates.test_A16_stateful_context_sequences_events_and_rollback) ... ok
+test_A17_source_grammar_scope_precedence_and_square_wrap (__main__.SpecGates.test_A17_source_grammar_scope_precedence_and_square_wrap) ... ok
+test_R01_semantic_spelling_not_arbitrary_substring (__main__.SpecGates.test_R01_semantic_spelling_not_arbitrary_substring) ... ok
+test_R03_content_origin_is_not_translation_method (__main__.SpecGates.test_R03_content_origin_is_not_translation_method) ... ok
+test_footprint_access_and_counter_are_separate (__main__.SpecGates.test_footprint_access_and_counter_are_separate) ... ok
+test_probe_coverage_rejects_stale_definition_or_context (__main__.SpecGates.test_probe_coverage_rejects_stale_definition_or_context) ... ok
+test_review_queue_never_activates_changed_sources (__main__.SpecGates.test_review_queue_never_activates_changed_sources) ... ok
+test_rule_runtime_obligations_and_request_counter (__main__.SpecGates.test_rule_runtime_obligations_and_request_counter) ... ok
+test_schema_and_typed_binding_edge_cases (__main__.SpecGates.test_schema_and_typed_binding_edge_cases) ... ok
+test_unreviewed_value_changes_and_unresolved_competitors_fail_gate (__main__.SpecGates.test_unreviewed_value_changes_and_unresolved_competitors_fail_gate) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 2.541s
+
+OK
+```
+
+### `node.EXE tools/test_example_status.js`
+
+```text
+40 example-status cases passed (negative/success/error/blocked/unknown/stale, RU/EN)
+```
+
+### `python.exe tools/test_release_consumer.py`
+
+```text
+7 release-consumer checks passed: 6 full CLI programs offline; byte-identical re-export; pinned implementation c12954ba3494f46048cfbf241eec9a9c343c7ed9
+```
+
 ### `python.exe tools/test_verifier.py --json test-results/verifier-guards.json`
 
 ```text
 PASS clean isolated fixture
+PASS hour() occurrence attached to variable rejected
 PASS catalog-v5 orphan text rejected after hash rebuild
 PASS history-2 orphan text rejected after hash rebuild
 PASS missing history supplement text rejected
@@ -58,6 +123,7 @@ PASS wrong history types aggregate rejected
 PASS wrong history requiredness aggregate rejected
 PASS wrong history return_types aggregate rejected
 PASS default changed despite unchanged evidence rejected
+PASS source-spelling bypass rejected with synchronized history
 PASS unrelated result donor rejected
 PASS family absent from declared shard rejected
 PASS truncated thousands literal rejected
@@ -78,6 +144,7 @@ PASS execution claim without run evidence rejected
 PASS truncated thousands literal rejected
 PASS family absent from declared shard rejected
 PASS unrelated result donor rejected
+PASS source-spelling bypass rejected with synchronized history
 PASS default changed despite unchanged evidence rejected
 PASS wrong history return_types aggregate rejected
 PASS wrong history requiredness aggregate rejected
@@ -92,6 +159,7 @@ PASS missing history default-contract text rejected
 PASS missing history supplement text rejected
 PASS history-2 orphan text rejected after hash rebuild
 PASS catalog-v5 orphan text rejected after hash rebuild
+PASS hour() occurrence attached to variable rejected
 PASS history cleanup preserves live data and is byte-idempotent
 PASS literal hex identifiers do not masquerade as text references
 PASS isolated version directive rejected after hash rebuild
@@ -113,7 +181,7 @@ PASS: missing canonical catalog entry is rejected without overwriting output
 ```text
 .....
 ----------------------------------------------------------------------
-Ran 5 tests in 0.252s
+Ran 5 tests in 0.247s
 
 OK
 ```
@@ -189,7 +257,7 @@ PASS guard: exact API name outranks its Russian alias forms
 PASS guard: short API names keep token boundaries
 PASS guard: empty search still matches all entries
 182/182 exact symbolic search cases passed across v1–v6
-score: median 0.47 ms for 1520 cards (informational; hardware-dependent)
+score: median 0.46 ms for 1520 cards (informational; hardware-dependent)
 52/52 search regression cases passed
 15/15 alias matching guards passed
 ```
@@ -478,16 +546,42 @@ PASS audit limit/en/request.security_lower_tf: shared caveat at card
 PASS audit cross/en: absence separated from manual supplement
 PASS audit array.from: one variadic group
 PASS audit round: two call forms, no three-argument template
+PASS spec/ru: card links formal contract
+PASS spec/ru: actual renderer not_compiled/not_executed
+PASS spec/ru: actual renderer compiled/executed
+PASS spec/ru: actual renderer error/not_executed
+PASS spec/ru: actual renderer compiled/blocked
+PASS spec/ru: actual renderer unknown/unknown
+PASS spec/ru: conflicting v5 default stays unresolved
+PASS spec/en: card links formal contract
+PASS spec/en: actual renderer not_compiled/not_executed
+PASS spec/en: actual renderer compiled/executed
+PASS spec/en: actual renderer error/not_executed
+PASS spec/en: actual renderer compiled/blocked
+PASS spec/en: actual renderer unknown/unknown
+PASS spec/en: conflicting v5 default stays unresolved
+PASS spec http/ru: facts, runs and review queue
+PASS spec http/ru/390: no horizontal overflow
+PASS spec http/ru/1400: no horizontal overflow
+PASS spec http/en: facts, runs and review queue
+PASS spec http/en/390: no horizontal overflow
+PASS spec http/en/1400: no horizontal overflow
+PASS spec file/ru: facts, runs and review queue
+PASS spec file/ru/390: no horizontal overflow
+PASS spec file/ru/1400: no horizontal overflow
+PASS spec file/en: facts, runs and review queue
+PASS spec file/en/390: no horizontal overflow
+PASS spec file/en/1400: no horizontal overflow
 PASS JSON export
 PASS page parameter
 PASS manifest hash on data requests
 PASS console/network clean
 
-285/285 browser checks passed
+311/311 browser checks passed
 ```
 
 ## Границы проверки
 
-Проверены сохранённые каталоги и поведение справочника. Pine-код не компилировался и не исполнялся; выбранные темы аудита 20.10.2026 сверены с первичными страницами TradingView, без сплошной проверки корпуса. Указанные источники и подсказки не подтверждают поведение Pine Editor.
+Проверены каталоги, интерфейс, формальные контракты, bundle и офлайн CLI. Отдельные фактические прогоны Pine Editor сохранены в spec/probe-runs.json с кодом, definition/context hashes и условиями наблюдения. Они не означают сплошной проверки корпуса: footprint заблокирован тарифом, realtime и полный язык вне MVP. PW-16: загрязнение fixture сейчас не воспроизведено, первопричина неизвестна.
 
 Повторить: `python tools/qa_report.py`. Отчёт создаётся даже при ошибке; успешность берётся из кодов завершения, а не из заранее написанного текста.
