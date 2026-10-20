@@ -18,9 +18,12 @@ def main():
         run=subprocess.run(command,cwd=ROOT,capture_output=True,text=True,encoding='utf8');assert run.returncode==0,run.stderr+run.stdout
         result=json.loads(run.stdout);assert result['result']['plots']==expected[program.stem],program.name
         assert result['consumer']['implementation_commit']==lock['implementation_commit'];assert result['context_sha256'];checks+=1
-    with tempfile.TemporaryDirectory(prefix='release-reexport-') as tmp:
-        export_bundle(tmp,source_commit=manifest['source_commit'])
-        for path in bundle.iterdir():assert path.read_bytes()==(Path(tmp)/path.name).read_bytes(),'Published bundle differs from canonical source: '+path.name
+    (ROOT/'.runtime').mkdir(exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix='release-reexport-',dir=ROOT/'.runtime') as tmp:
+        output=Path(tmp)/'bundle'
+        command=[sys.executable,'tools/spec_bundle.py','--output',str(output.relative_to(ROOT)),'--source-commit',manifest['source_commit'],'--write-lock',str(Path(tmp)/'lock.json')]
+        subprocess.run(command,cwd=ROOT,capture_output=True,text=True,encoding='utf8',check=True)
+        for path in bundle.iterdir():assert path.read_bytes()==(output/path.name).read_bytes(),'Published bundle differs from canonical source: '+path.name
         checks+=1
     print(f'{checks} release-consumer checks passed: 6 full CLI programs offline; byte-identical re-export; pinned implementation {lock["implementation_commit"]}')
 

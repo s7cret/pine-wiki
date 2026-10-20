@@ -20,6 +20,7 @@ from consumer.runtime import Runtime,lower,DEFAULT_OPERATIONS,StatePhases,boolea
 class SpecGates(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        (ROOT/'.runtime').mkdir(exist_ok=True)
         cls.temp=tempfile.TemporaryDirectory(prefix='spec-gates-',dir=ROOT/'.runtime');cls.work=Path(cls.temp.name)
         cls.registry=read_json(ROOT/'spec/registry.json');cls.evidence=read_json(ROOT/'spec/evidence.json');cls.grammar=read_json(ROOT/'spec/grammar.json')
         cls.path=cls.work/'base';cls.manifest,cls.pin=export_bundle(cls.path,source_commit='139453f352d95cc54e4b658b2bf02643aeea0c5e')

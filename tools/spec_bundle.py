@@ -159,7 +159,7 @@ def load_bundle(directory,expected_manifest_digest,profile_id='pine6.core-mvp.1'
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',type=Path,required=True);parser.add_argument('--source-commit');parser.add_argument('--write-lock',type=Path)
-    args=parser.parse_args();manifest,sha=export_bundle(args.output,args.source_commit)
+    args=parser.parse_args();args.output=args.output.resolve();manifest,sha=export_bundle(args.output,args.source_commit)
     if args.write_lock:
         sys.path.insert(0,str(ROOT))
         from consumer.runtime import source_identity
