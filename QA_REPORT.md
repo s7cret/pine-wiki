@@ -1,37 +1,38 @@
 # QA — Pine Wiki
 
-Дата прогона (Москва): `2026-10-20T03:41:36+03:00`.
-Ревизия: `2026-10-20.semantic-mvp.1`.
+Дата прогона (Москва): `2026-10-20T20:06:18+03:00`.
+Ревизия: `2026-10-20.audit6091.r2`.
 Карточек: 4631; семейств: 1292; ключей UI: 243.
 
 Результат: **PASS**.
-SHA-256 проверенного кода, данных и тестов: `443a6cd39a0d7c0a0872a180a39edf5c2d33257ab20671b36e18838cbbeed508`.
+SHA-256 проверенного кода, данных и тестов: `3bf5ed2788c81629d8fb1f89cd75043718210d5ad2f060fb62f80e0e6b914caa`.
 
 | Команда | Код завершения | Секунды |
 |---|---:|---:|
-| `python.exe tools/build_manifest.py --check` | 0 | 0.062 |
-| `python.exe tools/verify_catalog.py` | 0 | 2.875 |
-| `python.exe tools/verify_spec.py` | 0 | 0.875 |
-| `python.exe tools/project_spec.py --check` | 0 | 1.079 |
-| `python.exe tools/test_spec.py` | 0 | 2.718 |
-| `node.EXE tools/test_example_status.js` | 0 | 0.047 |
-| `python.exe tools/test_release_consumer.py` | 0 | 2.094 |
-| `python.exe tools/test_verifier.py --json test-results/verifier-guards.json` | 0 | 76.984 |
-| `python.exe tools/test_verifier.py --reverse --json test-results/verifier-guards-reverse.json` | 0 | 76.485 |
-| `python.exe tools/test_audit_v5_examples.py` | 0 | 1.672 |
-| `python.exe tools/test_semantic_contracts.py` | 0 | 0.328 |
-| `node.EXE tools/search_regression.js` | 0 | 0.843 |
-| `python.exe tools/e2e_smoke.py --screenshots test-results/screenshots --json test-results/e2e-results.json` | 0 | 31.954 |
+| `python tools/build_manifest.py --check` | 0 | 0.189 |
+| `python tools/verify_catalog.py` | 0 | 3.653 |
+| `python tools/verify_spec.py` | 0 | 2.045 |
+| `python tools/project_spec.py --check` | 0 | 2.001 |
+| `python tools/test_spec.py` | 0 | 5.463 |
+| `python tools/test_audit_6091.py` | 0 | 7.347 |
+| `node tools/test_example_status.js` | 0 | 0.032 |
+| `python tools/test_release_consumer.py` | 0 | 2.966 |
+| `python tools/test_verifier.py --json test-results/verifier-guards.json` | 0 | 92.668 |
+| `python tools/test_verifier.py --reverse --json test-results/verifier-guards-reverse.json` | 0 | 93.648 |
+| `python tools/test_audit_v5_examples.py` | 0 | 2.602 |
+| `python tools/test_semantic_contracts.py` | 0 | 0.462 |
+| `node tools/search_regression.js` | 0 | 1.011 |
+| `python tools/e2e_smoke.py --screenshots test-results/screenshots --json test-results/e2e-results.json` | 0 | 38.346 |
 
 ## Фактический вывод проверок
 
-### `python.exe tools/build_manifest.py --check`
+### `python tools/build_manifest.py --check`
 
 ```text
 manifest: all 22 hashes and sizes are current
 ```
 
-### `python.exe tools/verify_catalog.py`
+### `python tools/verify_catalog.py`
 
 ```text
 manifest: 22 files checked
@@ -45,19 +46,19 @@ release counts: {'v1': 315, 'v2': 365, 'v3': 361, 'v4': 626, 'v5': 1444, 'v6': 1
 ALL CHECKS PASSED
 ```
 
-### `python.exe tools/verify_spec.py`
+### `python tools/verify_spec.py`
 
 ```text
-Specification: 56 assertions; 24 definitions; 18 bound receipts; 6 complete programs
+Specification: 58 assertions; 39 definitions; 33 bound receipts; 6 complete programs
 ```
 
-### `python.exe tools/project_spec.py --check`
+### `python tools/project_spec.py --check`
 
 ```text
 Semantic card/history/search projections: current
 ```
 
-### `python.exe tools/test_spec.py`
+### `python tools/test_spec.py`
 
 ```text
 test_A01_unordered_records_and_stable_identity (__main__.SpecGates.test_A01_unordered_records_and_stable_identity) ... ok
@@ -87,24 +88,48 @@ test_schema_and_typed_binding_edge_cases (__main__.SpecGates.test_schema_and_typ
 test_unreviewed_value_changes_and_unresolved_competitors_fail_gate (__main__.SpecGates.test_unreviewed_value_changes_and_unresolved_competitors_fail_gate) ... ok
 
 ----------------------------------------------------------------------
-Ran 25 tests in 2.541s
+Ran 25 tests in 5.212s
 
 OK
 ```
 
-### `node.EXE tools/test_example_status.js`
+### `python tools/test_audit_6091.py`
 
 ```text
-40 example-status cases passed (negative/success/error/blocked/unknown/stale, RU/EN)
+test_N01_array_modulo_bool (__main__.AuditRegressions.test_N01_array_modulo_bool) ... ok
+test_N02_declared_type_and_qualifiers (__main__.AuditRegressions.test_N02_declared_type_and_qualifiers) ... ok
+test_N03_language_rejections (__main__.AuditRegressions.test_N03_language_rejections) ... ok
+test_N04_request_constant_capture (__main__.AuditRegressions.test_N04_request_constant_capture) ... ok
+test_N05_competing_facts_and_scope (__main__.AuditRegressions.test_N05_competing_facts_and_scope) ... ok
+test_N06_global_identity (__main__.AuditRegressions.test_N06_global_identity) ... ok
+test_N07_readiness_dependencies (__main__.AuditRegressions.test_N07_readiness_dependencies) ... ok
+test_N08_decision_impact_and_full_cycle (__main__.AuditRegressions.test_N08_decision_impact_and_full_cycle) ... ok
+test_N09_manifest_compatibility (__main__.AuditRegressions.test_N09_manifest_compatibility) ... ok
+test_N10_output_ids_and_context (__main__.AuditRegressions.test_N10_output_ids_and_context) ... ok
+test_N11_observed_date (__main__.AuditRegressions.test_N11_observed_date) ... ok
+test_N12_operation_coverage (__main__.AuditRegressions.test_N12_operation_coverage) ... ok
+test_N14_receipt_consistency_and_static_rejection (__main__.AuditRegressions.test_N14_receipt_consistency_and_static_rejection) ... ok
+test_original_published_evidence_is_preserved (__main__.AuditRegressions.test_original_published_evidence_is_preserved) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 7.095s
+
+OK
 ```
 
-### `python.exe tools/test_release_consumer.py`
+### `node tools/test_example_status.js`
 
 ```text
-7 release-consumer checks passed: 6 full CLI programs offline; byte-identical re-export; pinned implementation c12954ba3494f46048cfbf241eec9a9c343c7ed9
+41 example-status cases passed (negative/success/error/blocked/unknown/stale, RU/EN)
 ```
 
-### `python.exe tools/test_verifier.py --json test-results/verifier-guards.json`
+### `python tools/test_release_consumer.py`
+
+```text
+7 release-consumer checks passed: 6 full CLI programs offline; byte-identical re-export; pinned implementation 8468e06dac821bec2785d0a39c3a0d381916b3ca
+```
+
+### `python tools/test_verifier.py --json test-results/verifier-guards.json`
 
 ```text
 PASS clean isolated fixture
@@ -136,7 +161,7 @@ PASS missing dynamically assembled role key rejected
 PASS unused UI key rejected
 ```
 
-### `python.exe tools/test_verifier.py --reverse --json test-results/verifier-guards-reverse.json`
+### `python tools/test_verifier.py --reverse --json test-results/verifier-guards-reverse.json`
 
 ```text
 PASS clean isolated fixture
@@ -168,7 +193,7 @@ PASS missing dynamically assembled role key rejected
 PASS unused UI key rejected
 ```
 
-### `python.exe tools/test_audit_v5_examples.py`
+### `python tools/test_audit_v5_examples.py`
 
 ```text
 PASS: absent output regenerates all 574 reviewed records byte for byte
@@ -176,17 +201,17 @@ PASS: corrupt output is detected read-only and can be regenerated
 PASS: missing canonical catalog entry is rejected without overwriting output
 ```
 
-### `python.exe tools/test_semantic_contracts.py`
+### `python tools/test_semantic_contracts.py`
 
 ```text
 .....
 ----------------------------------------------------------------------
-Ran 5 tests in 0.247s
+Ran 5 tests in 0.389s
 
 OK
 ```
 
-### `node.EXE tools/search_regression.js`
+### `node tools/search_regression.js`
 
 ```text
 PASS sma                          rank=1       top=ta.sma, ta.bb, ta.correlation
@@ -218,7 +243,7 @@ PASS индикатор                    rank=1       top=indicator, ta.cog, t
 PASS стратегия                    rank=1       top=strategy, strategy.equity, strategy.entry
 PASS массив                       rank=1       top=array, array.abs, array.abs
 PASS массивы                      rank=1       top=array, array.abs, array.abs
-PASS массивов                     rank=1       top=array, Прежняя запись типа массива, for…in по массиву
+PASS массивов                     rank=1       top=array, for…in по массиву, Прежняя запись типа массива
 PASS метка                        rank=1       top=label, label, label.all
 PASS метки                        rank=1       top=label, label, label.new
 PASS метку                        rank=1       top=label, label, label.new
@@ -257,12 +282,12 @@ PASS guard: exact API name outranks its Russian alias forms
 PASS guard: short API names keep token boundaries
 PASS guard: empty search still matches all entries
 182/182 exact symbolic search cases passed across v1–v6
-score: median 0.46 ms for 1520 cards (informational; hardware-dependent)
+score: median 0.57 ms for 1520 cards (informational; hardware-dependent)
 52/52 search regression cases passed
 15/15 alias matching guards passed
 ```
 
-### `python.exe tools/e2e_smoke.py --screenshots test-results/screenshots --json test-results/e2e-results.json`
+### `python tools/e2e_smoke.py --screenshots test-results/screenshots --json test-results/e2e-results.json`
 
 ```text
 PASS HTTP v1/ru/390: count and layout
@@ -561,15 +586,19 @@ PASS spec/en: actual renderer compiled/blocked
 PASS spec/en: actual renderer unknown/unknown
 PASS spec/en: conflicting v5 default stays unresolved
 PASS spec http/ru: facts, runs and review queue
+PASS spec http/ru: implementation coverage and own evidence labeled
 PASS spec http/ru/390: no horizontal overflow
 PASS spec http/ru/1400: no horizontal overflow
 PASS spec http/en: facts, runs and review queue
+PASS spec http/en: implementation coverage and own evidence labeled
 PASS spec http/en/390: no horizontal overflow
 PASS spec http/en/1400: no horizontal overflow
 PASS spec file/ru: facts, runs and review queue
+PASS spec file/ru: implementation coverage and own evidence labeled
 PASS spec file/ru/390: no horizontal overflow
 PASS spec file/ru/1400: no horizontal overflow
 PASS spec file/en: facts, runs and review queue
+PASS spec file/en: implementation coverage and own evidence labeled
 PASS spec file/en/390: no horizontal overflow
 PASS spec file/en/1400: no horizontal overflow
 PASS JSON export
@@ -577,7 +606,7 @@ PASS page parameter
 PASS manifest hash on data requests
 PASS console/network clean
 
-311/311 browser checks passed
+315/315 browser checks passed
 ```
 
 ## Границы проверки
