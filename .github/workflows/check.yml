@@ -5,6 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The preservation regression compares published artifacts to 6091d18.
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
