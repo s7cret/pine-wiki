@@ -1,0 +1,26 @@
+//@version=5
+// Editorial example; not compiled or executed in Pine.
+indicator("Lookahead default v5")
+float implicit = request.security(syminfo.tickerid, "1D", close)
+float explicit = request.security(syminfo.tickerid, "1D", close, lookahead = barmerge.lookahead_off)
+plot(implicit - explicit, "Expected zero")
+
+var int verified = 0
+var int firstDefined = na
+var int datasetFirst = time
+var int total = 0
+var int naMismatch = 0
+var float maxError = 0.0
+total += 1
+if na(implicit) != na(explicit)
+    naMismatch += 1
+if not na(implicit - explicit)
+    if na(firstDefined)
+        firstDefined := time
+    verified += 1
+    maxError := math.max(maxError, math.abs(implicit - explicit))
+if barstate.islast
+    log.info("WIKI_FULL first={0} last={1} bars={2} max_error={3} na_mismatch={4} dataset_first={5} total={6}", firstDefined, time, verified, maxError, naMismatch, datasetFirst, total)
+plot(maxError == 0.0 ? 1 : 0, "Exact equality")
+plot(verified, "Verified bars")
+plot(naMismatch, "NA mismatches")

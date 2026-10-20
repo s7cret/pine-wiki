@@ -1,0 +1,4 @@
+//@version=6
+indicator("MVP abs")
+float value = math.abs(-2.5)
+plot(value, "abs")

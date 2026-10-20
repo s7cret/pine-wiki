@@ -1,0 +1,20 @@
+U
+U.S. Dollar / Russian Ruble TOM
+1h
+RUS
+O
+83.4550
+H
+83.4550
+L
+83.4550
+C
+83.4550
++0.3550 (+0.43%)
+83.4550
+SELL
+0.0000
+83.4550
+BUY
+Unmatched bool switch
+0.0000

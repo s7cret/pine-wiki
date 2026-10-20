@@ -1,0 +1,4 @@
+//@version=6
+indicator("MVP tr")
+plot(ta.tr, "variable")
+plot(ta.tr(true), "function")

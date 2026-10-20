@@ -1,0 +1,8 @@
+//@version=6
+indicator("MVP request")
+[
+    remoteEma,
+    remoteClose
+] = request.security(syminfo.tickerid, "120", [ta.ema(close, 3), close], calc_bars_count = 20)
+plot(remoteEma, "remote ema")
+plot(remoteClose, "remote close")

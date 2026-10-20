@@ -64,7 +64,9 @@ python tools/qa_report.py
 
 `QA_REPORT.md` и `docs/qa-results.json` генерируются из фактического прогона с кодами завершения и отпечатком проверенных файлов; ошибки не заменяются сообщением об успехе. Скриншоты и подробности прогона находятся в `test-results/` (не включаются в git).
 
-Правки каталогов воспроизводятся стандартной библиотекой Python:
+Контракты MVP и JSON Schema требуют зависимостей из `requirements-dev.txt`. Профиль и офлайн CLI: [docs/SEMANTIC_PROFILE.md](docs/SEMANTIC_PROFILE.md). Приёмка ТЗ v2: [docs/AUDIT_V2_2026-10-20.md](docs/AUDIT_V2_2026-10-20.md).
+
+Правки каталогов воспроизводятся командами:
 
 ```sh
 python tools/migrations/01_merge_v5_examples.py
@@ -74,6 +76,8 @@ python tools/migrations/04_register_requiredness_conflicts.py
 python tools/migrations/05_clean_history_texts.py
 python tools/migrations/06_audit_20261020.py
 python tools/migrations/07_audit_examples.py
+python tools/migrations/08_audit_v2_metadata.py
+python tools/project_spec.py
 python tools/audit_v5_examples.py
 python tools/build_manifest.py --revision {m['revision']}
 python tools/report_sources.py
@@ -85,8 +89,8 @@ python tools/qa_report.py
 
 ## Известные ограничения
 
-- У {total('empty_parameter_descriptions')} параметров нет первичного описания; из них {total('parameters_without_description_or_hint')} без безопасной подсказки. CSV: `docs/empty-parameter-descriptions.csv` и `docs/parameter-descriptions-without-hints.csv`. Исторические роли `rsi` v4 дополнены по руководству миграции; исходные пустые поля сохранены. Вариадические группы `min/max/avg` не заполнялись предположениями.
-- Пустые строки, потерянные при исходной нарезке примеров v5, не восстановлены: первичный снимок с ними не приложен. Сохранены порядок строк и отступы; Pine-код не компилировался и не исполнялся.
+- Не менее {total('empty_parameter_descriptions')} параметров не имеют содержательного основного текста (пустые и заглушки); это нижняя граница, а не полный счётчик отсутствующих первичных описаний. Происхождение содержательного текста классифицируется отдельно: первичный — {total('substantive_primary_parameter_descriptions')}, редакторский — {total('editorial_main_parameter_descriptions')}, не установлен — {total('unclassified_content_origin')}. Из пустых и заглушек {total('parameters_without_description_or_hint')} без безопасной подсказки. CSV: `docs/empty-parameter-descriptions.csv` и `docs/parameter-descriptions-without-hints.csv`. Исторические роли `rsi` v4 дополнены по руководству миграции; исходные пустые поля сохранены. Вариадические группы `min/max/avg` не заполнялись предположениями.
+- Пустые строки, потерянные при исходной нарезке примеров v5, не восстановлены: первичный снимок с ними не приложен. Сохранены порядок строк и отступы; весь исторический корпус не исполнялся. Отдельные новые прогоны Pine Editor — в `spec/probe-runs.json`.
 - Неизвестная обязательность и конфликты остаются фактами сохранённых источников:
 
 | Версия | Неизвестная обязательность | Конфликты |
@@ -105,7 +109,7 @@ python tools/qa_report.py
 
 Собственный код распространяется по [MIT](LICENSE), как выбрал владелец. Документация, примеры, снимки и производные переводы сторонних авторов описаны отдельно в [NOTICE](NOTICE) и [THIRD_PARTY.md](THIRD_PARTY.md); их лицензия не заменяется MIT проекта. Перечень источников: `docs/source-inventory.csv`. Права на публичную раздачу сторонних материалов в этой задаче не устанавливались; сайт опубликован на GitHub Pages.
 
-Pine Wiki — неофициальный справочник, не связанный с TradingView. Поддержка описанных конструкций другими реализациями языка здесь не оценивается. В сохранённых пояснениях происхождения встречается OpenPine — название отдельного проекта реализации Pine Script; эти записи сообщают, что его совместимость здесь не проверялась.
+Pine Wiki — неофициальный справочник, не связанный с TradingView. Отдельный офлайн consumer демонстрирует только `pine6.core-mvp.1`; совместимость всего OpenPine здесь не заявляется. В сохранённых пояснениях происхождения встречается OpenPine — название отдельного проекта реализации Pine Script; эти записи сообщают, что его совместимость здесь не проверялась.
 '''
 
 

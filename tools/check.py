@@ -18,7 +18,11 @@ def source_fingerprint():
     # QA outputs and generated documentation are excluded to avoid circular hashes.
     files = sorted([*ROOT.glob('*.js'), *ROOT.glob('*.css'), ROOT / 'index.html',
                     *ROOT.glob('tools/*.py'), *ROOT.glob('tools/*.js'), *ROOT.glob('tools/*.json'),
-                    *ROOT.glob('tools/migrations/*.py'), *ROOT.glob('tools/migrations/*.json')])
+                    *ROOT.glob('tools/migrations/*.py'), *ROOT.glob('tools/migrations/*.json'),
+                    *ROOT.glob('consumer/*.py'), *ROOT.glob('consumer/*.json'),
+                    ROOT/'requirements-dev.txt', ROOT/'package.json', ROOT/'docs/SEMANTIC_PROFILE.md', ROOT/'docs/AUDIT_V2_2026-10-20.md',
+                    *[p for p in (ROOT/'spec').rglob('*') if p.is_file() and p.suffix in ('.json','.js','.html','.pine','.txt','.jpg')],
+                    *[p for p in (ROOT/'bundles').rglob('*') if p.is_file()]])
     h = hashlib.sha256()
     for path in files:
         h.update(path.relative_to(ROOT).as_posix().encode())
@@ -35,6 +39,11 @@ def main():
     commands = [
         [sys.executable, 'tools/build_manifest.py', '--check'],
         [sys.executable, 'tools/verify_catalog.py'],
+        [sys.executable, 'tools/verify_spec.py'],
+        [sys.executable, 'tools/project_spec.py', '--check'],
+        [sys.executable, 'tools/test_spec.py'],
+        [node, 'tools/test_example_status.js'],
+        [sys.executable, 'tools/test_release_consumer.py'],
         [sys.executable, 'tools/test_verifier.py', '--json', 'test-results/verifier-guards.json'],
         [sys.executable, 'tools/test_verifier.py', '--reverse', '--json', 'test-results/verifier-guards-reverse.json'],
         [sys.executable, 'tools/test_audit_v5_examples.py'],

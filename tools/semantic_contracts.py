@@ -43,7 +43,16 @@ def contract_errors(contract, texts):
         if re.fullmatch(NUMBER, value) and numeric and value != numeric['value']:
             yield 'DEFAULT_EVIDENCE: numeric literal was truncated or changed'
         literal = e.get('source_spelling', value)
-        if literal not in quote and not re.search(r'\[' + re.escape(value) + r'\]', quote):
+        if not isinstance(literal, str) or not isinstance(value, str):
+            yield 'DEFAULT_EVIDENCE: spelling and value must be strings'
+            continue
+        if re.fullmatch(NUMBER, literal) and re.fullmatch(NUMBER, value):
+            equivalent = Decimal(literal.replace(',', '')) == Decimal(value.replace(',', ''))
+        else:
+            equivalent = literal == value
+        if not equivalent:
+            yield 'DEFAULT_EVIDENCE: source spelling and normalized value are not equivalent'
+        if not re.search(r'(?<![\w.])' + re.escape(literal) + r'(?![\w.])', quote):
             yield 'DEFAULT_EVIDENCE: value is absent from quoted evidence'
 
 

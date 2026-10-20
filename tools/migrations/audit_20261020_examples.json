@@ -1,503 +1,833 @@
 {
-  "reviewed_on": "2026-10-20",
   "items": [
     {
-      "version": 2,
+      "code": "//@version=2\nstudy(\"My Script\")\nprice = close\nif hl2 > price\n    price := hl2\nplot(price)",
+      "code_sha256": "2498eefa8b62a539338c59f8a59532b3431534a9908c2b36ede70132df6146a1",
+      "compilation_status": "not_compiled",
+      "example_id": "example.audit.source-1",
+      "execution_status": "not_executed",
+      "expected_origin": "source_documentation",
+      "expected_result": {
+        "en": "price is the larger of close and hl2.",
+        "ru": "price равен большему из close и hl2."
+      },
+      "language_version": 2,
+      "oracle_status": "specific_expected_not_observed",
+      "origin": "official_source",
+      "preconditions": {
+        "en": "Pine environment of the stated version and available chart data.",
+        "ru": "Среда Pine указанной версии и доступные данные графика."
+      },
+      "role": "full_script",
+      "source": {
+        "anchor": "variable-assignment",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "b157e09e0e102374c33d39821eff2b3fdfd9338f6cc6b121f5ef7f18388e3e2e",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "5e4a9c26a1d02339309e9ef822eb26bff41371e0fedd9bcab0a16c45e701c9ab",
+          "status": "reviewed_metadata"
+        },
+        "section": "Variable assignment",
+        "sha256": "5e4a9c26a1d02339309e9ef822eb26bff41371e0fedd9bcab0a16c45e701c9ab",
+        "upstream_section_sha256": "aa9fe725c95ea7b736827f9d8b180ce94fd52f310eae5635c9f0eab4d132445f",
+        "url": "https://www.tradingview.com/pine-script-docs/v3/language/expressions-declarations-and-statements/#variable-assignment"
+      },
+      "source_documentation_version": 3,
+      "static_review_status": "source_imported_not_runtime_validated",
       "targets": [
         "id:wiki:v2:syntax:%D0%9F%D0%B5%D1%80%D0%B5%D0%BF%D1%80%D0%B8%D1%81%D0%B2%D0%B0%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
         "id:wiki:v2:syntax:%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D0%B5%20if%20%2F%20else"
       ],
-      "code": "//@version=2\nstudy(\"My Script\")\nprice = close\nif hl2 > price\n    price := hl2\nplot(price)",
-      "origin": "official_source",
-      "role": "full_script",
-      "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/v3/language/expressions-declarations-and-statements/#variable-assignment",
-        "sha256": "5e4a9c26a1d02339309e9ef822eb26bff41371e0fedd9bcab0a16c45e701c9ab",
-        "section": "Variable assignment"
-      },
-      "code_sha256": "2498eefa8b62a539338c59f8a59532b3431534a9908c2b36ede70132df6146a1",
-      "expected_result": {
-        "ru": "price равен большему из close и hl2.",
-        "en": "price is the larger of close and hl2."
-      },
-      "compilation_status": "not_compiled",
-      "execution_status": "not_executed",
-      "static_review_status": "source_imported_not_runtime_validated",
-      "preconditions": {
-        "ru": "Среда Pine указанной версии и доступные данные графика.",
-        "en": "Pine environment of the stated version and available chart data."
-      }
+      "version": 2,
+      "version_directive": 2
     },
     {
-      "version": 2,
+      "code": "//@version=2\nstudy(\"For loop\")\nmy_sma(price, length) =>\n    sum = price\n    for i = 1 to length-1\n        sum := sum + price[i]\n    sum / length\nplot(my_sma(close,14))",
+      "code_sha256": "4259889d36246c282e36cd1ec3d0bd791007b3915b87a428f368b318df29e2bf",
+      "compilation_status": "not_compiled",
+      "example_id": "example.audit.source-2",
+      "execution_status": "not_executed",
+      "expected_origin": "source_documentation",
+      "expected_result": {
+        "en": "Mean close over 14 bars after warmup.",
+        "ru": "Среднее close по 14 барам после прогрева."
+      },
+      "language_version": 2,
+      "oracle_status": "specific_expected_not_observed",
+      "origin": "official_source",
+      "preconditions": {
+        "en": "Pine environment of the stated version and available chart data.",
+        "ru": "Среда Pine указанной версии и доступные данные графика."
+      },
+      "role": "full_script",
+      "source": {
+        "anchor": "for-statement",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "56a8b45f44304e62410ffad7b5718a4cfacd375b5698df3338d460fec1e56739",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "5e4a9c26a1d02339309e9ef822eb26bff41371e0fedd9bcab0a16c45e701c9ab",
+          "status": "reviewed_metadata"
+        },
+        "section": "​for​ statement",
+        "sha256": "5e4a9c26a1d02339309e9ef822eb26bff41371e0fedd9bcab0a16c45e701c9ab",
+        "upstream_section_sha256": "95574c8caea39c0717dded84fb9ebb584b281d6428b4409ec14cdb7bdcdfff97",
+        "url": "https://www.tradingview.com/pine-script-docs/v3/language/expressions-declarations-and-statements/#for-statement"
+      },
+      "source_documentation_version": 3,
+      "static_review_status": "source_imported_not_runtime_validated",
       "targets": [
         "id:wiki:v2:syntax:%D0%A6%D0%B8%D0%BA%D0%BB%20for"
       ],
-      "code": "//@version=2\nstudy(\"For loop\")\nmy_sma(price, length) =>\n    sum = price\n    for i = 1 to length-1\n        sum := sum + price[i]\n    sum / length\nplot(my_sma(close,14))",
-      "origin": "official_source",
-      "role": "full_script",
-      "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/v3/language/expressions-declarations-and-statements/#for-statement",
-        "sha256": "5e4a9c26a1d02339309e9ef822eb26bff41371e0fedd9bcab0a16c45e701c9ab",
-        "section": "​for​ statement"
-      },
-      "code_sha256": "4259889d36246c282e36cd1ec3d0bd791007b3915b87a428f368b318df29e2bf",
-      "expected_result": {
-        "ru": "Среднее close по 14 барам после прогрева.",
-        "en": "Mean close over 14 bars after warmup."
-      },
-      "compilation_status": "not_compiled",
-      "execution_status": "not_executed",
-      "static_review_status": "source_imported_not_runtime_validated",
-      "preconditions": {
-        "ru": "Среда Pine указанной версии и доступные данные графика.",
-        "en": "Pine environment of the stated version and available chart data."
-      }
+      "version": 2,
+      "version_directive": 2
     },
     {
-      "version": 4,
-      "targets": [
-        "highestbars",
-        "lowestbars"
-      ],
       "code": "//@version=4\nstudy(\"My Script\", overlay = true)\nlength = input(10, \"Length\", input.integer, minval = 1, maxval = 100)\navgBar = avg(highestbars(length), lowestbars(length))\nfloat dynLen = nz(abs(avgBar) + 1, length)\ndynSma = sma(close, int(dynLen))\nplot(dynSma)",
-      "origin": "official_source",
-      "role": "full_script",
-      "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/v4/release-notes/#september-2020",
-        "sha256": "a9ea181e0cd6acf364862ba3daf270c963e9b8f5b3d961661c56f34ee0a462d7",
-        "section": "September 2020"
-      },
       "code_sha256": "c7691f3d5edc782acbc6eed53b31fde5c6807efa9a5284d713a836553ea90957",
-      "expected_result": {
-        "ru": "Адаптивная SMA по смещениям экстремумов.",
-        "en": "Adaptive SMA based on offsets of extremes."
-      },
       "compilation_status": "not_compiled",
+      "example_id": "example.audit.source-3",
       "execution_status": "not_executed",
-      "static_review_status": "source_imported_not_runtime_validated",
+      "expected_origin": "source_documentation",
+      "expected_result": {
+        "en": "Adaptive SMA based on offsets of extremes.",
+        "ru": "Адаптивная SMA по смещениям экстремумов."
+      },
+      "language_version": 4,
+      "oracle_status": "specific_expected_not_observed",
+      "origin": "official_source",
       "preconditions": {
-        "ru": "Среда Pine указанной версии и доступные данные графика.",
-        "en": "Pine environment of the stated version and available chart data."
-      }
+        "en": "Pine environment of the stated version and available chart data.",
+        "ru": "Среда Pine указанной версии и доступные данные графика."
+      },
+      "role": "full_script",
+      "source": {
+        "anchor": "september-2020",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "9da02ce0bd03b832bd179e4459ee58b76c41462eb5c232206313106ab9476063",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "a9ea181e0cd6acf364862ba3daf270c963e9b8f5b3d961661c56f34ee0a462d7",
+          "status": "reviewed_metadata"
+        },
+        "section": "September 2020",
+        "sha256": "a9ea181e0cd6acf364862ba3daf270c963e9b8f5b3d961661c56f34ee0a462d7",
+        "upstream_section_sha256": "c1c840a4616c413ab26eff67f4edbfb3e5a7edc05ce20ceec069cfc0a92015a7",
+        "url": "https://www.tradingview.com/pine-script-docs/v4/release-notes/#september-2020"
+      },
+      "source_documentation_version": 4,
+      "static_review_status": "source_imported_not_runtime_validated",
+      "targets": [
+        "id:primary:v4:functions:highestbars:overload:0",
+        "id:primary:v4:functions:lowestbars:overload:0"
+      ],
+      "version": 4,
+      "version_directive": 4
     },
     {
-      "version": 4,
-      "targets": [
-        "label.set_tooltip"
-      ],
       "code": "//@version=4\nstudy(\"My Script\", overlay=true)\nvar l=label.new(bar_index, close, yloc=yloc.abovebar, text=\"Label\")\nlabel.set_x(l,bar_index)\nlabel.set_tooltip(l, \"Label Tooltip\")",
-      "origin": "official_source",
-      "role": "full_script",
-      "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/v4/release-notes/#june-2020",
-        "sha256": "a9ea181e0cd6acf364862ba3daf270c963e9b8f5b3d961661c56f34ee0a462d7",
-        "section": "June 2020"
-      },
       "code_sha256": "ff41fa7108b58f8806db2cf151d8adf9a9cef736e9cde6991f4519db784cd24b",
-      "expected_result": {
-        "ru": "Подсказка Label Tooltip при наведении на метку.",
-        "en": "Label Tooltip appears when hovering over the label."
-      },
       "compilation_status": "not_compiled",
+      "example_id": "example.audit.source-4",
       "execution_status": "not_executed",
-      "static_review_status": "source_imported_not_runtime_validated",
+      "expected_origin": "source_documentation",
+      "expected_result": {
+        "en": "Label Tooltip appears when hovering over the label.",
+        "ru": "Подсказка Label Tooltip при наведении на метку."
+      },
+      "language_version": 4,
+      "oracle_status": "specific_expected_not_observed",
+      "origin": "official_source",
       "preconditions": {
-        "ru": "Среда Pine указанной версии и доступные данные графика.",
-        "en": "Pine environment of the stated version and available chart data."
-      }
+        "en": "Pine environment of the stated version and available chart data.",
+        "ru": "Среда Pine указанной версии и доступные данные графика."
+      },
+      "role": "full_script",
+      "source": {
+        "anchor": "june-2020",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "45cc9c28ce429096dee7e7f764160898a22e2eb84785c48d0090eb6ac00cde3c",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "a9ea181e0cd6acf364862ba3daf270c963e9b8f5b3d961661c56f34ee0a462d7",
+          "status": "reviewed_metadata"
+        },
+        "section": "June 2020",
+        "sha256": "a9ea181e0cd6acf364862ba3daf270c963e9b8f5b3d961661c56f34ee0a462d7",
+        "upstream_section_sha256": "66072f9474c75b9ecf79135305e07c08a09d129fe41b5ff00d2dec35e82df556",
+        "url": "https://www.tradingview.com/pine-script-docs/v4/release-notes/#june-2020"
+      },
+      "source_documentation_version": 4,
+      "static_review_status": "source_imported_not_runtime_validated",
+      "targets": [
+        "id:primary:v4:functions:label.set_tooltip:overload:0"
+      ],
+      "version": 4,
+      "version_directive": 4
     },
     {
-      "version": 4,
-      "targets": [
-        "hour"
-      ],
       "code": "//@version=4\nstudy(\"My Script\")\nplot(hour(1591012800000, \"GMT+1\"))",
-      "origin": "official_source",
-      "role": "full_script",
-      "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/v4/release-notes/#june-2020",
-        "sha256": "a9ea181e0cd6acf364862ba3daf270c963e9b8f5b3d961661c56f34ee0a462d7",
-        "section": "June 2020"
-      },
       "code_sha256": "684adca5d7093d455549b47dc138a0880be26dbe9b3c9585d409db5a185245c0",
-      "expected_result": {
-        "ru": "Час заданного timestamp в GMT+1.",
-        "en": "Hour of the specified timestamp in GMT+1."
-      },
       "compilation_status": "not_compiled",
+      "example_id": "example.audit.source-5",
       "execution_status": "not_executed",
-      "static_review_status": "source_imported_not_runtime_validated",
-      "preconditions": {
-        "ru": "Среда Pine указанной версии и доступные данные графика.",
-        "en": "Pine environment of the stated version and available chart data."
-      }
-    },
-    {
-      "version": 4,
-      "targets": [
-        "label.set_xy"
-      ],
-      "code": "//@version=4\nstudy(\"My Script\", overlay = true)\nvar l = label.new(bar_index, high, text=\"Right\\n aligned\\n text\", textalign=text.align_right)\nlabel.set_xy(l, bar_index, high)",
+      "expected_origin": "source_documentation",
+      "expected_result": {
+        "en": "Hour of the specified timestamp in GMT+1.",
+        "ru": "Час заданного timestamp в GMT+1."
+      },
+      "language_version": 4,
+      "oracle_status": "specific_expected_not_observed",
       "origin": "official_source",
+      "preconditions": {
+        "en": "Pine environment of the stated version and available chart data.",
+        "ru": "Среда Pine указанной версии и доступные данные графика."
+      },
       "role": "full_script",
       "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/v4/release-notes/#february-2020",
+        "anchor": "june-2020",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "0fde6f0fb19d935ac082c5b5cab8b4b40ba1dc494084704dfb8fd7aacf7efb5a",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "a9ea181e0cd6acf364862ba3daf270c963e9b8f5b3d961661c56f34ee0a462d7",
+          "status": "reviewed_metadata"
+        },
+        "section": "June 2020",
         "sha256": "a9ea181e0cd6acf364862ba3daf270c963e9b8f5b3d961661c56f34ee0a462d7",
-        "section": "February 2020"
+        "upstream_section_sha256": "66072f9474c75b9ecf79135305e07c08a09d129fe41b5ff00d2dec35e82df556",
+        "url": "https://www.tradingview.com/pine-script-docs/v4/release-notes/#june-2020"
       },
-      "code_sha256": "37e57d2d4fec65a5829c569131979db8602bd4e46ea61a93c0a9a276a2b7b7b8",
-      "expected_result": {
-        "ru": "Метка перемещается к high текущего бара.",
-        "en": "The label moves to the current bar high."
-      },
-      "compilation_status": "not_compiled",
-      "execution_status": "not_executed",
+      "source_documentation_version": 4,
       "static_review_status": "source_imported_not_runtime_validated",
-      "preconditions": {
-        "ru": "Среда Pine указанной версии и доступные данные графика.",
-        "en": "Pine environment of the stated version and available chart data."
-      }
-    },
-    {
+      "targets": [
+        "id:primary:v4:functions:hour:overload:0"
+      ],
       "version": 4,
-      "targets": [
-        "array.from"
-      ],
-      "code": "//@version=4\r\nstudy(title=\"array_from\")\r\n\r\nf_arr (series1, series2, color1, color2) =>\r\n    [ array.from(series1, series2), array.from(color1, color2) ]\r\n\r\n[lines, colors] = f_arr(close, open, color.red, color.green)    \r\n\r\nplot ( array.get(lines, 0), color = array.get(colors, 0))\r\nplot ( array.get(lines, 1), color = array.get(colors, 1))",
+      "version_directive": 4
+    },
+    {
+      "code": "//@version=4\nstudy(\"My Script\", overlay = true)\nvar l = label.new(bar_index, high, text=\"Right\\n aligned\\n text\", textalign=text.align_right)\nlabel.set_xy(l, bar_index, high)",
+      "code_sha256": "37e57d2d4fec65a5829c569131979db8602bd4e46ea61a93c0a9a276a2b7b7b8",
+      "compilation_status": "not_compiled",
+      "example_id": "example.audit.source-6",
+      "execution_status": "not_executed",
+      "expected_origin": "source_documentation",
+      "expected_result": {
+        "en": "The label moves to the current bar high.",
+        "ru": "Метка перемещается к high текущего бара."
+      },
+      "language_version": 4,
+      "oracle_status": "specific_expected_not_observed",
       "origin": "official_source",
+      "preconditions": {
+        "en": "Pine environment of the stated version and available chart data.",
+        "ru": "Среда Pine указанной версии и доступные данные графика."
+      },
       "role": "full_script",
       "source": {
-        "url": "https://www.tradingview.com/blog/en/new-pine-funtions-for-strings-and-arrays-24554/",
-        "sha256": "810b65cd812cfeb0a60cf7dedf4b3116c77bffad85c3b5c66d4e30583780b1f8",
-        "section": ""
+        "anchor": "february-2020",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "71be102ea449aea54789af77c2518165c915f8d73487fa81e993cc6968f84b57",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "a9ea181e0cd6acf364862ba3daf270c963e9b8f5b3d961661c56f34ee0a462d7",
+          "status": "reviewed_metadata"
+        },
+        "section": "February 2020",
+        "sha256": "a9ea181e0cd6acf364862ba3daf270c963e9b8f5b3d961661c56f34ee0a462d7",
+        "upstream_section_sha256": "bbbee4c17aa7cb0784cae36fd0ff1b797e3621549cc59f1fabf0d20075ed1308",
+        "url": "https://www.tradingview.com/pine-script-docs/v4/release-notes/#february-2020"
       },
-      "code_sha256": "a7fc8da469d39978032ee25314633201d531ee21445143d7e78b26ce45cbbc83",
-      "expected_result": {
-        "ru": "Два графика close/open с цветами из массивов.",
-        "en": "Plots of close/open with colors from the arrays."
-      },
-      "compilation_status": "not_compiled",
-      "execution_status": "not_executed",
+      "source_documentation_version": 4,
       "static_review_status": "source_imported_not_runtime_validated",
-      "preconditions": {
-        "ru": "Среда Pine указанной версии и доступные данные графика.",
-        "en": "Pine environment of the stated version and available chart data."
-      }
+      "targets": [
+        "id:primary:v4:functions:label.set_xy:overload:0"
+      ],
+      "version": 4,
+      "version_directive": 4
     },
     {
-      "id": "switch-bool",
-      "version": 6,
+      "code": "//@version=4\r\nstudy(title=\"array_from\")\r\n\r\nf_arr (series1, series2, color1, color2) =>\r\n    [ array.from(series1, series2), array.from(color1, color2) ]\r\n\r\n[lines, colors] = f_arr(close, open, color.red, color.green)    \r\n\r\nplot ( array.get(lines, 0), color = array.get(colors, 0))\r\nplot ( array.get(lines, 1), color = array.get(colors, 1))",
+      "code_sha256": "a7fc8da469d39978032ee25314633201d531ee21445143d7e78b26ce45cbbc83",
+      "compilation_status": "not_compiled",
+      "example_id": "example.audit.source-7",
+      "execution_status": "not_executed",
+      "expected_origin": "source_documentation",
+      "expected_result": {
+        "en": "Plots of close/open with colors from the arrays.",
+        "ru": "Два графика close/open с цветами из массивов."
+      },
+      "language_version": 4,
+      "oracle_status": "specific_expected_not_observed",
+      "origin": "official_source",
+      "preconditions": {
+        "en": "Pine environment of the stated version and available chart data.",
+        "ru": "Среда Pine указанной версии и доступные данные графика."
+      },
+      "role": "full_script",
+      "source": {
+        "anchor": null,
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "17a6fbc7b9d555ae35d4e60398e6d6ee70fa883ee71e4e09cae3202c8b542912",
+        "current_page_review": {
+          "anchor_present": false,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "810b65cd812cfeb0a60cf7dedf4b3116c77bffad85c3b5c66d4e30583780b1f8",
+          "status": "reviewed_metadata"
+        },
+        "section": "",
+        "sha256": "810b65cd812cfeb0a60cf7dedf4b3116c77bffad85c3b5c66d4e30583780b1f8",
+        "url": "https://www.tradingview.com/blog/en/new-pine-funtions-for-strings-and-arrays-24554/"
+      },
+      "source_documentation_version": 4,
+      "static_review_status": "source_imported_not_runtime_validated",
       "targets": [
-        "switch"
+        "id:primary:v4:functions:array.from:overload:0"
       ],
+      "version": 4,
+      "version_directive": 4
+    },
+    {
       "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Unmatched bool switch\")\nbool selected = switch 2\n    1 => true\nplot(selected ? 1 : 0, \"Expected zero\")\n",
-      "origin": "editorial_probe",
-      "role": "full_script",
-      "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/language/conditional-structures/",
-        "section": "switch-bool"
-      },
       "code_sha256": "00d15cd49725b66a385766ec559e4a4025e3be04c22745320ceaf01c2e2e0d0c",
-      "expected_result": {
-        "ru": "График 0: bool без подходящей ветки равен false.",
-        "en": "Plot is zero: an unmatched bool result is false."
-      },
       "compilation_status": "not_compiled",
+      "example_id": "example.audit.switch-bool",
       "execution_status": "not_executed",
-      "static_review_status": "reviewed_against_documentation",
-      "preconditions": {
-        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся.",
-        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed."
-      }
-    },
-    {
-      "id": "footprint",
-      "version": 6,
-      "targets": [
-        "request.footprint",
-        "footprint",
-        "volume_row",
-        "footprint.delta",
-        "footprint.poc",
-        "volume_row.up_price",
-        "volume_row.down_price"
-      ],
-      "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Footprint delta and POC\")\nfootprint fp = request.footprint(100)\nfloat deltaValue = na\nfloat pocMiddle = na\nif not na(fp)\n    deltaValue := fp.delta()\n    volume_row pocRow = fp.poc()\n    if not na(pocRow)\n        pocMiddle := math.avg(pocRow.up_price(), pocRow.down_price())\nplot(deltaValue, \"Footprint delta\", style = plot.style_columns)\nplot(pocMiddle, \"POC midpoint\", force_overlay = true)\n",
+      "expected_origin": "editorial_documentation_expectation",
+      "expected_result": {
+        "en": "Plot is zero: an unmatched bool result is false.",
+        "ru": "График 0: bool без подходящей ветки равен false."
+      },
+      "id": "switch-bool",
+      "language_version": 6,
+      "oracle_status": "specific_expected_not_observed",
       "origin": "editorial_probe",
+      "preconditions": {
+        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed.",
+        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся."
+      },
       "role": "full_script",
       "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/concepts/other-timeframes-and-data/",
-        "section": "footprint"
+        "anchor": "switch-structure",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "322514100253744f2e135b60ad5ce8a09a71598de47beecf8bacf814da67a8ac",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "e441fcb8004c85ffd84392ac42c721818bf50214075f6bdb5209478215904d89",
+          "status": "reviewed_metadata"
+        },
+        "section": "switch structure",
+        "upstream_section_sha256": "0f8635e27d8a5204129f6834a5d2617b4bf72007847c6ed9cffcb7bab7ae7ba6",
+        "url": "https://www.tradingview.com/pine-script-docs/language/conditional-structures/#switch-structure"
       },
-      "code_sha256": "6464d87029d632e4a10c62d1ee0319f087c12479dee3c7f5be6415752e90e97c",
-      "expected_result": {
-        "ru": "При наличии данных: дельта footprint и середина POC строки; иначе na.",
-        "en": "With available data: footprint delta and POC row midpoint; otherwise na."
-      },
-      "compilation_status": "not_compiled",
-      "execution_status": "not_executed",
+      "source_documentation_version": 6,
       "static_review_status": "reviewed_against_documentation",
-      "preconditions": {
-        "ru": "Нужны Premium или Ultimate, доступные footprint-данные и текущая среда v6 с footprint/volume_row.",
-        "en": "Requires Premium or Ultimate, available footprint data and a current v6 environment supporting footprint/volume_row."
-      }
+      "targets": [
+        "id:primary:v6:keywords:switch:overload:0"
+      ],
+      "version": 6,
+      "version_directive": 6
     },
     {
-      "id": "once-confirmed",
+      "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Footprint delta and POC\")\nfootprint fp = request.footprint(100)\nfloat deltaValue = na\nfloat pocMiddle = na\nif not na(fp)\n    deltaValue := fp.delta()\n    volume_row pocRow = fp.poc()\n    if not na(pocRow)\n        pocMiddle := math.avg(pocRow.up_price(), pocRow.down_price())\nplot(deltaValue, \"Footprint delta\", style = plot.style_columns)\nplot(pocMiddle, \"POC midpoint\", force_overlay = true)\n",
+      "code_sha256": "6464d87029d632e4a10c62d1ee0319f087c12479dee3c7f5be6415752e90e97c",
+      "compilation_status": "not_compiled",
+      "example_id": "example.audit.footprint",
+      "execution_status": "not_executed",
+      "expected_origin": "editorial_documentation_expectation",
+      "expected_result": {
+        "en": "With available data: footprint delta and POC row midpoint; otherwise na.",
+        "ru": "При наличии данных: дельта footprint и середина POC строки; иначе na."
+      },
+      "id": "footprint",
+      "language_version": 6,
+      "oracle_status": "specific_expected_not_observed",
+      "origin": "editorial_probe",
+      "preconditions": {
+        "en": "Requires Premium or Ultimate, available footprint data and a current v6 environment supporting footprint/volume_row.",
+        "ru": "Нужны Premium или Ultimate, доступные footprint-данные и текущая среда v6 с footprint/volume_row."
+      },
+      "role": "full_script",
+      "source": {
+        "anchor": "requestfootprint",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "c60bd5e63cd01c3b2194e84b2eba7730c8b5da8ab1f3106ae8aa97762bd8286e",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "7e0e04e318936645a5ce157d8300f02fbd208ce034d78a763a25ac2cac36af06",
+          "status": "reviewed_metadata"
+        },
+        "section": "request.footprint()",
+        "upstream_section_sha256": "417cb5b8ab4d86756e6f1fa13a34b352f66e8707437a37a518f143560bda9040",
+        "url": "https://www.tradingview.com/pine-script-docs/concepts/other-timeframes-and-data/#requestfootprint"
+      },
+      "source_documentation_version": 6,
+      "static_review_status": "reviewed_against_documentation",
+      "targets": [
+        "id:primary:v6:functions:request.footprint:overload:0",
+        "id:primary:v6:types:footprint:overload:0",
+        "id:primary:v6:types:volume_row:overload:0",
+        "id:primary:v6:functions:footprint.delta:overload:0",
+        "id:primary:v6:methods:footprint.delta:overload:0",
+        "id:primary:v6:functions:footprint.poc:overload:0",
+        "id:primary:v6:methods:footprint.poc:overload:0",
+        "id:primary:v6:functions:volume_row.up_price:overload:0",
+        "id:primary:v6:methods:volume_row.up_price:overload:0",
+        "id:primary:v6:functions:volume_row.down_price:overload:0",
+        "id:primary:v6:methods:volume_row.down_price:overload:0"
+      ],
       "version": 6,
+      "version_directive": 6
+    },
+    {
+      "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Once on confirmed bar\")\nvar int count = 0\nonce barstate.isconfirmed\n    count += 1\nplot(count, \"Expected one after first confirmed bar\")\n",
+      "code_sha256": "384bdcc841869a0d510a24be3d4a9fe6d3978b55e3f29bf6025f1b7f09afd6e2",
+      "compilation_status": "not_compiled",
+      "example_id": "example.audit.once-confirmed",
+      "execution_status": "not_executed",
+      "expected_origin": "editorial_documentation_expectation",
+      "expected_result": {
+        "en": "Count is one after the first confirmed bar. Realtime rollback can undo state before a bar closes; the isconfirmed condition matters.",
+        "ru": "После первого подтверждённого бара count равен 1. На realtime rollback состояние до закрытия бара может откатываться; условие isconfirmed существенно."
+      },
+      "id": "once-confirmed",
+      "language_version": 6,
+      "oracle_status": "specific_expected_not_observed",
+      "origin": "editorial_probe",
+      "preconditions": {
+        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed.",
+        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся."
+      },
+      "role": "full_script",
+      "source": {
+        "anchor": "once-structure",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "b13cb21a9411233d668c62adfe9f3ffe865c46f61f6e1a8a99970f9d035c95eb",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "e441fcb8004c85ffd84392ac42c721818bf50214075f6bdb5209478215904d89",
+          "status": "reviewed_metadata"
+        },
+        "section": "once structure",
+        "upstream_section_sha256": "91a63a7484a28bdcfb1f49eaf235c144b77c87e2c9d86af5f6fa82c12f3716ce",
+        "url": "https://www.tradingview.com/pine-script-docs/language/conditional-structures/#once-structure"
+      },
+      "source_documentation_version": 6,
+      "static_review_status": "reviewed_against_documentation",
       "targets": [
         "id:wiki:v6:once"
       ],
-      "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Once on confirmed bar\")\nvar int count = 0\nonce barstate.isconfirmed\n    count += 1\nplot(count, \"Expected one after first confirmed bar\")\n",
-      "origin": "editorial_probe",
-      "role": "full_script",
-      "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/language/conditional-structures/",
-        "section": "once-confirmed"
-      },
-      "code_sha256": "384bdcc841869a0d510a24be3d4a9fe6d3978b55e3f29bf6025f1b7f09afd6e2",
-      "expected_result": {
-        "ru": "После первого подтверждённого бара count равен 1. На realtime rollback состояние до закрытия бара может откатываться; условие isconfirmed существенно.",
-        "en": "Count is one after the first confirmed bar. Realtime rollback can undo state before a bar closes; the isconfirmed condition matters."
-      },
-      "compilation_status": "not_compiled",
-      "execution_status": "not_executed",
-      "static_review_status": "reviewed_against_documentation",
-      "preconditions": {
-        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся.",
-        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed."
-      }
+      "version": 6,
+      "version_directive": 6
     },
     {
+      "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Line wrapping\")\nfloat typical = (\n    high + low + close\n) / 3\n[\n    macd,\n    signal,\n    hist\n] = ta.macd(typical, 12, 26, 9)\nplot(hist)\n",
+      "code_sha256": "0038fdaca6e5a360bb4a2721d86a18b7cfb4906f4929915b662c938b3983db70",
+      "compilation_status": "not_compiled",
+      "example_id": "example.audit.line-wrapping",
+      "execution_status": "not_executed",
+      "expected_origin": "editorial_documentation_expectation",
+      "expected_result": {
+        "en": "Four-space indentation inside () and []; plots the MACD histogram. The [] rule dates to September 2026.",
+        "ru": "Отступы кратны четырём внутри () и []; график гистограммы MACD. Правило [] — с сентября 2026."
+      },
       "id": "line-wrapping",
-      "version": 6,
+      "language_version": 6,
+      "oracle_status": "specific_expected_not_observed",
+      "origin": "editorial_probe",
+      "preconditions": {
+        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed.",
+        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся."
+      },
+      "role": "full_script",
+      "source": {
+        "anchor": "line-wrapping",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "9a07a3325af091425ccad6c9f16db2397c9ba2defd65c53dbd8366222c92b236",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "117b80d3877bdd17ff2d94e14045ca852133884ffe9e50846a84e43536e5f15c",
+          "status": "reviewed_metadata"
+        },
+        "section": "Line wrapping",
+        "upstream_section_sha256": "0895afcf0ff2e08f7d6631b5e15cfed34c62877d6c03116ef6678149561919cc",
+        "url": "https://www.tradingview.com/pine-script-docs/language/script-structure/#line-wrapping"
+      },
+      "source_documentation_version": 6,
+      "static_review_status": "reviewed_against_documentation",
       "targets": [
         "id:wiki:v6:line-wrap"
       ],
-      "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Line wrapping\")\nfloat typical = (\n    high + low + close\n) / 3\n[\n    macd,\n    signal,\n    hist\n] = ta.macd(typical, 12, 26, 9)\nplot(hist)\n",
-      "origin": "editorial_probe",
-      "role": "full_script",
-      "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/language/script-structure/",
-        "section": "line-wrapping"
-      },
-      "code_sha256": "0038fdaca6e5a360bb4a2721d86a18b7cfb4906f4929915b662c938b3983db70",
-      "expected_result": {
-        "ru": "Отступы кратны четырём внутри () и []; график гистограммы MACD. Правило [] — с сентября 2026.",
-        "en": "Four-space indentation inside () and []; plots the MACD histogram. The [] rule dates to September 2026."
-      },
-      "compilation_status": "not_compiled",
-      "execution_status": "not_executed",
-      "static_review_status": "reviewed_against_documentation",
-      "preconditions": {
-        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся.",
-        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed."
-      }
+      "version": 6,
+      "version_directive": 6
     },
     {
-      "id": "isin",
-      "version": 6,
-      "targets": [
-        "syminfo.isin"
-      ],
       "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Symbol ISIN\", overlay = true)\nvar table info = table.new(position.top_right, 1, 1)\nif barstate.islast\n    string isin = syminfo.isin\n    table.cell(info, 0, 0, na(isin) or isin == \"\" ? \"ISIN unavailable\" : isin)\n",
+      "code_sha256": "3e82cba7d11e6d50fe206db00226beba1352776b0768b3f9d771774afa75fd40",
+      "compilation_status": "not_compiled",
+      "example_id": "example.audit.isin",
+      "execution_status": "not_executed",
+      "expected_origin": "editorial_documentation_expectation",
+      "expected_result": {
+        "en": "Table displays ISIN or ISIN unavailable.",
+        "ru": "Таблица с ISIN либо сообщением ISIN unavailable."
+      },
+      "id": "isin",
+      "language_version": 6,
+      "oracle_status": "specific_expected_not_observed",
       "origin": "editorial_probe",
+      "preconditions": {
+        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed.",
+        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся."
+      },
       "role": "full_script",
       "source": {
+        "anchor": "symbol-information",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "02ad52c39156f6b73390378be793d17545aeb9acc59fc623516d6831e8515bf4",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "4d703042f9e1c01f8dc5d8471ff2fd6373c10118186c059e838b10380100a5cf",
+          "status": "reviewed_metadata"
+        },
+        "section": "Symbol information",
+        "upstream_section_sha256": "a6e71aa1b17dc31e9c4cdd5debae4741d46066a21434996b183db28b52ff1185",
         "url": "https://www.tradingview.com/pine-script-docs/concepts/chart-information/#symbol-information"
       },
-      "code_sha256": "3e82cba7d11e6d50fe206db00226beba1352776b0768b3f9d771774afa75fd40",
-      "expected_result": {
-        "ru": "Таблица с ISIN либо сообщением ISIN unavailable.",
-        "en": "Table displays ISIN or ISIN unavailable."
-      },
-      "compilation_status": "not_compiled",
-      "execution_status": "not_executed",
+      "source_documentation_version": 6,
       "static_review_status": "reviewed_against_documentation",
-      "preconditions": {
-        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся.",
-        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed."
-      }
+      "targets": [
+        "id:primary:v6:variables:syminfo.isin:overload:0"
+      ],
+      "version": 6,
+      "version_directive": 6
     },
     {
+      "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Scope and reassignment\")\nfloat outer = close\nif close > open\n    float outer = high  // Shadows the global variable only inside this block.\nfloat reassigned = close\nif close > open\n    reassigned := high\nplot(outer, \"Unchanged global close\")\nplot(reassigned, \"High on bullish bars\")\n",
+      "code_sha256": "d02fe6d5292ed4db1d6b82d33d20a8f209917681e26dcf50d36fc51044f5df97",
+      "compilation_status": "not_compiled",
+      "example_id": "example.audit.scope",
+      "execution_status": "not_executed",
+      "expected_origin": "editorial_documentation_expectation",
+      "expected_result": {
+        "en": "outer remains close; reassigned becomes high on bullish bars.",
+        "ru": "outer остаётся close; reassigned меняется на high на растущих барах."
+      },
       "id": "scope",
-      "version": 6,
+      "language_version": 6,
+      "oracle_status": "specific_expected_not_observed",
+      "origin": "editorial_probe",
+      "preconditions": {
+        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed.",
+        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся."
+      },
+      "role": "full_script",
+      "source": {
+        "anchor": "shadowing",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "a3d96451cafa7e4da565ab867c5f123eb6966d0d46f9cb08e1935b2a7bdb5d95",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "bcc02deca08c6a36fa81275fa741bf4d02be0b2c9677d5e7a703611a4d3fc2b3",
+          "status": "reviewed_metadata"
+        },
+        "section": "Shadowing",
+        "upstream_section_sha256": "d7fc2beb61a9227020bfe51983bd0b16d721a4ff8c7afe26f8e859e7c5b1c30c",
+        "url": "https://www.tradingview.com/pine-script-docs/language/variable-declarations/#shadowing"
+      },
+      "source_documentation_version": 6,
+      "static_review_status": "reviewed_against_documentation",
       "targets": [
         "id:wiki:v6:scope"
       ],
-      "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Scope and reassignment\")\nfloat outer = close\nif close > open\n    float outer = high  // Shadows the global variable only inside this block.\nfloat reassigned = close\nif close > open\n    reassigned := high\nplot(outer, \"Unchanged global close\")\nplot(reassigned, \"High on bullish bars\")\n",
-      "origin": "editorial_probe",
-      "role": "full_script",
-      "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/language/variable-declarations/#shadowing"
-      },
-      "code_sha256": "d02fe6d5292ed4db1d6b82d33d20a8f209917681e26dcf50d36fc51044f5df97",
-      "expected_result": {
-        "ru": "outer остаётся close; reassigned меняется на high на растущих барах.",
-        "en": "outer remains close; reassigned becomes high on bullish bars."
-      },
-      "compilation_status": "not_compiled",
-      "execution_status": "not_executed",
-      "static_review_status": "reviewed_against_documentation",
-      "preconditions": {
-        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся.",
-        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed."
-      }
+      "version": 6,
+      "version_directive": 6
     },
     {
+      "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Loop return, continue and break\")\nint result = for i = 1 to 5\n    if i == 2\n        continue\n    if i == 4\n        break\n    i * 10\nplot(result, \"Expected 30\")\n",
+      "code_sha256": "f7a261d99389e471025fd60b3c8abf8ad4fa4134d2f2b36cc6b5e55b41d3d6d4",
+      "compilation_status": "not_compiled",
+      "example_id": "example.audit.loop-return",
+      "execution_status": "not_executed",
+      "expected_origin": "editorial_documentation_expectation",
+      "expected_result": {
+        "en": "30: continue skips 2; break at 4 retains the last evaluated return expression from i=3.",
+        "ru": "30: continue пропускает 2, break на 4 сохраняет последнее вычисленное выражение от i=3."
+      },
       "id": "loop-return",
-      "version": 6,
+      "language_version": 6,
+      "oracle_status": "specific_expected_not_observed",
+      "origin": "editorial_probe",
+      "preconditions": {
+        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed.",
+        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся."
+      },
+      "role": "full_script",
+      "source": {
+        "anchor": "keywords-and-return-expressions",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "42943735d064cb03fbb24f0b100080ad35fed87705c55dca791387a090793520",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "6f3218e1e1c7b1e08a276d070ae9f2e62e5c6c2a3435e553c3c638702cb19e0f",
+          "status": "reviewed_metadata"
+        },
+        "section": "Keywords and return expressions",
+        "upstream_section_sha256": "0b36f12c092af4d8f3bc5ace345170e95cbeb350129ef0c22883861b160fa511",
+        "url": "https://www.tradingview.com/pine-script-docs/language/loops/#keywords-and-return-expressions"
+      },
+      "source_documentation_version": 6,
+      "static_review_status": "reviewed_against_documentation",
       "targets": [
         "id:wiki:v6:loop-return"
       ],
-      "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Loop return, continue and break\")\nint result = for i = 1 to 5\n    if i == 2\n        continue\n    if i == 4\n        break\n    i * 10\nplot(result, \"Expected 30\")\n",
-      "origin": "editorial_probe",
-      "role": "full_script",
-      "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/language/loops/#return-expressions"
-      },
-      "code_sha256": "f7a261d99389e471025fd60b3c8abf8ad4fa4134d2f2b36cc6b5e55b41d3d6d4",
-      "expected_result": {
-        "ru": "30: continue пропускает 2, break на 4 сохраняет последнее вычисленное выражение от i=3.",
-        "en": "30: continue skips 2; break at 4 retains the last evaluated return expression from i=3."
-      },
-      "compilation_status": "not_compiled",
-      "execution_status": "not_executed",
-      "static_review_status": "reviewed_against_documentation",
-      "preconditions": {
-        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся.",
-        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed."
-      }
+      "version": 6,
+      "version_directive": 6
     },
     {
+      "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Typed overloads\")\nnegate(float x) => -x\nnegate(bool x) => not x\nplot(negate(close))\nplot(negate(false) ? 1 : 0, \"Expected one\")\n",
+      "code_sha256": "4d684431a1ae63f80c3ce88e8a9217e39d58f4488b06d3e4de32ad3f24c6f4d2",
+      "compilation_status": "not_compiled",
+      "example_id": "example.audit.overload",
+      "execution_status": "not_executed",
+      "expected_origin": "editorial_documentation_expectation",
+      "expected_result": {
+        "en": "First plot is -close, second is one; overloads differ by argument type.",
+        "ru": "Первый график -close, второй 1; перегрузки различаются типом аргумента."
+      },
       "id": "overload",
-      "version": 6,
+      "language_version": 6,
+      "oracle_status": "specific_expected_not_observed",
+      "origin": "editorial_probe",
+      "preconditions": {
+        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed.",
+        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся."
+      },
+      "role": "full_script",
+      "source": {
+        "anchor": "function-overloading",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "e20f709f9c1417b1e8649a63a524b6d02104941b5a5855e4b85535c93be1de8b",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "74a7ae260194584e62d69cfc07937c6688c9995fe8dd0a5b9c6c2f9613a92152",
+          "status": "reviewed_metadata"
+        },
+        "section": "Function overloading",
+        "upstream_section_sha256": "ab7aacfecbf46673c81047dc0b4f18dd2ed3de1e9cd6a50a613d43485841ea81",
+        "url": "https://www.tradingview.com/pine-script-docs/language/user-defined-functions/#function-overloading"
+      },
+      "source_documentation_version": 6,
+      "static_review_status": "reviewed_against_documentation",
       "targets": [
         "id:wiki:v6:overload"
       ],
-      "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Typed overloads\")\nnegate(float x) => -x\nnegate(bool x) => not x\nplot(negate(close))\nplot(negate(false) ? 1 : 0, \"Expected one\")\n",
-      "origin": "editorial_probe",
-      "role": "full_script",
-      "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/language/user-defined-functions/#function-overloads"
-      },
-      "code_sha256": "4d684431a1ae63f80c3ce88e8a9217e39d58f4488b06d3e4de32ad3f24c6f4d2",
-      "expected_result": {
-        "ru": "Первый график -close, второй 1; перегрузки различаются типом аргумента.",
-        "en": "First plot is -close, second is one; overloads differ by argument type."
-      },
-      "compilation_status": "not_compiled",
-      "execution_status": "not_executed",
-      "static_review_status": "reviewed_against_documentation",
-      "preconditions": {
-        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся.",
-        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed."
-      }
+      "version": 6,
+      "version_directive": 6
     },
     {
+      "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Method overloads\", overlay = true)\nmethod getType(bool this) => \"bool\"\nmethod getType(float this) => na(this) ? \"float na\" : \"float\"\nvar table info = table.new(position.top_right, 1, 1)\nif barstate.islast\n    bool flag = true\n    table.cell(info, 0, 0, flag.getType() + \" / \" + close.getType())\n",
+      "code_sha256": "47cdac3c8f2563824d70f2fe1f7e269b5cc045f74ea195adf5802451119d2064",
+      "compilation_status": "not_compiled",
+      "example_id": "example.audit.method-overload",
+      "execution_status": "not_executed",
+      "expected_origin": "editorial_documentation_expectation",
+      "expected_result": {
+        "en": "bool / float; the bool overload never calls na(bool). The inconsistent full Type Inspection source is not imported as working code.",
+        "ru": "bool / float; bool-перегрузка не вызывает na(bool). Спорный полный Type Inspection из руководства не импортируется как рабочий код."
+      },
       "id": "method-overload",
-      "version": 6,
+      "language_version": 6,
+      "oracle_status": "specific_expected_not_observed",
+      "origin": "editorial_probe",
+      "preconditions": {
+        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed.",
+        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся."
+      },
+      "role": "full_script",
+      "source": {
+        "anchor": "method-overloading",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "d98cf9415d60adb9aac09d46929b314af83675a01f0f9398eb1851f5fef5ee7c",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "5de3c67a25e01429fb220ecf71c21f031555256ebc8114634b485ddf181f14a1",
+          "status": "reviewed_metadata"
+        },
+        "section": "Method overloading",
+        "upstream_section_sha256": "78fbaf58303cd370b05306418d368480743e9825cf8eda8bbae38a5e1dc69236",
+        "url": "https://www.tradingview.com/pine-script-docs/language/methods/#method-overloading"
+      },
+      "source_documentation_version": 6,
+      "static_review_status": "reviewed_against_documentation",
       "targets": [
         "id:wiki:v6:method-overload"
       ],
-      "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Method overloads\", overlay = true)\nmethod getType(bool this) => \"bool\"\nmethod getType(float this) => na(this) ? \"float na\" : \"float\"\nvar table info = table.new(position.top_right, 1, 1)\nif barstate.islast\n    bool flag = true\n    table.cell(info, 0, 0, flag.getType() + \" / \" + close.getType())\n",
-      "origin": "editorial_probe",
-      "role": "full_script",
-      "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/language/methods/",
-        "section": "method-overload"
-      },
-      "code_sha256": "47cdac3c8f2563824d70f2fe1f7e269b5cc045f74ea195adf5802451119d2064",
-      "expected_result": {
-        "ru": "bool / float; bool-перегрузка не вызывает na(bool). Спорный полный Type Inspection из руководства не импортируется как рабочий код.",
-        "en": "bool / float; the bool overload never calls na(bool). The inconsistent full Type Inspection source is not imported as working code."
-      },
-      "compilation_status": "not_compiled",
-      "execution_status": "not_executed",
-      "static_review_status": "reviewed_against_documentation",
-      "preconditions": {
-        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся.",
-        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed."
-      }
-    },
-    {
-      "id": "rsi-contracts",
-      "version": 4,
-      "targets": [
-        "rsi"
-      ],
-      "code": "//@version=4\n// Editorial example; not compiled or executed in Pine.\nstudy(\"Two RSI contracts in v4\")\nordinaryRsi = rsi(close, 14)\nnumerator = max(change(close), 0.0) + 1.0\ndenominator = max(-change(close), 0.0) + 1.0\nratioRsi = rsi(numerator, denominator)\nratioFormula = 100.0 - 100.0 / (1.0 + numerator / denominator)\nplot(ordinaryRsi, title = \"Ordinary RSI\")\nplot(ratioRsi - ratioFormula, title = \"Difference expected zero\")\n",
-      "origin": "editorial_probe",
-      "role": "full_script",
-      "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/v5/migration-guides/to-pine-version-5/",
-        "section": "rsi-contracts"
-      },
-      "code_sha256": "5ee958681ed68546a1028c36646d2b7efb7ee103ca367b30344d9fa11d3e1d3a",
-      "expected_result": {
-        "ru": "Разность ratio-формы и формулы ожидается в пределах 1e-10 на определённых данных. Первый бар может дать na; обычный RSI требует прогрева.",
-        "en": "Ratio-form difference is expected within 1e-10 on defined data. The first bar can be na; ordinary RSI needs warmup."
-      },
-      "compilation_status": "not_compiled",
-      "execution_status": "not_executed",
-      "static_review_status": "reviewed_against_documentation",
-      "preconditions": {
-        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся.",
-        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed."
-      }
-    },
-    {
-      "id": "lookahead-5",
-      "version": 5,
-      "targets": [
-        "request.security"
-      ],
-      "code": "//@version=5\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Lookahead default v5\")\nfloat implicit = request.security(syminfo.tickerid, \"1D\", close)\nfloat explicit = request.security(syminfo.tickerid, \"1D\", close, lookahead = barmerge.lookahead_off)\nplot(implicit - explicit, \"Expected zero\")\n",
-      "origin": "editorial_probe",
-      "role": "full_script",
-      "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/concepts/other-timeframes-and-data/",
-        "section": "lookahead-5"
-      },
-      "code_sha256": "2f521efbda55abd47f6b918aa5baa48eaac8c8a592b9f79b35012df42384cf11",
-      "expected_result": {
-        "ru": "Разность 0 на определённых данных. Этот probe проверяет lookahead, а не calc_bars_count.",
-        "en": "Difference is zero on defined data. This probe tests lookahead, not calc_bars_count."
-      },
-      "compilation_status": "not_compiled",
-      "execution_status": "not_executed",
-      "static_review_status": "reviewed_against_documentation",
-      "preconditions": {
-        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся.",
-        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed."
-      }
-    },
-    {
-      "id": "lookahead-6",
       "version": 6,
-      "targets": [
-        "request.security"
-      ],
-      "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Lookahead default v6\")\nfloat implicit = request.security(syminfo.tickerid, \"1D\", close)\nfloat explicit = request.security(syminfo.tickerid, \"1D\", close, lookahead = barmerge.lookahead_off)\nplot(implicit - explicit, \"Expected zero\")\n",
+      "version_directive": 6
+    },
+    {
+      "code": "//@version=4\n// Editorial example; not compiled or executed in Pine.\nstudy(\"Two RSI contracts in v4\")\nordinaryRsi = rsi(close, 14)\nnumerator = max(change(close), 0.0) + 1.0\ndenominator = max(-change(close), 0.0) + 1.0\nratioRsi = rsi(numerator, denominator)\nratioFormula = 100.0 - 100.0 / (1.0 + numerator / denominator)\nplot(ordinaryRsi, title = \"Ordinary RSI\")\nplot(ratioRsi - ratioFormula, title = \"Difference expected zero\")\n",
+      "code_sha256": "5ee958681ed68546a1028c36646d2b7efb7ee103ca367b30344d9fa11d3e1d3a",
+      "compilation_status": "not_compiled",
+      "example_id": "example.audit.rsi-contracts",
+      "execution_status": "not_executed",
+      "expected_origin": "editorial_documentation_expectation",
+      "expected_result": {
+        "en": "Ratio-form difference is expected within 1e-10 on defined data. The first bar can be na; ordinary RSI needs warmup.",
+        "ru": "Разность ratio-формы и формулы ожидается в пределах 1e-10 на определённых данных. Первый бар может дать na; обычный RSI требует прогрева."
+      },
+      "id": "rsi-contracts",
+      "language_version": 4,
+      "oracle_status": "specific_expected_not_observed",
       "origin": "editorial_probe",
+      "preconditions": {
+        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed.",
+        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся."
+      },
       "role": "full_script",
       "source": {
-        "url": "https://www.tradingview.com/pine-script-docs/concepts/other-timeframes-and-data/",
-        "section": "lookahead-6"
+        "anchor": "removed-an-rsi-overload",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "6f8025ab56667f6d5080e9343fa92d5aadf9572fa3b115d403f17a2b35fdebc3",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "437bc323838c82ba393868d7df2b6c715301ffb7f958339e3fe744d88782ebfb",
+          "status": "reviewed_metadata"
+        },
+        "section": "Removed an rsi overload",
+        "upstream_section_sha256": "464ad71768571d06db290b84deb402fc63b8066290c3d4f260f99e040db68284",
+        "url": "https://www.tradingview.com/pine-script-docs/v5/migration-guides/to-pine-version-5/#removed-an-rsi-overload"
       },
-      "code_sha256": "45ac3ffbaa4bc354e018bcd79a081124538c7dc06343a5962a8cb80701170b5a",
-      "expected_result": {
-        "ru": "Разность 0 на определённых данных. Этот probe проверяет lookahead, а не calc_bars_count.",
-        "en": "Difference is zero on defined data. This probe tests lookahead, not calc_bars_count."
-      },
-      "compilation_status": "not_compiled",
-      "execution_status": "not_executed",
+      "source_documentation_version": 5,
       "static_review_status": "reviewed_against_documentation",
+      "targets": [
+        "id:primary:v4:functions:rsi:overload:0"
+      ],
+      "version": 4,
+      "version_directive": 4
+    },
+    {
+      "code": "//@version=5\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Lookahead default v5\")\nfloat implicit = request.security(syminfo.tickerid, \"1D\", close)\nfloat explicit = request.security(syminfo.tickerid, \"1D\", close, lookahead = barmerge.lookahead_off)\nplot(implicit - explicit, \"Expected zero\")\n",
+      "code_sha256": "2f521efbda55abd47f6b918aa5baa48eaac8c8a592b9f79b35012df42384cf11",
+      "compilation_status": "not_compiled",
+      "example_id": "example.audit.lookahead-5",
+      "execution_status": "not_executed",
+      "expected_origin": "editorial_documentation_expectation",
+      "expected_result": {
+        "en": "Difference is zero on defined data. This probe tests lookahead, not calc_bars_count.",
+        "ru": "Разность 0 на определённых данных. Этот probe проверяет lookahead, а не calc_bars_count."
+      },
+      "id": "lookahead-5",
+      "language_version": 5,
+      "oracle_status": "specific_expected_not_observed",
+      "origin": "editorial_probe",
       "preconditions": {
-        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся.",
-        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed."
-      }
+        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed.",
+        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся."
+      },
+      "role": "full_script",
+      "source": {
+        "anchor": "lookahead",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "77521ed576d0ec506e74c6adbb5f3648bd23649e7fbdf14c7b3bbb426d2ab5a9",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "7e0e04e318936645a5ce157d8300f02fbd208ce034d78a763a25ac2cac36af06",
+          "status": "reviewed_metadata"
+        },
+        "section": "Lookahead",
+        "upstream_section_sha256": "2f087d6035e090f95697d983194e475580665c35d2ab2d609fd719fa42e013f7",
+        "url": "https://www.tradingview.com/pine-script-docs/concepts/other-timeframes-and-data/#lookahead"
+      },
+      "source_documentation_version": 6,
+      "static_review_status": "reviewed_against_documentation",
+      "targets": [
+        "id:primary:v5:functions:request.security:overload:0"
+      ],
+      "version": 5,
+      "version_directive": 5
+    },
+    {
+      "code": "//@version=6\n// Editorial example; not compiled or executed in Pine.\nindicator(\"Lookahead default v6\")\nfloat implicit = request.security(syminfo.tickerid, \"1D\", close)\nfloat explicit = request.security(syminfo.tickerid, \"1D\", close, lookahead = barmerge.lookahead_off)\nplot(implicit - explicit, \"Expected zero\")\n",
+      "code_sha256": "45ac3ffbaa4bc354e018bcd79a081124538c7dc06343a5962a8cb80701170b5a",
+      "compilation_status": "not_compiled",
+      "example_id": "example.audit.lookahead-6",
+      "execution_status": "not_executed",
+      "expected_origin": "editorial_documentation_expectation",
+      "expected_result": {
+        "en": "Difference is zero on defined data. This probe tests lookahead, not calc_bars_count.",
+        "ru": "Разность 0 на определённых данных. Этот probe проверяет lookahead, а не calc_bars_count."
+      },
+      "id": "lookahead-6",
+      "language_version": 6,
+      "oracle_status": "specific_expected_not_observed",
+      "origin": "editorial_probe",
+      "preconditions": {
+        "en": "Pine environment of the stated version; available chart data. Expected from documentation; no run performed.",
+        "ru": "Среда Pine указанной версии; доступные данные графика. Ожидание по документации, запуск не выполнялся."
+      },
+      "role": "full_script",
+      "source": {
+        "anchor": "lookahead",
+        "claim_hash_kind": "editorial claim identity; not an upstream source-text digest",
+        "claim_sha256": "5e1c4326d8be98f23a2f8299fe6c06d09cae790141c89541e0a18d3ebb5761a5",
+        "current_page_review": {
+          "anchor_present": true,
+          "date": "2026-10-20",
+          "scope": "section identity and dated source capture; separate from runtime evidence",
+          "snapshot_sha256": "7e0e04e318936645a5ce157d8300f02fbd208ce034d78a763a25ac2cac36af06",
+          "status": "reviewed_metadata"
+        },
+        "section": "Lookahead",
+        "upstream_section_sha256": "2f087d6035e090f95697d983194e475580665c35d2ab2d609fd719fa42e013f7",
+        "url": "https://www.tradingview.com/pine-script-docs/concepts/other-timeframes-and-data/#lookahead"
+      },
+      "source_documentation_version": 6,
+      "static_review_status": "reviewed_against_documentation",
+      "targets": [
+        "id:primary:v6:functions:request.security:overload:0"
+      ],
+      "version": 6,
+      "version_directive": 6
     }
-  ]
+  ],
+  "reviewed_on": "2026-10-20"
 }

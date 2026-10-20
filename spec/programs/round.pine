@@ -1,0 +1,4 @@
+//@version=6
+indicator("MVP round")
+plot(math.round(close), "integer")
+plot(math.round(close, 1), "precision")

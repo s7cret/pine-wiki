@@ -13,6 +13,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from datetime import datetime,timezone
 
 from data_integrity import text_references
 
@@ -46,7 +47,7 @@ def main():
             shutil.copy2(source, fixture / source.name)
         # Test the data/UI verifier alone; generated release prose is not part
         # of this intentionally malformed fixture.
-        for name in ('verify_catalog.py', 'build_manifest.py', 'data_integrity.py', 'semantic_contracts.py'):
+        for name in ('verify_catalog.py', 'build_manifest.py', 'data_integrity.py', 'semantic_contracts.py', 'probe_contracts.py'):
             shutil.copy2(ROOT / 'tools' / name, fixture / 'tools' / name)
         (fixture / 'tools' / 'migrations').mkdir()
         for name in ('02_parameter_description_hints.py', 'catalog_io.py', '05_clean_history_texts.py'):
@@ -55,10 +56,40 @@ def main():
         baseline = {p.name: p.read_bytes() for p in fixture.iterdir() if p.is_file()}
         previous_scenario = 'fixture creation'
 
+        def retain_failure(changed):
+            stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%f')
+            evidence=ROOT/'test-results'/'fixture-failures'/stamp
+            evidence.mkdir(parents=True)
+            report={'status':'isolation_violation','previous_scenario':previous_scenario,'files':[]}
+            for name in changed[:5]:
+                raw=(fixture/name).read_bytes();expected=baseline[name]
+                (evidence/(name+'.actual')).write_bytes(raw);(evidence/(name+'.baseline')).write_bytes(expected)
+                differences=[]
+                try:
+                    marker='window.PINE_CATALOG[' if name.startswith('catalog-') else 'window.PINE_HISTORY['
+                    def decode(data):return json.loads(data.decode().split(marker,1)[1].split('=',1)[1].strip().removesuffix(';'))
+                    def compare(a,b,path=''):
+                        if len(differences)>=20:return
+                        if type(a)!=type(b):differences.append({'path':path,'expected':str(a)[:100],'actual':str(b)[:100]})
+                        elif isinstance(a,dict):
+                            for k in sorted(set(a)|set(b)):
+                                if k not in a or k not in b:differences.append({'path':path+'/'+k,'change':'key membership'})
+                                else:compare(a[k],b[k],path+'/'+k)
+                        elif isinstance(a,list):
+                            if len(a)!=len(b):differences.append({'path':path,'expected_length':len(a),'actual_length':len(b)})
+                            for i,(x,y) in enumerate(zip(a,b)):compare(x,y,path+'/'+str(i))
+                        elif a!=b:differences.append({'path':path,'expected':str(a)[:100],'actual':str(b)[:100]})
+                    compare(decode(expected),decode(raw))
+                except (ValueError,IndexError):differences=[{'format':'non-catalog file; inspect retained bytes'}]
+                report['files'].append({'file':name,'baseline_sha256':hashlib.sha256(expected).hexdigest(),'actual_sha256':hashlib.sha256(raw).hexdigest(),'first_differences':differences[:20]})
+            (evidence/'diagnostic.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf8',newline='\n')
+            return evidence
+
         def assert_clean():
             changed = [name for name, raw in baseline.items() if (fixture / name).read_bytes() != raw]
             if changed:
-                raise AssertionError(f'Fixture contamination after {previous_scenario}: {changed[:5]}')
+                evidence=retain_failure(changed)
+                raise AssertionError(f'Fixture contamination after {previous_scenario}: {changed[:5]}; first mismatch retained at {evidence}')
 
         def verify(name, expected=None):
             nonlocal previous_scenario
@@ -95,6 +126,12 @@ def main():
             shutil.copy2(ROOT / filename, target)
 
         dummy_text = {'ru': 'Проверка отсутствующей ссылки', 'en': 'Unreferenced mutation fixture', 'original': 'Unreferenced mutation fixture', 'basis': 'editorial_summary'}
+        def attach_hour_to_variable(data):
+            function=next(e for e in data['entries'] if e['id']=='primary:v4:functions:hour:overload:0')
+            variable=next(e for e in data['entries'] if e['id']=='primary:v4:variables:hour:overload:0')
+            variable['examples']['items'].append(function['examples']['items'][-1])
+        mutation('catalog-v4.js','window.PINE_CATALOG[4]=',attach_hour_to_variable,
+                 'hour() occurrence attached to variable rejected','EXAMPLE_BINDING:')
         for filename, prefix, label in (
             ('catalog-v5.js', 'window.PINE_CATALOG[5]=', 'catalog-v5'),
             ('history-2.js', 'window.PINE_HISTORY["2"]=', 'history-2'),
@@ -163,6 +200,19 @@ def main():
             p['default_contract']['values']=['true']
         mutation('catalog-v6.js','window.PINE_CATALOG[6]=',flip_default,
                  'default changed despite unchanged evidence rejected','DEFAULT_EVIDENCE')
+
+        def synchronize_bypass(data):
+            e=next(e for e in data['entries'] if e['name']=='indicator')
+            p=next(p for p in e['parameters'] if p['name']=='overlay')
+            p['default_contract']['values']=['true']
+            for ev in p['default_contract']['evidence']:ev.update(value='true',source_spelling='false')
+            history=load(fixture/'history-0.js','window.PINE_HISTORY["0"]=')
+            z=next(z for z in history['families'][e['family']['id']]['versions'] if z['version']==6)
+            z['default_contracts']['overlay']['values']=['true']
+            for ev in z['default_contracts']['overlay']['evidence']:ev.update(value='true',source_spelling='false')
+            write(fixture/'history-0.js','window.PINE_HISTORY["0"]=',history)
+        mutation('catalog-v6.js','window.PINE_CATALOG[6]=',synchronize_bypass,
+                 'source-spelling bypass rejected with synchronized history','DEFAULT_EVIDENCE')
 
         def foreign_result(data):
             e=next(e for e in data['entries'] if e['name']=='floor')

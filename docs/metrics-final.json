@@ -1,8 +1,8 @@
 {
-  "revision": "2026-10-20.audit-fixes",
+  "revision": "2026-10-20.semantic-mvp.1",
   "cards_total": 4631,
   "families": 1292,
-  "ui_keys_defined": 229,
+  "ui_keys_defined": 243,
   "versions": {
     "1": {
       "cards": 315,
@@ -14,7 +14,9 @@
       "placeholder_parameter_descriptions": 62,
       "physically_empty_with_hint": 0,
       "editorial_parameter_supplements": 0,
-      "substantive_primary_parameter_descriptions": 126,
+      "substantive_primary_parameter_descriptions": 127,
+      "editorial_main_parameter_descriptions": 0,
+      "unclassified_content_origin": 51,
       "parameter_description_hints": 0,
       "parameters_without_description_or_hint": 62,
       "unknown_requiredness": 5,
@@ -28,7 +30,7 @@
       "pointers": 0,
       "search_rank_entries": 7,
       "editorial_texts_without_provenance": 365,
-      "catalog_bytes": 1402943
+      "catalog_bytes": 1470286
     },
     "2": {
       "cards": 365,
@@ -41,6 +43,8 @@
       "physically_empty_with_hint": 0,
       "editorial_parameter_supplements": 0,
       "substantive_primary_parameter_descriptions": 126,
+      "editorial_main_parameter_descriptions": 0,
+      "unclassified_content_origin": 56,
       "parameter_description_hints": 0,
       "parameters_without_description_or_hint": 75,
       "unknown_requiredness": 22,
@@ -54,7 +58,7 @@
       "pointers": 0,
       "search_rank_entries": 7,
       "editorial_texts_without_provenance": 473,
-      "catalog_bytes": 1761613
+      "catalog_bytes": 1837069
     },
     "3": {
       "cards": 361,
@@ -67,6 +71,8 @@
       "physically_empty_with_hint": 32,
       "editorial_parameter_supplements": 0,
       "substantive_primary_parameter_descriptions": 305,
+      "editorial_main_parameter_descriptions": 0,
+      "unclassified_content_origin": 0,
       "parameter_description_hints": 32,
       "parameters_without_description_or_hint": 12,
       "unknown_requiredness": 349,
@@ -80,11 +86,11 @@
       "pointers": 4,
       "search_rank_entries": 7,
       "editorial_texts_without_provenance": 185,
-      "catalog_bytes": 2007235
+      "catalog_bytes": 2100673
     },
     "4": {
       "cards": 626,
-      "example_items": 323,
+      "example_items": 322,
       "fragmented_example_cards": 2,
       "parameters": 757,
       "empty_parameter_descriptions": 52,
@@ -93,6 +99,8 @@
       "physically_empty_with_hint": 41,
       "editorial_parameter_supplements": 2,
       "substantive_primary_parameter_descriptions": 705,
+      "editorial_main_parameter_descriptions": 0,
+      "unclassified_content_origin": 0,
       "parameter_description_hints": 41,
       "parameters_without_description_or_hint": 11,
       "unknown_requiredness": 702,
@@ -106,7 +114,7 @@
       "pointers": 3,
       "search_rank_entries": 8,
       "editorial_texts_without_provenance": 198,
-      "catalog_bytes": 3642256
+      "catalog_bytes": 3830681
     },
     "5": {
       "cards": 1444,
@@ -119,6 +127,8 @@
       "physically_empty_with_hint": 0,
       "editorial_parameter_supplements": 0,
       "substantive_primary_parameter_descriptions": 2115,
+      "editorial_main_parameter_descriptions": 0,
+      "unclassified_content_origin": 16,
       "parameter_description_hints": 0,
       "parameters_without_description_or_hint": 0,
       "unknown_requiredness": 297,
@@ -132,7 +142,7 @@
       "pointers": 0,
       "search_rank_entries": 9,
       "editorial_texts_without_provenance": 281,
-      "catalog_bytes": 8264465
+      "catalog_bytes": 8749198
     },
     "6": {
       "cards": 1520,
@@ -144,7 +154,9 @@
       "placeholder_parameter_descriptions": 0,
       "physically_empty_with_hint": 0,
       "editorial_parameter_supplements": 0,
-      "substantive_primary_parameter_descriptions": 2219,
+      "substantive_primary_parameter_descriptions": 2220,
+      "editorial_main_parameter_descriptions": 0,
+      "unclassified_content_origin": 1,
       "parameter_description_hints": 0,
       "parameters_without_description_or_hint": 0,
       "unknown_requiredness": 296,
@@ -158,7 +170,7 @@
       "pointers": 83,
       "search_rank_entries": 8,
       "editorial_texts_without_provenance": 294,
-      "catalog_bytes": 9350622
+      "catalog_bytes": 10013013
     }
   }
 }

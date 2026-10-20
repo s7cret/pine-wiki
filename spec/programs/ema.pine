@@ -1,0 +1,4 @@
+//@version=6
+indicator("MVP ema")
+float value = ta.ema(close, 3)
+plot(value, "ema")

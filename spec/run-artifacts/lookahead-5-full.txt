@@ -1,0 +1,1 @@
+- text: "[2026-10-19T15:00:00.000-00:00]: WIKI_FULL first=1,609,743,600,000 last=1,792,422,000,000 bars=12,901 max_error=0 na_mismatch=0 dataset_first=1,609,743,600,000 total=12,901"

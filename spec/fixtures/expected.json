@@ -1,0 +1,97 @@
+{
+  "expected_origin": "independent_documentation_derived_manual_arithmetic",
+  "not_a_TradingView_run": true,
+  "absolute_tolerance": 1e-12,
+  "relative_tolerance": 1e-12,
+  "plots": {
+    "abs": {
+      "abs": [
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ]
+    },
+    "ema": {
+      "ema": [
+        10.0,
+        15.0,
+        22.5,
+        31.25
+      ]
+    },
+    "round": {
+      "integer": [
+        10,
+        20,
+        30,
+        40
+      ],
+      "precision": [
+        10.0,
+        20.0,
+        30.0,
+        40.0
+      ]
+    },
+    "tr": {
+      "variable": [
+        null,
+        12.0,
+        12.0,
+        12.0
+      ],
+      "function": [
+        2.0,
+        12.0,
+        12.0,
+        12.0
+      ]
+    },
+    "array": {
+      "first": [
+        10.0,
+        20.0,
+        30.0,
+        40.0
+      ]
+    },
+    "request": {
+      "remote ema": [
+        null,
+        20.0,
+        20.0,
+        30.0
+      ],
+      "remote close": [
+        null,
+        20.0,
+        20.0,
+        40.0
+      ]
+    }
+  },
+  "context_contrast": {
+    "expected_origin": "manual_recurrence_from_cited_ema_algorithm",
+    "requested_ema_aligned": [
+      null,
+      20,
+      20,
+      30,
+      30,
+      45,
+      45,
+      62.5
+    ],
+    "ema_after_alignment": [
+      null,
+      20,
+      20,
+      30,
+      35,
+      47.5,
+      53.75,
+      66.875
+    ]
+  }
+}

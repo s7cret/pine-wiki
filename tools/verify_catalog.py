@@ -10,6 +10,7 @@ import collections, hashlib, json, re, shutil, subprocess, sys
 from data_integrity import (catalog_aggregates, family_version_aggregate, has_text,
                             normalized_history_aggregate, text_pool_errors)
 from semantic_contracts import contract_errors, history_contracts
+from probe_contracts import run_applies
 
 ROOT = Path(__file__).resolve().parents[1]
 # Share the migration's reviewed correspondences so validation cannot drift
@@ -179,14 +180,16 @@ for v, c in CAT.items():
         x = e['examples']
         items = x.get('items', [])
         for item in items:
+            check(not(e['category']=='variables' and e['name']=='hour' and re.search(r'\bhour\s*\(',item.get('code',''))), f'EXAMPLE_BINDING: {e["id"]}: hour() occurrence belongs to function')
             check(item.get('origin') in ('official_source','syntax_illustration','compatibility_example','editorial_probe','adaptation'), f'EXAMPLE_STATUS: {e["id"]}: origin missing')
             check(item.get('role') in ('full_script','snippet','negative_example'), f'EXAMPLE_STATUS: {e["id"]}: role missing')
-            check(item.get('compilation_status') in ('not_compiled','compiled','expected_error'), f'EXAMPLE_STATUS: {e["id"]}: compilation status missing')
-            check(item.get('execution_status') in ('not_executed','executed'), f'EXAMPLE_STATUS: {e["id"]}: execution status missing')
+            check(item.get('compilation_status') in ('not_compiled','compiled','expected_error','error','blocked','unknown'), f'EXAMPLE_STATUS: {e["id"]}: compilation status missing')
+            check(item.get('execution_status') in ('not_executed','executed','error','blocked','unknown'), f'EXAMPLE_STATUS: {e["id"]}: execution status missing')
             check(item.get('code_sha256') == hashlib.sha256(item.get('code','').encode()).hexdigest(), f'EXAMPLE_STATUS: {e["id"]}: code hash mismatch')
             if item.get('compilation_status') == 'compiled' or item.get('execution_status') == 'executed':
                 run=item.get('validation_run',{})
-                check(all(run.get(k) for k in ('date','version','data','parameters','observed_result')), f'EXAMPLE_STATUS: {e["id"]}: successful validation has no run evidence')
+                check(run_applies(item,run), f'EXAMPLE_STATUS: {e["id"]}: successful validation has no applicable code/definition/context evidence')
+                check(run.get('compiler',{}).get('status')==item.get('compilation_status') and run.get('runtime',{}).get('status')==item.get('execution_status'),f'EXAMPLE_STATUS: {e["id"]}: statuses differ from bound receipt')
         check(bool(items) == (x['status'] != 'missing'), f'v{v} {e["id"]}: examples.status does not match items')
         check(not any(re.fullmatch(r'\s*//\s*@version\s*=\s*\d+\s*', item.get('code', '')) for item in items), f'v{v} {e["id"]}: isolated version-directive example fragment')
         # Historical operator syntax illustrations can list three independent

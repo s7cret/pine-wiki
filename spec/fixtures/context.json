@@ -1,0 +1,67 @@
+{
+  "context_id": "fixture.historical.1",
+  "symbol": "TEST:FIXED",
+  "timeframe": "60",
+  "mode": "historical_confirmed",
+  "plan": "standard",
+  "chart_bars": [
+    {
+      "time": 0,
+      "close_time": 3600,
+      "open": 9.5,
+      "high": 11.0,
+      "low": 9.0,
+      "close": 10.0
+    },
+    {
+      "time": 3600,
+      "close_time": 7200,
+      "open": 10.0,
+      "high": 21.0,
+      "low": 9.0,
+      "close": 20.0
+    },
+    {
+      "time": 7200,
+      "close_time": 10800,
+      "open": 20.0,
+      "high": 31.0,
+      "low": 19.0,
+      "close": 30.0
+    },
+    {
+      "time": 10800,
+      "close_time": 14400,
+      "open": 30.0,
+      "high": 41.0,
+      "low": 29.0,
+      "close": 40.0
+    }
+  ],
+  "requested_contexts": [
+    {
+      "symbol": "TEST:FIXED",
+      "timeframe": "120",
+      "context_id": "fixture.requested.1",
+      "bars": [
+        {
+          "time": 0,
+          "close_time": 7200,
+          "open": 9.5,
+          "high": 21.0,
+          "low": 9.0,
+          "close": 20.0
+        },
+        {
+          "time": 7200,
+          "close_time": 14400,
+          "open": 20.0,
+          "high": 41.0,
+          "low": 19.0,
+          "close": 40.0
+        }
+      ]
+    }
+  ],
+  "data_origin": "own_synthetic_fixture_not_market_data"
+}

@@ -5,6 +5,7 @@ import csv
 from pathlib import Path
 import sys
 from semantic_contracts import meaningful_text
+from content_provenance import classify_content
 
 sys.path.insert(0, str(Path(__file__).resolve().parent / "migrations"))
 from catalog_io import ROOT, load_catalog, nonempty_text
@@ -25,7 +26,7 @@ def main():
                     continue
                 if args.without_hint and parameter.get("description_hint"):
                     continue
-                rows.append((version, entry["name"], parameter["name"], entry["id"], parameter.get('description_content_status','physically_empty'), bool(parameter.get('description_hint')), bool(parameter.get('description_supplement'))))
+                rows.append((version, entry["name"], parameter["name"], entry["id"], parameter.get('description_content_status','physically_empty'), bool(parameter.get('description_hint')), bool(parameter.get('description_supplement')), classify_content(catalog['texts'].get(parameter.get('description'),{}))))
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         stream = args.output.open("w", encoding="utf-8", newline="")
@@ -34,7 +35,7 @@ def main():
         stream = sys.stdout
     try:
         writer = csv.writer(stream, lineterminator="\n")
-        writer.writerow(("version", "function", "parameter", "entry_id", "description_status", "has_neighbor_hint", "has_editorial_supplement"))
+        writer.writerow(("version", "function", "parameter", "entry_id", "description_status", "has_neighbor_hint", "has_editorial_supplement", "main_content_origin"))
         writer.writerows(rows)
     finally:
         if args.output:

@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 from build_manifest import load_manifest
 from semantic_contracts import meaningful_text
+from content_provenance import classify_content
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -41,7 +42,9 @@ def collect():
             'placeholder_parameter_descriptions': len(placeholders),
             'physically_empty_with_hint': sum(bool(p.get('description_hint')) for p in physical_empty),
             'editorial_parameter_supplements': sum(bool(p.get('description_supplement')) for p in params),
-            'substantive_primary_parameter_descriptions': sum(has_text(c,p.get('description')) and c['texts'].get(p.get('description'),{}).get('basis') in ('official_translation','unchanged') for p in params),
+            'substantive_primary_parameter_descriptions': sum(classify_content(c['texts'].get(p.get('description'),{})) == 'primary_source' for p in params),
+            'editorial_main_parameter_descriptions': sum(classify_content(c['texts'].get(p.get('description'),{})) == 'editorial' for p in params),
+            'unclassified_content_origin': sum(classify_content(c['texts'].get(p.get('description'),{})) == 'unknown' for p in params),
             'parameter_description_hints': sum(bool(p.get('description_hint')) for p in params),
             'parameters_without_description_or_hint': sum(not p.get('description_hint') for p in empty),
             'unknown_requiredness': sum(p.get('state') == 'unknown' for p in params),

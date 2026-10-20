@@ -1,0 +1,17 @@
+//@version=5
+// Editorial example; not compiled or executed in Pine.
+indicator("Lookahead default v5")
+float implicit = request.security(syminfo.tickerid, "1D", close)
+float explicit = request.security(syminfo.tickerid, "1D", close, lookahead = barmerge.lookahead_off)
+plot(implicit - explicit, "Expected zero")
+
+var int verified = 0
+var int firstDefined = na
+var float maxError = 0.0
+if not na(implicit - explicit)
+    if na(firstDefined)
+        firstDefined := time
+    verified += 1
+    maxError := math.max(maxError, math.abs(implicit - explicit))
+if barstate.islast
+    log.info("WIKI_LOOKAHEAD5 first={0} last={1} bars={2} max_error={3}", firstDefined, time, verified, maxError)

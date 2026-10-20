@@ -1,0 +1,6 @@
+{
+  "exact_equality": "1.0000",
+  "verified_bars": "12,901.0000",
+  "na_mismatches": "0.0000",
+  "observed_at": "2026-10-20T00:31:57.382Z"
+}

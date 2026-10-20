@@ -1,0 +1,1 @@
+RE10063: Error on bar 0: This script uses seconds-based timeframes, which are only available to users with Plus and higher-tier plans. at #main():4

@@ -1,0 +1,27 @@
+//@version=4
+// Editorial example; not compiled or executed in Pine.
+study("Two RSI contracts in v4")
+ordinaryRsi = rsi(close, 14)
+numerator = max(change(close), 0.0) + 1.0
+denominator = max(-change(close), 0.0) + 1.0
+ratioRsi = rsi(numerator, denominator)
+ratioFormula = 100.0 - 100.0 / (1.0 + numerator / denominator)
+plot(ordinaryRsi, title = "Ordinary RSI")
+plot(ratioRsi - ratioFormula, title = "Difference expected zero")
+
+var int checked = 0
+var int mismatches = 0
+var float maximum = 0.0
+var int firstDefined = na
+if na(ratioRsi) != na(ratioFormula)
+    mismatches := mismatches + 1
+if not na(ratioRsi - ratioFormula)
+    checked := checked + 1
+    maximum := max(maximum, abs(ratioRsi - ratioFormula))
+    if na(firstDefined)
+        firstDefined := time
+plot(checked, title="Verified bars")
+plot(maximum, title="Maximum error")
+plot(mismatches, title="NA mismatches")
+plot(firstDefined, title="First defined timestamp")
+plot(time, title="Last timestamp")

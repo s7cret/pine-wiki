@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "owners": {
+    "type_rules": "specification_editor",
+    "binding_and_schemas": "data_developer",
+    "consumer": "consumer_owner"
+  },
+  "review_policy": "A changed semantic assertion remains unreviewed until an explicit decision and linked test are supplied. No automatic latest-URL selection.",
+  "upstream_queue": [],
+  "review_trail": "append source revisions and decisions; published bundles immutable",
+  "diagnostic_debt": [
+    {
+      "id": "PW-16",
+      "status": "not_reproduced",
+      "root_cause": "unknown",
+      "mechanism_not_claimed": "JSON key order"
+    }
+  ]
+}

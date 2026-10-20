@@ -5,16 +5,34 @@ from urllib.parse import unquote
 from catalog_io import ROOT, load_catalog, save_catalog
 
 
+def resolve_targets(record, entries):
+    selected = []
+    for target in record['targets']:
+        exact = target.startswith('id:')
+        matches = [e for e in entries if (unquote(target[3:]) == unquote(e['id']) if exact else target == e['name'])]
+        if len(matches) != 1:
+            raise ValueError(f'EXAMPLE_BINDING: selector {target!r} resolves to {len(matches)} entries; use an exact entry_id')
+        selected.append(matches[0]['id'])
+    return selected
+
+
 def main():
     additions = json.loads((ROOT/'tools/migrations/audit_20261020_examples.json').read_text(encoding='utf8'))
     attached = 0
     for v in range(1,7):
         c,w = load_catalog(ROOT,v)
+        targets = {id(record):resolve_targets(record,c['entries']) for record in additions['items'] if record['version']==v}
         for e in c['entries']:
+            if v==4 and e['id']=='primary:v4:variables:hour:overload:0':
+                x=e['examples'];wrong={r['code_sha256'] for r in additions['items'] if r['version']==4 and any(':functions:hour:' in t for t in r['targets'])}
+                x['items']=[i for i in x['items'] if i.get('code_sha256') not in wrong]
+                if not x['items']:
+                    x['status']='missing'
+                    if x.get('previous_note'):x['note']=copy.deepcopy(x['previous_note'])
             for record in additions['items']:
                 if record['version'] != v:
                     continue
-                matches = any(unquote(target[3:]) == unquote(e['id']) if target.startswith('id:') else target == e['name'] for target in record['targets'])
+                matches = e['id'] in targets[id(record)]
                 if not matches:
                     continue
                 x = e['examples']

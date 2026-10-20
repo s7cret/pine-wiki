@@ -9,6 +9,8 @@ and can also be opened locally through `index.html`.
 - [Русский интерфейс](https://s7cret.github.io/pine-wiki/?lang=ru)
 - [English interface](https://s7cret.github.io/pine-wiki/?lang=en)
 - [Документация, запуск и ограничения](README_RU.md)
+- [Pine v6 semantic profile](spec/index.html) · [offline consumer / bundle](docs/SEMANTIC_PROFILE.md)
+- [Приёмка ТЗ v2](docs/AUDIT_V2_2026-10-20.md)
 - [Проверки качества](QA_REPORT.md)
 - [Источники и права](THIRD_PARTY.md)
 

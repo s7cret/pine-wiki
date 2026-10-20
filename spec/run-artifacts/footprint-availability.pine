@@ -1,0 +1,19 @@
+//@version=6
+// Editorial example; not compiled or executed in Pine.
+indicator("Footprint delta and POC")
+footprint fp = request.footprint(100)
+float deltaValue = na
+float pocMiddle = na
+if not na(fp)
+    deltaValue := fp.delta()
+    volume_row pocRow = fp.poc()
+    if not na(pocRow)
+        pocMiddle := math.avg(pocRow.up_price(), pocRow.down_price())
+plot(deltaValue, "Footprint delta", style = plot.style_columns)
+plot(pocMiddle, "POC midpoint", force_overlay = true)
+
+var int availableBars = 0
+if not na(fp)
+    availableBars += 1
+if barstate.islast
+    log.info("WIKI_FP available_bars={0}", availableBars)

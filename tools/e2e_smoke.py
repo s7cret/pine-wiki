@@ -76,6 +76,31 @@ def check_october_audit(pg, base):
     ok('audit round: two call forms, no three-argument template',forms==['round(x)','round(number, precision)'] and 'round(bar_index, close, 2)' not in pg.locator('#rows').text_content())
 
 
+def check_semantic_release(pg,base):
+    for lang in ('ru','en'):
+        loaded(pg,f'{base}?v=6&lang={lang}&id=primary:v6:functions:request.security:overload:0')
+        ok(f'spec/{lang}: card links formal contract',pg.locator('#rows [data-detail="semantic-contract"] a[href="spec/index.html"]').count()==1)
+        cases=[('not_compiled','not_executed','notCompiled','notExecutedStatus'),('compiled','executed','compiledStatus','executedStatus'),('error','not_executed','exampleError','notExecutedStatus'),('compiled','blocked','compiledStatus','exampleBlocked'),('unknown','unknown','exampleUnknown','exampleUnknown')]
+        for compilation,execution,compile_key,run_key in cases:
+            pg.evaluate("""({compilation,execution})=>{let e=PINE_CATALOG[6].entries.find(e=>e.id==='primary:v6:functions:request.security:overload:0');let item=e.examples.items.find(i=>i.example_id==='example.audit.lookahead-6');e.examples.items=[item];item.compilation_status=compilation;item.execution_status=execution;item.validation_run.compiler.status=compilation;item.validation_run.runtime.status=execution;}""",{'compilation':compilation,'execution':execution})
+            pg.select_option('#language','en' if lang=='ru' else 'ru');pg.select_option('#language',lang)
+            detail=pg.locator('#rows details[data-detail="examples"]');detail.evaluate('(e)=>e.open=true')
+            expected=pg.evaluate('keys=>keys.map(k=>PINE_UI[k][document.documentElement.lang==="en"?1:0])',[compile_key,run_key])
+            ok(f'spec/{lang}: actual renderer {compilation}/{execution}',all(t in detail.inner_text() for t in expected) and detail.locator('a.probe-run').count()==1)
+        loaded(pg,f'{base}?v=5&lang={lang}&id=primary:v5:functions:request.seed:overload:0')
+        ok(f'spec/{lang}: conflicting v5 default stays unresolved','SOURCE.GAP.V5.RELEASE_2024_CALC_DEFAULT' in pg.locator('#rows .parameter .warning').text_content())
+    for address in (base.rsplit('/',1)[0]+'/spec/index.html',(ROOT/'spec/index.html').as_uri()):
+        pg.goto(address);pg.wait_for_selector('#facts article')
+        for lang in ('ru','en'):
+            pg.select_option('#locale',lang)
+            ok(f'spec {urlparse(address).scheme}/{lang}: facts, runs and review queue',pg.locator('#facts article').count()>20 and pg.locator('#probes article').count()>=15 and 'PW-16' in pg.locator('#workflow').text_content())
+            for width in (390,1400):
+                pg.set_viewport_size({'width':width,'height':900})
+                ok(f'spec {urlparse(address).scheme}/{lang}/{width}: no horizontal overflow',pg.evaluate('document.documentElement.scrollWidth<=innerWidth+2'))
+        if args.screenshots:pg.screenshot(path=str(args.screenshots/'semantic-profile.png'),full_page=False)
+    pg.set_viewport_size({'width':1400,'height':900})
+
+
 def check_sources_and_history(pg, base):
     """Check accessible mode changes and a known family missing from v1-v4."""
     loaded(pg, f'{base}?v=6&lang=ru')
@@ -277,6 +302,7 @@ try:
 
         check_sources_and_history(pg, BASE)
         check_october_audit(pg, BASE)
+        check_semantic_release(pg, BASE)
 
         loaded(pg, f'{BASE}?v=5&lang=ru')
         with pg.expect_download() as download:

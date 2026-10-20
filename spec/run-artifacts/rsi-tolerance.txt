@@ -1,0 +1,6 @@
+{
+  "maximum_within_1e_10": "1.0000",
+  "verified_bars": "12,900.0000",
+  "na_mismatches": "0.0000",
+  "observed_at": "2026-10-20T00:22:09.096Z"
+}
